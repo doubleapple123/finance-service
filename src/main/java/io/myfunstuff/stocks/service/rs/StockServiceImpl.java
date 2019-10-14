@@ -37,15 +37,24 @@ public class StockServiceImpl implements StockService {
 	}
 
 	@Override
-	public void addStockData(String symbol, TimeSeriesType timeseriesType, int dataSize){
-		String rawData = alphaVantageClientService.retrieveTimeSeriesData(symbol, timeseriesType, dataSize);
-		TimeSeriesDataCollection timeSeriesData = stockAnalysisService.parseRawTimeSeriesData(rawData, timeseriesType);
-		stockrepo.save(stockAnalysisService.getStockStatistics(timeSeriesData));
+	public String addStockData(String symbol, TimeSeriesType timeseriesType, int dataSize){
+		try{
+			String rawData = alphaVantageClientService.retrieveTimeSeriesData(symbol, timeseriesType, dataSize);
+			TimeSeriesDataCollection timeSeriesData = stockAnalysisService.parseRawTimeSeriesData(rawData, timeseriesType);
+			stockrepo.save(stockAnalysisService.getStockStatistics(timeSeriesData));
+		}catch(Exception e){
+			return "Error";
+		}
+		return "Saved Succesfully";
 	}
 
 	@Override
-	public Optional<StockStatistics> getStatistics(String symbol, TimeSeriesType timeseriesType, int dataSize){
-		return stockrepo.findById(symbol);
+	public StockStatistics getStatistics(long id){
+		return stockrepo.findById(id).get();
 	}
 
+	@Override
+	public Iterable<StockStatistics> getAllStat(){
+		return stockrepo.findAll();
+	}
 }

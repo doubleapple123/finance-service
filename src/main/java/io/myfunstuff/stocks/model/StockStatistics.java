@@ -7,7 +7,10 @@ import javax.persistence.Id;
 
 @Entity
 public class StockStatistics {
+
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	private String symbol;
 	private TimeSeriesType dataPointType;
 	private float high;
@@ -28,6 +31,14 @@ public class StockStatistics {
 	public StockStatistics(String symbol, TimeSeriesType dataPointType) {
 		this.symbol = symbol;
 		this.dataPointType = dataPointType;
+	}
+
+	public long getId(){
+		return id;
+	}
+
+	public void setId(long id){
+		this.id = id;
 	}
 	
 	public String getSymbol() {

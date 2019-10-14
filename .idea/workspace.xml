@@ -4,10 +4,15 @@
     <list default="true" id="b9c1dc6f-72b7-40f7-94db-145ea3a81435" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/model/StockStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/model/StockStatistics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/model/TimeSeriesDataCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/model/TimeSeriesDataCollection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/database/StockRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/database/StockRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/rs/StockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/rs/StockService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/rs/StockServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/rs/StockServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/model/StockStatistics.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/model/StockStatistics.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/model/TimeSeriesDataCollection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/model/TimeSeriesDataCollection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/rs/StockService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/rs/StockService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/rs/StockServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/rs/StockServiceImpl.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -132,7 +137,7 @@
       <updated>1570398960702</updated>
       <workItem from="1570398969094" duration="3162000" />
       <workItem from="1570578704891" duration="615000" />
-      <workItem from="1571087053558" duration="3337000" />
+      <workItem from="1571087053558" duration="4914000" />
     </task>
     <servers />
   </component>
