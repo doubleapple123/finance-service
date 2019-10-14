@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b9c1dc6f-72b7-40f7-94db-145ea3a81435" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/model/StockStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/model/StockStatistics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/model/TimeSeriesDataCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/model/TimeSeriesDataCollection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/database/StockRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/database/StockRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/rs/StockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/rs/StockService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/rs/StockServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/rs/StockServiceImpl.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -127,7 +132,7 @@
       <updated>1570398960702</updated>
       <workItem from="1570398969094" duration="3162000" />
       <workItem from="1570578704891" duration="615000" />
-      <workItem from="1571087053558" duration="2299000" />
+      <workItem from="1571087053558" duration="3337000" />
     </task>
     <servers />
   </component>

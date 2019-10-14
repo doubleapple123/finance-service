@@ -10,6 +10,9 @@ import io.myfunstuff.stocks.model.TimeSeriesType;
 import io.myfunstuff.stocks.service.AlphaVantageClientService;
 import io.myfunstuff.stocks.service.StockAnalysisService;
 
+import java.util.Iterator;
+import java.util.Optional;
+
 @Controller
 public class StockServiceImpl implements StockService {
 
@@ -35,7 +38,14 @@ public class StockServiceImpl implements StockService {
 
 	@Override
 	public void addStockData(String symbol, TimeSeriesType timeseriesType, int dataSize){
+		String rawData = alphaVantageClientService.retrieveTimeSeriesData(symbol, timeseriesType, dataSize);
+		TimeSeriesDataCollection timeSeriesData = stockAnalysisService.parseRawTimeSeriesData(rawData, timeseriesType);
+		stockrepo.save(stockAnalysisService.getStockStatistics(timeSeriesData));
+	}
 
+	@Override
+	public Optional<StockStatistics> getStatistics(String symbol, TimeSeriesType timeseriesType, int dataSize){
+		return stockrepo.findById(symbol);
 	}
 
 }

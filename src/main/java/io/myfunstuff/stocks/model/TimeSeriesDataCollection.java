@@ -8,12 +8,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-@Entity
 public class TimeSeriesDataCollection {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
 	private String symbol;
 	private TimeSeriesType type;
 	private Map<Date, TimeSeriesData> timeSeries;
@@ -22,14 +18,6 @@ public class TimeSeriesDataCollection {
 		this.symbol = symbol;
 		this.type = type;
 		this.timeSeries = new HashMap<Date, TimeSeriesData>();
-	}
-
-	public int getId(){
-		return id;
-	}
-
-	public void setId(int id){
-		this.id = id;
 	}
 
 	public String getSymbol() {

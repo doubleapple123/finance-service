@@ -1,7 +1,13 @@
 package io.myfunstuff.stocks.model;
 
-public class StockStatistics {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
+public class StockStatistics {
+	@Id
 	private String symbol;
 	private TimeSeriesType dataPointType;
 	private float high;
