@@ -49,7 +49,7 @@ public class StockServiceImpl implements StockService {
 	}
 
 	@Override
-	public StockStatistics getStatistics(long id){
+	public StockStatistics getStatistics(Long id){
 		return stockrepo.findById(id).get();
 	}
 

@@ -33,7 +33,7 @@ public class StockStatistics {
 		this.dataPointType = dataPointType;
 	}
 
-	public long getId(){
+	public Long getId(){
 		return id;
 	}
 
