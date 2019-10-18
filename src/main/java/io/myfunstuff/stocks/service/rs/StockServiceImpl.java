@@ -1,6 +1,7 @@
 package io.myfunstuff.stocks.service.rs;
 
 import io.myfunstuff.stocks.service.database.StockRepo;
+import io.myfunstuff.stocks.service.technicalFunctions.TechnicalDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -24,6 +25,9 @@ public class StockServiceImpl implements StockService {
 
 	@Autowired
 	StockRepo stockrepo;
+
+//	@Autowired
+//	TechnicalDetails analysis;
 	
 	@Autowired
 	public StockServiceImpl() {
@@ -56,5 +60,11 @@ public class StockServiceImpl implements StockService {
 	@Override
 	public Iterable<StockStatistics> getAllStat(){
 		return stockrepo.findAll();
+	}
+
+	@Override
+	public TechnicalDetails getAnalysis(String type, Long id) {
+		//analysis
+		return null;
 	}
 }
