@@ -9,6 +9,7 @@ import java.util.Map;
 
 public class Parser {
     private static String urlFormat = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=%s&apikey=728C9KPM2IY7IVDZ";
+    private static String fullUrlFormat = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=%s&outputsize=full&apikey=728C9KPM2IY7IVDZ";
 
     public static void main(String[] args) throws ParseException {
         String sym = "MSFT";
@@ -16,6 +17,7 @@ public class Parser {
 //        System.out.println(model.getTimeDate().toString());
 
         model.addStockData(parseData(getData(sym)));
+        model.printMap();
     }
 
     public static String getData(String symbol){
