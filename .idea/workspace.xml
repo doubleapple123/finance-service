@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b9c1dc6f-72b7-40f7-94db-145ea3a81435" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DataExport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/DataExport.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/StockModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/StockModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/DataParser/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/Parser.class" afterDir="false" />
@@ -71,7 +72,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Parser">
+  <component name="RunManager" selected="Application.DataExport">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -85,6 +86,20 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="io.myfunstuff.stocks.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DataExport" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="DataParser.DataExport" />
+      <module name="finance-service" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="DataParser.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -152,6 +167,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.DataExport" />
         <item itemvalue="Application.Parser" />
         <item itemvalue="Application.Application" />
       </list>

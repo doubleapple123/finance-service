@@ -1,15 +1,12 @@
 package DataParser;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.time.*;
 
 public class StockModel implements Comparable<StockModel>{
     private String symbol;
-    private int low, volume, open, high, close;
 
     //low, volume, open, high, close
     private Map<LocalDate, ArrayList<Double>> symbolData; // data of a date and its correlated stockData
@@ -66,6 +63,10 @@ public class StockModel implements Comparable<StockModel>{
     }
 
     //getters
+    public Map<LocalDate, ArrayList<Double>> getSymbolData(){
+        return symbolData;
+    }
+
     public String getSymbol(){
         return symbol;
     }
