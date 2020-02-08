@@ -1,15 +1,12 @@
 package DataParser;
 
 import org.json.JSONObject;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.text.ParseException;
 import java.util.Map;
 
 public class Parser {

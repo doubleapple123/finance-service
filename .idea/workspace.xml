@@ -6,6 +6,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DataExport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/DataExport.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/StockModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/StockModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/stockData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/stockData.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/DataParser/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/Parser.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/DataParser/StockModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/StockModel.class" afterDir="false" />
     </list>

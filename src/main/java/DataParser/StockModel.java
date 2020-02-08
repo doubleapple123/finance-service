@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.time.*;
 
-public class StockModel implements Comparable<StockModel>{
+public class StockModel{
     private String symbol;
 
     //low, volume, open, high, close
@@ -73,10 +73,5 @@ public class StockModel implements Comparable<StockModel>{
 
     public LocalDate getTimeDate(){
         return timeDate;
-    }
-
-    @Override
-    public int compareTo(StockModel o) {
-        return getTimeDate().compareTo(o.getTimeDate());
     }
 }

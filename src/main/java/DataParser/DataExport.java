@@ -6,11 +6,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Map;
 
+
+/*
+    plan for the future:
+        - implement using mysql connector (jdbc) to directly write and get from local mysql server
+        - automate update of aws rds database using java or python
+ */
 public class DataExport {
 
     public static void main(String[] args) throws IOException, ParseException {
         DataExport dataExport = new DataExport();
-//        dataExport.getData().printMap();
         dataExport.outputToFile();
     }
 
@@ -25,7 +30,6 @@ public class DataExport {
     }
 
     public void outputToFile() throws IOException, ParseException {
-//        OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream("src/main/stockData.txt"));
         FileWriter fileWriter = new FileWriter("src/main/stockData.txt", false);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
         PrintWriter printWriter = new PrintWriter(bufferedWriter);
