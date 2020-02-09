@@ -1,7 +1,5 @@
 package io.myfunstuff.stocks.service.technicalFunctions;
 
-import io.myfunstuff.stocks.model.StockStatistics;
-
 public interface TechnicalDetails {
     float end = 0;
     float start = 0;

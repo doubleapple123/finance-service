@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b9c1dc6f-72b7-40f7-94db-145ea3a81435" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/DataParser/DBConnector/ResultRow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DBConnector/Connector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/DBConnector/Connector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DataExport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/DataExport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/StockModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/StockModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/stockData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/stockData.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/Parser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/StockModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/StockModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/technicalFunctions/TechnicalDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/technicalFunctions/TechnicalDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/technicalFunctions/TrendLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/technicalFunctions/TrendLine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DataExport.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/DataExport.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -94,6 +95,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Connector" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="DataParser.DBConnector.Connector" />
+      <module name="finance-service" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="DataParser.DBConnector.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DataExport" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="DataParser.DataExport" />
       <module name="finance-service" />
@@ -169,6 +184,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.DataExport" />
+        <item itemvalue="Application.Connector" />
         <item itemvalue="Application.Parser" />
         <item itemvalue="Application.Application" />
       </list>

@@ -1,9 +1,14 @@
 package DataParser;
 
+import DataParser.DBConnector.Connector;
+import DataParser.DBConnector.ResultRow;
+
 import java.io.*;
+import java.sql.ResultSet;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 
@@ -15,8 +20,17 @@ import java.util.Map;
 public class DataExport {
 
     public static void main(String[] args) throws IOException, ParseException {
-        DataExport dataExport = new DataExport();
-        dataExport.outputToFile();
+//        DataExport dataExport = new DataExport();
+//        dataExport.outputToFile();
+//
+        Connector connector = new Connector();
+
+        ArrayList<ArrayList<Object>> table = connector.getTable();
+
+        for(ArrayList<Object> row : table){
+            System.out.println(row);
+        }
+
     }
 
     public StockModel getData() throws IOException, ParseException {
@@ -30,6 +44,7 @@ public class DataExport {
     }
 
     public void outputToFile() throws IOException, ParseException {
+
         FileWriter fileWriter = new FileWriter("src/main/stockData.txt", false);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
         PrintWriter printWriter = new PrintWriter(bufferedWriter);
