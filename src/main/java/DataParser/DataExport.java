@@ -14,8 +14,7 @@ import java.util.Map;
 
 /*
     plan for the future:
-        - implement using mysql connector (jdbc) to directly write and get from local mysql server
-        - set up spring usage of local mysql database
+        - add functionality to inputting and getting data (get data by symbol, date range, etc)
         - automate update of aws rds database using java or python
  */
 public class DataExport {

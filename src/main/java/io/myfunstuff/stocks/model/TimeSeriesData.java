@@ -1,10 +1,10 @@
 package io.myfunstuff.stocks.model;
 
-import java.util.Map;
-import java.util.Map.Entry;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class TimeSeriesData {
 	

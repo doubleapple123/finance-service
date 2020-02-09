@@ -1,8 +1,8 @@
 package io.myfunstuff.stocks.service.rs;
 
+import io.myfunstuff.stocks.model.Stuff;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import io.myfunstuff.stocks.model.Stuff;
 
 @Controller
 public class MyStuffServicImpl implements MyStuffService {

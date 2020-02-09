@@ -1,26 +1,21 @@
 package io.myfunstuff.stocks.service;
 
-import java.io.IOException;
-import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.Map.Entry;
-
 import DataParser.DBConnector.Connector;
-import org.apache.commons.lang3.StringUtils;
+import io.myfunstuff.stocks.model.StockStatistics;
+import io.myfunstuff.stocks.model.TimeSeriesData;
+import io.myfunstuff.stocks.model.TimeSeriesDataCollection;
+import io.myfunstuff.stocks.model.TimeSeriesType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import io.myfunstuff.stocks.model.StockStatistics;
-import io.myfunstuff.stocks.model.TimeSeriesData;
-import io.myfunstuff.stocks.model.TimeSeriesDataCollection;
-import io.myfunstuff.stocks.model.TimeSeriesType;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class StockAnalysisServiceImpl implements StockAnalysisService {
@@ -33,11 +28,12 @@ public class StockAnalysisServiceImpl implements StockAnalysisService {
 	}
 
 	@Override
-	public StockStatistics getStockStatistics(TimeSeriesDataCollection timeseriesData) {
+	public StockStatistics getStockStatistics(String symbol, TimeSeriesDataCollection timeseriesData) {
 		if (timeseriesData == null) {
 			return null;
 		}
-			StockStatistics stats = new StockStatistics(timeseriesData.getSymbol(), timeseriesData.getType());
+
+		StockStatistics stats = new StockStatistics(timeseriesData.getSymbol(), timeseriesData.getType());
 		Date start = null;
 		Date end = null;
 		Date lowDate = null;
@@ -78,64 +74,36 @@ public class StockAnalysisServiceImpl implements StockAnalysisService {
 	}
 
 	@Override
-	public TimeSeriesDataCollection parseRawTimeSeriesData(String rawData, TimeSeriesType timeseriesType) {
-		if (StringUtils.isBlank(rawData)) {
-			return null;
-		}
-		ObjectMapper objectMapper = new ObjectMapper();
-		String symbol = null;
+	public TimeSeriesDataCollection parseRawTimeSeriesData(String symbol, TimeSeriesType timeseriesType) {
 		TimeSeriesDataCollection timeSeriesCollection = null;
 		try {
-			JsonNode jsonRootNode = objectMapper.readTree(rawData);
-			Iterator<String> fields = jsonRootNode.fieldNames();
-			JsonNode metaData = jsonRootNode.get("Meta Data");
-			Iterator<Entry<String, JsonNode>> metaDataFields = metaData.fields();
-			while (metaDataFields.hasNext()) {
-				Entry<String, JsonNode> i = metaDataFields.next();
-				if (i.getKey().contains("Symbol")) {
-					symbol = i.getValue().asText();
-					System.out.println("symbol " + symbol);
-				}
-			}
-			JsonNode timeSeries = null;
-			while (fields.hasNext()) {
-				String fieldName = fields.next();
-				if (fieldName.contains("Time Series")) {
-					timeSeries = jsonRootNode.get(fieldName);
-					break;
-				}
-			}
+				Connector connector = new Connector();
+				ArrayList<ArrayList<Object>> table = connector.getTable();
+				timeSeriesCollection = new TimeSeriesDataCollection(table.get(0).get(0).toString(), timeseriesType);
 
-			Connector connector = new Connector();
+				String key = "";
+				Map<String, String> m = new HashMap<>();
 
-			ArrayList<ArrayList<Object>> table = connector.getTable();
+				for(ArrayList<Object> row : table){
+					for(int i = 2; i < row.size(); i++){
 
-			if (timeSeries != null) {
-				timeSeriesCollection = new TimeSeriesDataCollection(symbol, timeseriesType);
-				Iterator<Entry<String, JsonNode>> timeSeriesData = timeSeries.fields();
-				while (timeSeriesData.hasNext()) {
-					Entry<String, JsonNode> e = timeSeriesData.next();
-					Date date = new SimpleDateFormat(dateFormat).parse(e.getKey());
-					JsonNode valuesNode = e.getValue();
-					Iterator<Entry<String, JsonNode>> values = valuesNode.fields();
-					Map<String, String> m = new HashMap<>();
-
-					for(ArrayList<Object> row : table){
-						for(int i = 2; i < row.size(); i++){
-
+						switch(i){
+							case 2 : key = "open"; break;
+							case 3 : key = "high"; break;
+							case 4 : key = "low"; break;
+							case 5 : key = "close"; break;
+							case 6 : key = "volume"; break;
+							default : break;
 						}
+						m.put(key, row.get(i).toString());
 					}
 
-					while (values.hasNext()) {
-						Entry<String, JsonNode> v = values.next();
-						m.put(v.getKey(), v.getValue().asText());
-						System.out.println(v.getKey() + " KEY\tVALUE" + v.getValue().asText());
-					}
-					timeSeriesCollection.addTimeSeriesData(date, TimeSeriesData.convertFromMap(m));
+					timeSeriesCollection.addTimeSeriesData((Date) row.get(1), TimeSeriesData.convertFromMap(m));
 				}
-			}
-			connector.closeConnections();
-		} catch (IOException | ParseException | SQLException e) {
+				connector.closeConnections();
+
+//			}
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
