@@ -38,8 +38,13 @@ public class Connector {
         this.query = query;
     }
 
-    public void addToDatabase(String query){
+    public void addToDatabase(String insertValues){
+        try{
+            statement.executeUpdate("INSERT INTO stockData VALUES (" + insertValues + ")");
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public ArrayList<ArrayList<Object>> getTable() {
@@ -49,9 +54,6 @@ public class Connector {
             List<Map<Object, String>> table = row.add(resultSet);
 
             resultSet.close();
-            statement.close();
-            con.close();
-
 
             return row.convertType(table);
 
@@ -59,5 +61,10 @@ public class Connector {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void closeConnections() throws SQLException {
+        statement.close();
+        con.close();
     }
 }
