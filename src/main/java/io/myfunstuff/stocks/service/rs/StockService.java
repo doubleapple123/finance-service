@@ -24,27 +24,12 @@ public interface StockService {
 			@DefaultValue("10") @QueryParam("size") int dataSize
 	);
 
-	@POST
-	@Path("/save")
-	String addStockData(
-			@DefaultValue("MSFT") @QueryParam("symbol")	String symbol,
-			@DefaultValue("DAILY") @QueryParam("timeseries") TimeSeriesType timeseriesType,
-			@DefaultValue("10") @QueryParam("size") int dataSize
-	);
+
 
 	@GET
 	@Path("/getAllStat")
 	Iterable<StockStatistics> getAllStat();
 
-	@GET
-	@Path("/getStat")
-	StockStatistics getStatistics(
-//			@DefaultValue("MSFT") @QueryParam("symbol")	String symbol,
-//			@DefaultValue("DAILY") @QueryParam("timeseries") TimeSeriesType timeseriesType,
-//			@DefaultValue("10") @QueryParam("size") int dataSize
-
-			@QueryParam("id") Long id
-	);
 
 	@GET
 	@Path("/getAnalysis")

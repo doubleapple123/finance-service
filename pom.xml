@@ -15,6 +15,13 @@
 
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.apache.wink/wink-json4j -->
+        <dependency>
+            <groupId>org.apache.wink</groupId>
+            <artifactId>wink-json4j</artifactId>
+            <version>1.4</version>
+        </dependency>
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>

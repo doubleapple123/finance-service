@@ -2,14 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b9c1dc6f-72b7-40f7-94db-145ea3a81435" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/DataParser/DBConnector/ResultRow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finance-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/finance-service.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DBConnector/Connector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/DBConnector/Connector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DataExport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/DataExport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/technicalFunctions/TechnicalDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/technicalFunctions/TechnicalDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/technicalFunctions/TrendLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/technicalFunctions/TrendLine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/StockAnalysisServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/StockAnalysisServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/rs/StockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/rs/StockService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/rs/StockServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/rs/StockServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DBConnector/Connector.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/DBConnector/Connector.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DBConnector/ResultRow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/DBConnector/ResultRow.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DataExport.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/DataExport.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/Parser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/StockAnalysisServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/StockAnalysisServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/rs/StockService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/rs/StockService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/rs/StockServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/rs/StockServiceImpl.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,7 +61,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/gson-2.8.6.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Project" />
@@ -184,9 +191,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.DataExport" />
+        <item itemvalue="Application.Application" />
         <item itemvalue="Application.Connector" />
         <item itemvalue="Application.Parser" />
-        <item itemvalue="Application.Application" />
       </list>
     </recent_temporary>
   </component>

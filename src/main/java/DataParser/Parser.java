@@ -1,12 +1,20 @@
 package DataParser;
 
+import org.apache.wink.json4j.JSON;
+import org.apache.wink.json4j.JSONException;
+import org.apache.wink.json4j.OrderedJSONObject;
+import org.hibernate.criterion.Order;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Field;
 import java.net.URL;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Parser {
@@ -45,14 +53,46 @@ public class Parser {
         while((line = reader.readLine()) != null) {
             result.append(line).append("\n");
         }
+
         return result.toString();
     }
 
-    public Map<String, Object> parseData() throws IOException {
-        JSONObject jsonOb = new JSONObject(retrieveData());
-        String timeObj = jsonOb.get("Time Series (Daily)").toString();
+    public Map<String, Object> parseData() throws IOException, NoSuchFieldException, IllegalAccessException, JSONException {
+        String data = retrieveData();
 
-        JSONObject timeJson = new JSONObject(timeObj);
-        return timeJson.toMap();
+        OrderedJSONObject jsonObject = new OrderedJSONObject(data);
+        String timeObj = jsonObject.get("Time Series (Daily)").toString();
+        OrderedJSONObject timeJson = new OrderedJSONObject(timeObj);
+
+        Iterator iterator = timeJson.getOrder();
+        Map<String, Object> objectMap = new LinkedHashMap<>();
+        Object key;
+
+        while(iterator.hasNext()){
+            key = iterator.next();
+            objectMap.put(key.toString(), timeJson.get(key));
+        }
+
+        Object mapVal;
+
+        //this is done because OrderedJSONObject formats the json data differently. I wrote the rest of the program
+        //with unordered data so i had to format this data to look exactly the same as the one before to fit the algorithm
+        //so everything works
+
+        for(Map.Entry entry : objectMap.entrySet()){
+            mapVal = entry.getValue();
+            mapVal = mapVal.toString().replaceAll("\"", "");
+            mapVal = mapVal.toString().replaceAll(":", " ");
+            mapVal = mapVal.toString().replaceAll("open ", "open=");
+            mapVal = mapVal.toString().replaceAll("high ", "high=");
+            mapVal = mapVal.toString().replaceAll("low ", "low=");
+            mapVal = mapVal.toString().replaceAll("close ", "close=");
+            mapVal = mapVal.toString().replaceAll("volume ", "volume=");
+
+            objectMap.replace(entry.getKey().toString(), mapVal);
+
+        }
+
+        return objectMap;
     }
 }

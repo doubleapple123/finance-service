@@ -1,14 +1,13 @@
 package io.myfunstuff.stocks.service;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 
+import DataParser.DBConnector.Connector;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +37,7 @@ public class StockAnalysisServiceImpl implements StockAnalysisService {
 		if (timeseriesData == null) {
 			return null;
 		}
-		StockStatistics stats = new StockStatistics(timeseriesData.getSymbol(), timeseriesData.getType());
+			StockStatistics stats = new StockStatistics(timeseriesData.getSymbol(), timeseriesData.getType());
 		Date start = null;
 		Date end = null;
 		Date lowDate = null;
@@ -95,6 +94,7 @@ public class StockAnalysisServiceImpl implements StockAnalysisService {
 				Entry<String, JsonNode> i = metaDataFields.next();
 				if (i.getKey().contains("Symbol")) {
 					symbol = i.getValue().asText();
+					System.out.println("symbol " + symbol);
 				}
 			}
 			JsonNode timeSeries = null;
@@ -105,6 +105,11 @@ public class StockAnalysisServiceImpl implements StockAnalysisService {
 					break;
 				}
 			}
+
+			Connector connector = new Connector();
+
+			ArrayList<ArrayList<Object>> table = connector.getTable();
+
 			if (timeSeries != null) {
 				timeSeriesCollection = new TimeSeriesDataCollection(symbol, timeseriesType);
 				Iterator<Entry<String, JsonNode>> timeSeriesData = timeSeries.fields();
@@ -113,15 +118,24 @@ public class StockAnalysisServiceImpl implements StockAnalysisService {
 					Date date = new SimpleDateFormat(dateFormat).parse(e.getKey());
 					JsonNode valuesNode = e.getValue();
 					Iterator<Entry<String, JsonNode>> values = valuesNode.fields();
-					Map<String, String> m = new HashMap<String, String>();
+					Map<String, String> m = new HashMap<>();
+
+					for(ArrayList<Object> row : table){
+						for(int i = 2; i < row.size(); i++){
+
+						}
+					}
+
 					while (values.hasNext()) {
 						Entry<String, JsonNode> v = values.next();
 						m.put(v.getKey(), v.getValue().asText());
+						System.out.println(v.getKey() + " KEY\tVALUE" + v.getValue().asText());
 					}
 					timeSeriesCollection.addTimeSeriesData(date, TimeSeriesData.convertFromMap(m));
 				}
 			}
-		} catch (IOException | ParseException e) {
+			connector.closeConnections();
+		} catch (IOException | ParseException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
