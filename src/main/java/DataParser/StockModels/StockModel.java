@@ -1,12 +1,13 @@
-package DataParser;
+package DataParser.StockModels;
 
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
+
+//class used
 
 public class StockModel{
     private String symbol;
@@ -27,13 +28,13 @@ public class StockModel{
         this.symbol = symbol;
     }
 
-    public void setTimeDate(String date) throws ParseException {
+    public void setTimeDate(String date){
         timeDate = LocalDate.parse(date, format);
     }
 
     //functionality
 
-    public void addStockData(Map<String, Object> dataMap) throws ParseException {
+    public void addStockData(Map<String, Object> dataMap){
         for(Map.Entry<String, Object> keys : dataMap.entrySet()){
             setTimeDate(keys.getKey());
             String [] priceData = parseArray(keys.getValue().toString().split(","));
@@ -46,13 +47,6 @@ public class StockModel{
                 priceArr.add(value);
             }
             symbolData.put(getTimeDate(), priceArr);
-
-        }
-    }
-
-    public void printMap(){
-        for(Map.Entry<LocalDate, ArrayList<Double>> listEntry: symbolData.entrySet()){
-            System.out.println(listEntry.getKey() + " " + listEntry.getValue());
         }
     }
 

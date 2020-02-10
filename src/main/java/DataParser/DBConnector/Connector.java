@@ -1,17 +1,15 @@
 package DataParser.DBConnector;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+
+//class used solely for connecting to a mysql database
+//in the future this might be used to connect to a cloud (aws) database
 
 public class Connector {
-    private String query = "";
     private String database = "financedatabase";
     private final String user = "root";
     private final String password = "mnksp4yAcnD23yhkcLAbho7idbFm3lHn";
 
-    private ResultRow row = new ResultRow();
     private Connection con;
     private Statement statement;
 
@@ -45,35 +43,5 @@ public class Connector {
 
     public String getDatabase(){
         return database;
-    }
-
-    public void addToDatabase(String insertValues){
-        try{
-            statement.executeUpdate("INSERT INTO stockData VALUES (" + insertValues + ")");
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public ArrayList<ArrayList<Object>> getTable() {
-        try {
-            query = "select * from stockData";
-            ResultSet resultSet = statement.executeQuery(query);
-            List<Map<Object, String>> table = row.add(resultSet);
-
-            resultSet.close();
-
-            return row.convertType(table);
-
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public void closeConnections() throws SQLException {
-        statement.close();
-        con.close();
     }
 }

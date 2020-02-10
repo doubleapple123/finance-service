@@ -7,27 +7,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70e5a1be-a043-4e94-88a7-050b7a61941b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/DataParser/DBQueries/Queries.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/DataParser/DBQueries/QueryType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/DataParser/TestRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/DataParser/DataFormat/DataFormatIn.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/DataParser/DataFormat/DataFormatOut.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/DataParser/DataFormat/SQLToJava.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/DataParser/StockModels/DBRows.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finance-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/finance-service.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DBConnector/Connector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/DBConnector/Connector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DBConnector/ResultRow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/DBConnector/ResultRow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DataExport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/DataExport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/StockModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/StockModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/StockAnalysisServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/StockAnalysisServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DBConnector/ResultRow.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DBQueries/Queries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/DBQueries/Queries.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DataExport.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/DataFormat/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/StockModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/StockModels/StockModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DBConnector/Connector.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/DBConnector/Connector.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DataExport.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/DataExport.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/Parser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/StockModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/StockModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/finance-service.kotlin_module" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/finance-service.kotlin_module" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/StockAnalysisServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/StockAnalysisServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DBConnector/ResultRow.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DBQueries/Queries.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/DBQueries/Queries.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DataExport.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/Parser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/StockModel.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,18 +70,18 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunManager" selected="Application.TestRunner">
     <configuration name="DataExport" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="DataParser.DataExport" />
+      <option name="MAIN_CLASS_NAME" value="DataParser.DataFormat.DataIn.DataExport" />
       <module name="finance-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="DataParser.*" />
+          <option name="PATTERN" value="DataParser.DataFormat.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -98,7 +94,7 @@
       <module name="finance-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="DataParser.*" />
+          <option name="PATTERN" value="DataParser.DataFormat.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -146,7 +142,7 @@
       <workItem from="1571435883547" duration="4601000" />
       <workItem from="1571519155945" duration="1238000" />
       <workItem from="1581292051478" duration="40000" />
-      <workItem from="1581292219572" duration="6119000" />
+      <workItem from="1581292219572" duration="12959000" />
     </task>
     <servers />
   </component>
@@ -167,6 +163,10 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
+    <state x="617" y="214" key="#Project_Structure" timestamp="1581299099860">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="617" y="214" key="#Project_Structure/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581299099860" />
     <state x="3112" y="384" key="#SQL_Dialects" timestamp="1581297324734">
       <screen x="2560" y="206" width="1920" height="1040" />
     </state>
@@ -183,25 +183,25 @@
       <screen x="2560" y="206" width="1920" height="1040" />
     </state>
     <state x="3300" y="480" key="FileChooserDialogImpl/0.0.2048.1112/2560.206.1920.1040@2560.206.1920.1040" timestamp="1581292090162" />
-    <state width="2005" height="221" key="GridCell.Tab.0.bottom" timestamp="1581299042180">
+    <state width="2005" height="233" key="GridCell.Tab.0.bottom" timestamp="1581307220284">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="221" key="GridCell.Tab.0.bottom/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581299042180" />
+    <state width="2005" height="233" key="GridCell.Tab.0.bottom/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581307220284" />
     <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.2048.1112/2560.206.1920.1040@2560.206.1920.1040" timestamp="1581294286031" />
-    <state width="2005" height="221" key="GridCell.Tab.0.center" timestamp="1581299042179">
+    <state width="2005" height="233" key="GridCell.Tab.0.center" timestamp="1581307220284">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="221" key="GridCell.Tab.0.center/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581299042179" />
+    <state width="2005" height="233" key="GridCell.Tab.0.center/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581307220284" />
     <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.2048.1112/2560.206.1920.1040@2560.206.1920.1040" timestamp="1581294286031" />
-    <state width="2005" height="221" key="GridCell.Tab.0.left" timestamp="1581299042179">
+    <state width="2005" height="233" key="GridCell.Tab.0.left" timestamp="1581307220284">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="221" key="GridCell.Tab.0.left/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581299042179" />
+    <state width="2005" height="233" key="GridCell.Tab.0.left/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581307220284" />
     <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.2048.1112/2560.206.1920.1040@2560.206.1920.1040" timestamp="1581294286031" />
-    <state width="2005" height="221" key="GridCell.Tab.0.right" timestamp="1581299042180">
+    <state width="2005" height="233" key="GridCell.Tab.0.right" timestamp="1581307220284">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="221" key="GridCell.Tab.0.right/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581299042180" />
+    <state width="2005" height="233" key="GridCell.Tab.0.right/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581307220284" />
     <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.2048.1112/2560.206.1920.1040@2560.206.1920.1040" timestamp="1581294286031" />
     <state width="2005" height="221" key="GridCell.Tab.1.bottom" timestamp="1581299029708">
       <screen x="0" y="0" width="2048" height="1112" />

@@ -1,4 +1,4 @@
-package DataParser;
+package DataParser.DataFormat;
 
 import org.apache.wink.json4j.JSONException;
 import org.apache.wink.json4j.OrderedJSONObject;
@@ -11,6 +11,8 @@ import java.net.URL;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+//class used to parse raw json data from public api
 
 public class Parser {
     private String urlFormat = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=%s&apikey=728C9KPM2IY7IVDZ";
@@ -32,6 +34,8 @@ public class Parser {
         return this.symbol;
     }
 
+    //gets raw json string
+
     public String retrieveData() throws IOException {
         URL address;
 
@@ -52,7 +56,9 @@ public class Parser {
         return result.toString();
     }
 
-    public Map<String, Object> parseData() throws IOException, NoSuchFieldException, IllegalAccessException, JSONException {
+    //returns parsed map object
+
+    public Map<String, Object> parseData() throws IOException, JSONException {
         String data = retrieveData();
 
         OrderedJSONObject jsonObject = new OrderedJSONObject(data);
