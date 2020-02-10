@@ -8,9 +8,9 @@ public class TestRunner{
 
 /*
     plan for the future:
-    	- query builder ? (inputs stock symbol, date etc..) OR make a queryModel object
+    	- query functions overloading
         - add functionality to inputting and getting data (get data by symbol, date range, etc)
-        - automate update of aws rds database using java or python
+        - able to connect to amazon rds directly
  */
 
 	public static void main(String[] args){
