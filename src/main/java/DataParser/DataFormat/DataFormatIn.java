@@ -14,7 +14,7 @@ import java.util.TreeMap;
 //class used by other classes to format data into usable data
 //methods in here are not necessarily related but could be
 public class DataFormatIn{
-	public class StockModel{
+	private class StockModel{
 		private String symbol;
 
 		//low, volume, open, high, close
@@ -80,8 +80,8 @@ public class DataFormatIn{
 
 
 	//gets data with Parser class
-	public StockModel getData(String symbol) throws IOException, JSONException {
-		Parser parser = new Parser(symbol, false);
+	public StockModel getData(String symbol, boolean full) throws IOException, JSONException {
+		Parser parser = new Parser(symbol, full);
 		StockModel model = new StockModel(parser.getSymbol());
 
 		Map<String, Object> stockData = parser.parseData();
@@ -92,12 +92,12 @@ public class DataFormatIn{
 
 	//formats correctly data to import into mysql
 	//final step of the import process
-	public String updateDatabase(String symbol) throws IOException, JSONException{
+	public String updateDatabase(String symbol, boolean full) throws IOException, JSONException{
 		DecimalFormat df = new DecimalFormat("#");
 		df.setMaximumFractionDigits(3);
 		StringBuilder stringBuilder = new StringBuilder();
 
-		StockModel stockModel = getData(symbol);
+		StockModel stockModel = getData(symbol, full);
 		Map<LocalDate, ArrayList<Double>> outMap = stockModel.getSymbolData();
 		//example data
 		//"'MSFT','2020-03-01', 100, 200, 300, 400, 500";

@@ -14,14 +14,12 @@ public class TestRunner{
 
 	public static void main(String[] args){
 		Queries queries = new Queries();
+		String[] symbolsToAdd = {"SPY", "TSLA", "MSFT"};
 
-		queries.addToDatabase("SPY");
+//		queries.addToDatabaseSymbol(symbolsToAdd);
 
-		ArrayList<ArrayList<Object>> table = queries.getAllTable();
+		queries.printOutTable(queries.getTableFromSymbol("SPY"));
 
-		for(ArrayList<Object> row : table){
-			System.out.println(row);
-		}
 
 		queries.closeConnection();
 	}

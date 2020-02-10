@@ -20,11 +20,6 @@ public class Parser {
     private boolean full;
     private String symbol;
 
-    public Parser(){
-        this.full = false;
-        this.symbol = "SPY";
-    }
-
     public Parser(String symbol, boolean full){
         this.symbol = symbol;
         this.full = full;
