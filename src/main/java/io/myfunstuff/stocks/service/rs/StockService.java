@@ -15,13 +15,12 @@ public interface StockService {
 	@Path("/analyze")
 	StockStatistics analyzeTimeSeriesData(
 			@DefaultValue("MSFT") @QueryParam("symbol")String symbol,
-			@DefaultValue("DAILY") @QueryParam("timeseries") TimeSeriesType timeseriesType,
-			@DefaultValue("10") @QueryParam("size") int dataSize
-	);
+			@DefaultValue("2019-01-01") @QueryParam("startDate") String startDate,
+			@DefaultValue("2020-01-01") @QueryParam("endDate") String endDate,
+			@DefaultValue("DAILY") @QueryParam("timeseries") TimeSeriesType timeseriesType //currently not implemented
 
-	@GET
-	@Path("/getAllStat")
-	Iterable<StockStatistics> getAllStat();
+//			@DefaultValue("false") @QueryParam("size") boolean dataSize
+	);
 
 	@GET
 	@Path("/getAnalysis")

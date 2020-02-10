@@ -9,14 +9,13 @@ import java.sql.Statement;
 //in the future this might be used to connect to a cloud (aws) database
 
 public class Connector {
-    private String database = "financedatabase";
     private final String user = "root";
     private final String password = "mnksp4yAcnD23yhkcLAbho7idbFm3lHn";
 
     private Connection con;
     private Statement statement;
 
-    public Connector(){
+    public Connector(String database){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(String.format("jdbc:mysql://localhost/%s", database), user, password);
@@ -34,17 +33,5 @@ public class Connector {
 
     public Statement getStatement(){
         return statement;
-    }
-
-    public String getUser(){
-        return user;
-    }
-
-    public String getPassword(){
-        return password;
-    }
-
-    public String getDatabase(){
-        return database;
     }
 }

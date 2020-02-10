@@ -5,9 +5,9 @@ import io.myfunstuff.stocks.model.TimeSeriesDataCollection;
 import io.myfunstuff.stocks.model.TimeSeriesType;
 
 public interface StockAnalysisService {
+
+	StockStatistics getStockStatistics(String symbol, TimeSeriesDataCollection timeseriesData);
 	
-	public StockStatistics getStockStatistics(String symbol, TimeSeriesDataCollection timeseriesData);
-	
-	public TimeSeriesDataCollection parseRawTimeSeriesData(String symbol, TimeSeriesType timeseriesType);
+	TimeSeriesDataCollection parseRawTimeSeriesData(String startDate, String endDate, String symbol, TimeSeriesType timeseriesType);
 	
 }

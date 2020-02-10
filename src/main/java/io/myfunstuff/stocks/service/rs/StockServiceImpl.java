@@ -27,16 +27,11 @@ public class StockServiceImpl implements StockService {
 	}
 	
 	@Override
-	public StockStatistics analyzeTimeSeriesData(String symbol, TimeSeriesType timeseriesType, int dataSize) {
-		TimeSeriesDataCollection timeSeriesData = stockAnalysisService.parseRawTimeSeriesData(symbol, timeseriesType);
-		System.out.println(symbol);
+	public StockStatistics analyzeTimeSeriesData(String symbol, String startDate, String endDate, TimeSeriesType timeseriesType) {
+		TimeSeriesDataCollection timeSeriesData = stockAnalysisService.parseRawTimeSeriesData(startDate, endDate, symbol, timeseriesType);
 		return stockAnalysisService.getStockStatistics(symbol, timeSeriesData);
 	}
 
-	@Override
-	public Iterable<StockStatistics> getAllStat(){
-		return stockrepo.findAll();
-	}
 
 	@Override
 	public TechnicalDetails getAnalysis(String type, Long id) {

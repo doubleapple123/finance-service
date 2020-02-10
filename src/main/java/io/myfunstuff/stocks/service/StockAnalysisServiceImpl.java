@@ -1,10 +1,7 @@
 package io.myfunstuff.stocks.service;
 
 import DataParser.DBQueries.Queries;
-import io.myfunstuff.stocks.model.StockStatistics;
-import io.myfunstuff.stocks.model.TimeSeriesData;
-import io.myfunstuff.stocks.model.TimeSeriesDataCollection;
-import io.myfunstuff.stocks.model.TimeSeriesType;
+import io.myfunstuff.stocks.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,16 +66,19 @@ public class StockAnalysisServiceImpl implements StockAnalysisService{
 		stats.setPeriodEnd(new SimpleDateFormat(dateFormat).format(end));
 		stats.setLowDate(new SimpleDateFormat(dateFormat).format(lowDate));
 		stats.setHighDate(new SimpleDateFormat(dateFormat).format(highDate));
+		System.out.println(stats);
 		return stats;
 	}
 
 	@Override
-	public TimeSeriesDataCollection parseRawTimeSeriesData(String symbol, TimeSeriesType timeseriesType){
-		TimeSeriesDataCollection timeSeriesCollection = null;
-
+	public TimeSeriesDataCollection parseRawTimeSeriesData(String startDate, String endDate, String symbol, TimeSeriesType timeseriesType){
+		TimeSeriesDataCollection timeSeriesDataCollection = new TimeSeriesDataCollection(startDate, endDate, symbol, timeseriesType);
 		Queries queries = new Queries();
-		ArrayList<ArrayList<Object>> table = queries.getAllTable();
-		timeSeriesCollection = new TimeSeriesDataCollection(table.get(0).get(0).toString(), timeseriesType);
+
+		queries.getTableFromSymbol(symbol, startDate, endDate);
+		ArrayList<ArrayList<Object>> table = queries.executeQuery();
+
+		System.out.println(symbol);
 
 		String key = "";
 		Map<String, String> m = new HashMap<>();
@@ -108,12 +108,12 @@ public class StockAnalysisServiceImpl implements StockAnalysisService{
 				m.put(key, row.get(i).toString());
 			}
 
-			timeSeriesCollection.addTimeSeriesData((Date) row.get(1), TimeSeriesData.convertFromMap(m));
+			timeSeriesDataCollection.addTimeSeriesData((Date) row.get(1), TimeSeriesData.convertFromMap(m));
 		}
 		queries.closeConnection();
 
 
-		return timeSeriesCollection;
+		return timeSeriesDataCollection;
 	}
 
 }

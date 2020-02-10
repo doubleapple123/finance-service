@@ -17,10 +17,15 @@ public class TestRunner{
 		Queries queries = new Queries();
 		String[] symbolsToAdd = {"SPY", "TSLA", "MSFT"};
 
-//		queries.addToDatabaseSymbol(symbolsToAdd);
+//		queries.addToDatabaseSymbol(symbolsToAdd); //adds to database
+//		queries.updateQuery();
 
-		queries.printOutTable(queries.getTableFromSymbol("SPY"));
+//		queries.getTableFromSymbol("MSFT", "2018-01-23", "2020-02-08"); //gets data from database
+//		queries.getAllTable();
+//
+//		queries.printOutTable(queries.executeQuery()); //execute query
 
+		queries.inputSymbolsIntoSymbolDatabase();
 
 		queries.closeConnection();
 	}

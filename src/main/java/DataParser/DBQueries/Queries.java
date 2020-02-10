@@ -1,8 +1,8 @@
 package DataParser.DBQueries;
 
 import DataParser.DBConnector.Connector;
-import DataParser.DataFormat.DataFormatIn;
-import DataParser.DataFormat.DataFormatOut;
+import DataParser.DataFormat.StockDataTable.DataFormatIn;
+import DataParser.DataFormat.StockDataTable.DataFormatOut;
 import org.apache.wink.json4j.JSONException;
 
 import java.io.IOException;
@@ -10,13 +10,12 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class Queries{
-
+	private String query;
 	private Connection connection;
 	private Statement statement;
 	private QueryType queryType;
@@ -26,7 +25,7 @@ public class Queries{
 	private List<Map<Object, String>> dataTable;
 
 	public Queries(){
-		Connector connector = new Connector();
+		Connector connector = new Connector("financedatabase");
 		this.connection = connector.getCon();
 		this.statement = connector.getStatement();
 	}
@@ -36,8 +35,12 @@ public class Queries{
 		this.queryType = queryType;
 	}
 
-	public void executeQuery(){
+	public void setQuery(String query){
+		this.query = query;
+	}
 
+	public String getQuery(){
+		return query;
 	}
 
 	public void addToDatabaseSymbol(String[] listOfSymbols){
@@ -53,33 +56,37 @@ public class Queries{
 	//uses data in
 	public void addToDatabaseSymbol(String symbol, boolean full){
 		try{
-			statement.executeUpdate("INSERT INTO stockdata VALUES" +
-					dataIn.updateDatabase(symbol, full));
-
-		} catch(IOException | JSONException | SQLException e){
+			setQuery("INSERT INTO stockdata VALUES" + dataIn.updateDatabase(symbol,full));
+		} catch(IOException | JSONException e){
 			e.printStackTrace();
 		}
 	}
 
-	public void addToDatabaseSymbol(String symbol, LocalDate startDate, LocalDate endDate){
-//		try{
-//
-//
-//
-//		}catch(SQLException e){
-//			e.printStackTrace();
-//		}
+	public void updateQuery(){
+		try{
+			statement.executeUpdate(getQuery());
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+	}
+	public void getTableFromSymbol(String symbol, String startDate, String endDate){
+		setQuery(String.format("SELECT * FROM stockdata where stock_symbol = '%s' and date between '%s' and '%s'", symbol, startDate, endDate));
 	}
 
-	public ArrayList<ArrayList<Object>> getTableFromSymbol(String symbol){
-		try{
-			String query = String.format("SELECT * FROM stockdata WHERE `stock_symbol` = '%s'", symbol);
-			System.out.println("query is : " + query);
+	public void getTableFromSymbol(String symbol){
+		setQuery(String.format("SELECT * FROM stockdata WHERE `stock_symbol` = '%s'", symbol));
+	}
 
-			resultSet = statement.executeQuery(query);
+	//uses data out
+	public void getAllTable(){
+		setQuery("SELECT * FROM stockdata");
+	}
+
+	public ArrayList<ArrayList<Object>> executeQuery(){
+		try{
+			resultSet = statement.executeQuery(getQuery());
 			dataTable = dataOut.getTableFromSet(resultSet);
 
-			resultSet.close();
 			return dataOut.convertType(dataTable);
 
 		}catch (SQLException e){
@@ -89,22 +96,31 @@ public class Queries{
 		}
 	}
 
-	//uses data out
-	public ArrayList<ArrayList<Object>> getAllTable(){
+	public void inputSymbolsIntoSymbolDatabase(){
 		try{
-			String query = "SELECT * FROM stockdata";
+			/*
+			insert into `stocksymbols` (`symbol`)
+			select "SPY" from dual
+			where not exists (select * from `stocksymbols`
+				where `symbol` = "SPY" limit 1);
 
-			resultSet = statement.executeQuery(query);
-			dataTable = dataOut.getTableFromSet(resultSet);
+			 */
+			StringBuilder stringBuilder = new StringBuilder();
+			setQuery("SELECT DISTINCT stock_symbol FROM stockdata"); //gets all symbols
+			resultSet = statement.executeQuery(getQuery());
+
+			while(resultSet.next()){
+				stringBuilder.append(String.format("INSERT INTO `stocksymbols` (`symbol`) select '%1$s' from dual where not exists" +
+						"(select * from `stocksymbols` where `symbol` = '%1$s' limit 1);",resultSet.getString(1)));
 
 
-			resultSet.close();
-			return dataOut.convertType(dataTable);
+			}
+			setQuery(stringBuilder.toString());
+			System.out.println(getQuery());
+			updateQuery();
 
 		}catch(SQLException e){
-			System.out.println("Fetch all data failed");
 			e.printStackTrace();
-			return null;
 		}
 	}
 

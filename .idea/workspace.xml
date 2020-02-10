@@ -8,7 +8,27 @@
   <component name="ChangeListManager">
     <list default="true" id="70e5a1be-a043-4e94-88a7-050b7a61941b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finance-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/finance-service.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DBConnector/Connector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/DBConnector/Connector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DBQueries/Queries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/DBQueries/Queries.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DataFormat/DataFormatIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/DataFormat/StockDataTable/DataFormatIn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DataFormat/DataFormatOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/DataFormat/StockDataTable/DataFormatOut.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/TestRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/TestRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/model/TimeSeriesDataCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/model/TimeSeriesDataCollection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/StockAnalysisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/StockAnalysisService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/StockAnalysisServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/StockAnalysisServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/rs/StockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/rs/StockService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/rs/StockServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/rs/StockServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DBConnector/Connector.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/DBConnector/Connector.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DBQueries/Queries.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/DBQueries/Queries.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DataFormat/DataFormatIn$StockModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DataFormat/DataFormatIn.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DataFormat/DataFormatOut.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/TestRunner.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/TestRunner.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/model/TimeSeriesDataCollection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/model/TimeSeriesDataCollection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/StockAnalysisService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/StockAnalysisService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/StockAnalysisServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/StockAnalysisServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/rs/StockService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/rs/StockService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/rs/StockServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/rs/StockServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +86,7 @@
       <module name="finance-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="DataParser.DataFormat.*" />
+          <option name="PATTERN" value="DataParser.DataFormat.StockDataTable.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -79,7 +99,7 @@
       <module name="finance-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="DataParser.DataFormat.*" />
+          <option name="PATTERN" value="DataParser.DataFormat.StockDataTable.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -130,6 +150,8 @@
       <workItem from="1581292219572" duration="20041000" />
       <workItem from="1581322146361" duration="4000" />
       <workItem from="1581322162499" duration="924000" />
+      <workItem from="1581323854010" duration="63000" />
+      <workItem from="1581365085220" duration="12168000" />
     </task>
     <servers />
   </component>
@@ -166,49 +188,57 @@
       <screen x="2560" y="206" width="1920" height="1040" />
     </state>
     <state x="2986" y="510" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2048.1112/2560.206.1920.1040@2560.206.1920.1040" timestamp="1581297406811" />
+    <state x="830" y="240" key="#com.intellij.ide.util.MemberChooser" timestamp="1581371573994">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="830" y="240" key="#com.intellij.ide.util.MemberChooser/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581371573994" />
+    <state x="674" y="481" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1581372791858">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="674" y="481" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581372791858" />
     <state x="3300" y="480" key="FileChooserDialogImpl" timestamp="1581292090162">
       <screen x="2560" y="206" width="1920" height="1040" />
     </state>
     <state x="3300" y="480" key="FileChooserDialogImpl/0.0.2048.1112/2560.206.1920.1040@2560.206.1920.1040" timestamp="1581292090162" />
-    <state width="2005" height="301" key="GridCell.Tab.0.bottom" timestamp="1581315946610">
+    <state width="2005" height="301" key="GridCell.Tab.0.bottom" timestamp="1581377918594">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="301" key="GridCell.Tab.0.bottom/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581315946610" />
+    <state width="2005" height="301" key="GridCell.Tab.0.bottom/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581377918594" />
     <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.2048.1112/2560.206.1920.1040@2560.206.1920.1040" timestamp="1581294286031" />
-    <state width="2005" height="301" key="GridCell.Tab.0.center" timestamp="1581315946609">
+    <state width="2005" height="301" key="GridCell.Tab.0.center" timestamp="1581377918594">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="301" key="GridCell.Tab.0.center/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581315946609" />
+    <state width="2005" height="301" key="GridCell.Tab.0.center/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581377918594" />
     <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.2048.1112/2560.206.1920.1040@2560.206.1920.1040" timestamp="1581294286031" />
-    <state width="2005" height="301" key="GridCell.Tab.0.left" timestamp="1581315946609">
+    <state width="2005" height="301" key="GridCell.Tab.0.left" timestamp="1581377918594">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="301" key="GridCell.Tab.0.left/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581315946609" />
+    <state width="2005" height="301" key="GridCell.Tab.0.left/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581377918594" />
     <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.2048.1112/2560.206.1920.1040@2560.206.1920.1040" timestamp="1581294286031" />
-    <state width="2005" height="301" key="GridCell.Tab.0.right" timestamp="1581315946610">
+    <state width="2005" height="301" key="GridCell.Tab.0.right" timestamp="1581377918594">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="301" key="GridCell.Tab.0.right/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581315946610" />
+    <state width="2005" height="301" key="GridCell.Tab.0.right/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581377918594" />
     <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.2048.1112/2560.206.1920.1040@2560.206.1920.1040" timestamp="1581294286031" />
-    <state width="2005" height="221" key="GridCell.Tab.1.bottom" timestamp="1581315946605">
+    <state width="2005" height="301" key="GridCell.Tab.1.bottom" timestamp="1581374139273">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="221" key="GridCell.Tab.1.bottom/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581315946605" />
+    <state width="2005" height="301" key="GridCell.Tab.1.bottom/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581374139273" />
     <state width="1877" height="282" key="GridCell.Tab.1.bottom/0.0.2048.1112/2560.206.1920.1040@2560.206.1920.1040" timestamp="1581294286031" />
-    <state width="2005" height="221" key="GridCell.Tab.1.center" timestamp="1581315946605">
+    <state width="2005" height="301" key="GridCell.Tab.1.center" timestamp="1581374139273">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="221" key="GridCell.Tab.1.center/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581315946605" />
+    <state width="2005" height="301" key="GridCell.Tab.1.center/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581374139273" />
     <state width="1877" height="282" key="GridCell.Tab.1.center/0.0.2048.1112/2560.206.1920.1040@2560.206.1920.1040" timestamp="1581294286031" />
-    <state width="2005" height="221" key="GridCell.Tab.1.left" timestamp="1581315946605">
+    <state width="2005" height="301" key="GridCell.Tab.1.left" timestamp="1581374139272">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="221" key="GridCell.Tab.1.left/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581315946605" />
+    <state width="2005" height="301" key="GridCell.Tab.1.left/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581374139272" />
     <state width="1877" height="282" key="GridCell.Tab.1.left/0.0.2048.1112/2560.206.1920.1040@2560.206.1920.1040" timestamp="1581294286031" />
-    <state width="2005" height="221" key="GridCell.Tab.1.right" timestamp="1581315946605">
+    <state width="2005" height="301" key="GridCell.Tab.1.right" timestamp="1581374139273">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="221" key="GridCell.Tab.1.right/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581315946605" />
+    <state width="2005" height="301" key="GridCell.Tab.1.right/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581374139273" />
     <state width="1877" height="282" key="GridCell.Tab.1.right/0.0.2048.1112/2560.206.1920.1040@2560.206.1920.1040" timestamp="1581294286031" />
     <state x="3050" y="380" key="Maven.ArtifactSearchDialog" timestamp="1581292346694">
       <screen x="2560" y="206" width="1920" height="1040" />
@@ -222,10 +252,14 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="170" y="166" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581298194797" />
-    <state x="721" y="380" key="com.intellij.ide.util.TipDialog" timestamp="1581323861286">
+    <state x="721" y="380" key="com.intellij.ide.util.TipDialog" timestamp="1581365087060">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="721" y="380" key="com.intellij.ide.util.TipDialog/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581323861286" />
+    <state x="721" y="380" key="com.intellij.ide.util.TipDialog/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581365087060" />
+    <state x="767" y="185" key="refactoring.ChangeSignatureDialog" timestamp="1581370350288">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="767" y="185" key="refactoring.ChangeSignatureDialog/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581370350288" />
     <state x="665" y="241" width="717" height="725" key="search.everywhere.popup" timestamp="1581308877480">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
