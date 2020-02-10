@@ -15,7 +15,7 @@ public class TestRunner{
 	public static void main(String[] args){
 		Queries queries = new Queries();
 
-//		queries.addToDatabase();
+		queries.addToDatabase("SPY");
 
 		ArrayList<ArrayList<Object>> table = queries.getAllTable();
 

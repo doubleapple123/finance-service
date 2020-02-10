@@ -7,23 +7,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70e5a1be-a043-4e94-88a7-050b7a61941b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/DataParser/DataFormat/DataFormatIn.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/DataParser/DataFormat/DataFormatOut.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/DataParser/DataFormat/SQLToJava.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/DataParser/StockModels/DBRows.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DBConnector/Connector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/DBConnector/Connector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DBConnector/ResultRow.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DBQueries/Queries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/DBQueries/Queries.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DataExport.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/DataFormat/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/StockModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/StockModels/StockModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DBConnector/Connector.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/DBConnector/Connector.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DBConnector/ResultRow.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DBQueries/Queries.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/DBQueries/Queries.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DataExport.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/Parser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/StockModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DataFormat/DataFormatIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/DataFormat/DataFormatIn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DataFormat/DataFormatOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/DataFormat/DataFormatOut.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DataFormat/SQLToJava.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/DataFormat/SQLToJava.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/StockModels/DBRows.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/StockModels/DBRows.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/StockModels/StockModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/TestRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/TestRunner.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +134,7 @@
       <workItem from="1571435883547" duration="4601000" />
       <workItem from="1571519155945" duration="1238000" />
       <workItem from="1581292051478" duration="40000" />
-      <workItem from="1581292219572" duration="12959000" />
+      <workItem from="1581292219572" duration="14231000" />
     </task>
     <servers />
   </component>
@@ -183,25 +175,25 @@
       <screen x="2560" y="206" width="1920" height="1040" />
     </state>
     <state x="3300" y="480" key="FileChooserDialogImpl/0.0.2048.1112/2560.206.1920.1040@2560.206.1920.1040" timestamp="1581292090162" />
-    <state width="2005" height="233" key="GridCell.Tab.0.bottom" timestamp="1581307220284">
+    <state width="2005" height="301" key="GridCell.Tab.0.bottom" timestamp="1581308490063">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="233" key="GridCell.Tab.0.bottom/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581307220284" />
+    <state width="2005" height="301" key="GridCell.Tab.0.bottom/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581308490063" />
     <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.2048.1112/2560.206.1920.1040@2560.206.1920.1040" timestamp="1581294286031" />
-    <state width="2005" height="233" key="GridCell.Tab.0.center" timestamp="1581307220284">
+    <state width="2005" height="301" key="GridCell.Tab.0.center" timestamp="1581308490063">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="233" key="GridCell.Tab.0.center/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581307220284" />
+    <state width="2005" height="301" key="GridCell.Tab.0.center/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581308490063" />
     <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.2048.1112/2560.206.1920.1040@2560.206.1920.1040" timestamp="1581294286031" />
-    <state width="2005" height="233" key="GridCell.Tab.0.left" timestamp="1581307220284">
+    <state width="2005" height="301" key="GridCell.Tab.0.left" timestamp="1581308490063">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="233" key="GridCell.Tab.0.left/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581307220284" />
+    <state width="2005" height="301" key="GridCell.Tab.0.left/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581308490063" />
     <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.2048.1112/2560.206.1920.1040@2560.206.1920.1040" timestamp="1581294286031" />
-    <state width="2005" height="233" key="GridCell.Tab.0.right" timestamp="1581307220284">
+    <state width="2005" height="301" key="GridCell.Tab.0.right" timestamp="1581308490063">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="233" key="GridCell.Tab.0.right/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581307220284" />
+    <state width="2005" height="301" key="GridCell.Tab.0.right/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581308490063" />
     <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.2048.1112/2560.206.1920.1040@2560.206.1920.1040" timestamp="1581294286031" />
     <state width="2005" height="221" key="GridCell.Tab.1.bottom" timestamp="1581299029708">
       <screen x="0" y="0" width="2048" height="1112" />

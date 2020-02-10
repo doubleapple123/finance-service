@@ -38,10 +38,10 @@ public class Queries{
 	}
 
 	//uses data in
-	public void addToDatabase(){
+	public void addToDatabase(String symbol){
 		try{
 			statement.executeUpdate("INSERT INTO stockdata VALUES" +
-					dataIn.updateDatabase());
+					dataIn.updateDatabase(symbol));
 
 		} catch(IOException | JSONException | SQLException e){
 			e.printStackTrace();

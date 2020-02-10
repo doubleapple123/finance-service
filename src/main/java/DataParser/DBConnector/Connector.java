@@ -1,6 +1,9 @@
 package DataParser.DBConnector;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 //class used solely for connecting to a mysql database
 //in the future this might be used to connect to a cloud (aws) database

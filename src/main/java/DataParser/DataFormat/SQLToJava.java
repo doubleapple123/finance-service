@@ -2,8 +2,10 @@ package DataParser.DataFormat;
 
 import java.math.BigDecimal;
 import java.sql.Date;
-import java.sql.*;
-import java.util.*;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.Map;
 
 //used to convert mysql types to java types to use
 

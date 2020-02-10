@@ -1,14 +1,9 @@
 package DataParser.DataFormat;
 
-import DataParser.StockModels.StockModel;
-import org.apache.wink.json4j.JSONException;
-
-import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
