@@ -1,17 +1,12 @@
 package DataParser;
 
-import org.apache.wink.json4j.JSON;
 import org.apache.wink.json4j.JSONException;
 import org.apache.wink.json4j.OrderedJSONObject;
-import org.hibernate.criterion.Order;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.LinkedHashMap;

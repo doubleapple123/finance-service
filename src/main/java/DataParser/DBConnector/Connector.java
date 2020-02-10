@@ -7,9 +7,9 @@ import java.util.Map;
 
 public class Connector {
     private String query = "";
-    private String database = "financeDatabase";
+    private String database = "financedatabase";
     private final String user = "root";
-    private final String password = "budgettestapple";
+    private final String password = "mnksp4yAcnD23yhkcLAbho7idbFm3lHn";
 
     private ResultRow row = new ResultRow();
     private Connection con;
@@ -27,15 +27,24 @@ public class Connector {
 
     }
 
-    public Connector(String query){
-        this();
-        this.query = query;
+    public Connection getCon(){
+        return con;
     }
 
-    public Connector(String database, String query){
-        this();
-        this.database = database;
-        this.query = query;
+    public Statement getStatement(){
+        return statement;
+    }
+
+    public String getUser(){
+        return user;
+    }
+
+    public String getPassword(){
+        return password;
+    }
+
+    public String getDatabase(){
+        return database;
     }
 
     public void addToDatabase(String insertValues){

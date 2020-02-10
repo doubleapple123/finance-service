@@ -1,9 +1,12 @@
 package DataParser;
 
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
-import java.time.*;
+import java.util.ArrayList;
+import java.util.Locale;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class StockModel{
     private String symbol;

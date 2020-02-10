@@ -1,10 +1,8 @@
 package DataParser;
 
-import DataParser.DBConnector.Connector;
 import org.apache.wink.json4j.JSONException;
 
-import java.io.*;
-import java.sql.SQLException;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -12,28 +10,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 
-/*
-    plan for the future:
-        - add functionality to inputting and getting data (get data by symbol, date range, etc)
-        - automate update of aws rds database using java or python
- */
 public class DataExport {
-    public static void main(String[] args) throws SQLException, IOException, ParseException, NoSuchFieldException, IllegalAccessException, JSONException {
-        DataExport dataExport = new DataExport();
-        Connector connector = new Connector();
-
-        dataExport.updateDatabase(connector);
-
-        ArrayList<ArrayList<Object>> table = connector.getTable();
-
-        for(ArrayList<Object> row : table){
-         //   System.out.println(row);
-        }
-
-        connector.closeConnections();
-
-    }
-
     public StockModel getData() throws IOException, ParseException, NoSuchFieldException, IllegalAccessException, JSONException {
         Parser parser = new Parser("MSFT", false);
         StockModel model = new StockModel(parser.getSymbol());
@@ -44,17 +21,16 @@ public class DataExport {
         return model;
     }
 
-    public void updateDatabase(Connector connector) throws IOException, ParseException, NoSuchFieldException, IllegalAccessException, JSONException {
+    public String updateDatabase() throws IOException, ParseException, NoSuchFieldException, IllegalAccessException, JSONException {
         DecimalFormat df = new DecimalFormat("#");
         df.setMaximumFractionDigits(3);
-        StringBuilder stringBuilder;
+        StringBuilder stringBuilder = new StringBuilder();
 
         StockModel stockModel = getData();
         Map<LocalDate, ArrayList<Double>> outMap = stockModel.getSymbolData();
         //"'MSFT','2020-03-01', 100, 200, 300, 400, 500";
         for(Map.Entry<LocalDate, ArrayList<Double>> entry : outMap.entrySet()){
-            stringBuilder = new StringBuilder();
-
+            stringBuilder.append("(");
             stringBuilder.append("'" + stockModel.getSymbol() + "'," );
             stringBuilder.append("'" + entry.getKey().toString() + "'");
 
@@ -62,8 +38,13 @@ public class DataExport {
             for(Double arrayValues : entry.getValue()){
                 stringBuilder.append(", " + df.format(arrayValues));
             }
+            stringBuilder.append("),\n");
 
-            connector.addToDatabase(stringBuilder.toString());
         }
+
+        stringBuilder.deleteCharAt(stringBuilder.toString().length()-1);
+        stringBuilder.deleteCharAt(stringBuilder.toString().length()-1);
+
+        return stringBuilder.toString();
     }
 }
