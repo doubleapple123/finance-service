@@ -15,8 +15,8 @@ public interface StockService {
 	@Path("/analyze")
 	StockStatistics analyzeTimeSeriesData(
 			@DefaultValue("MSFT") @QueryParam("symbol")String symbol,
-			@DefaultValue("2019-01-01") @QueryParam("startDate") String startDate,
-			@DefaultValue("2020-01-01") @QueryParam("endDate") String endDate,
+			@DefaultValue("1999-01-01") @QueryParam("startDate") String startDate,
+			@DefaultValue("2100-01-01") @QueryParam("endDate") String endDate,
 			@DefaultValue("DAILY") @QueryParam("timeseries") TimeSeriesType timeseriesType //currently not implemented
 
 //			@DefaultValue("false") @QueryParam("size") boolean dataSize
