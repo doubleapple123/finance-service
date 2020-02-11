@@ -87,6 +87,7 @@ public class Queries{
 			resultSet = statement.executeQuery(getQuery());
 			dataTable = dataOut.getTableFromSet(resultSet);
 
+			resultSet.close();
 			return dataOut.convertType(dataTable);
 
 		}catch (SQLException e){
@@ -98,13 +99,8 @@ public class Queries{
 
 	public void inputSymbolsIntoSymbolDatabase(){
 		try{
-			/*
-			insert into `stocksymbols` (`symbol`)
-			select "SPY" from dual
-			where not exists (select * from `stocksymbols`
-				where `symbol` = "SPY" limit 1);
-
-			 */
+			//gets distinct values from stockdata and inputs them into stocksymbols, a table
+			//which has all the stock symbols
 			StringBuilder stringBuilder = new StringBuilder();
 			setQuery("SELECT DISTINCT stock_symbol FROM stockdata"); //gets all symbols
 			resultSet = statement.executeQuery(getQuery());
@@ -112,12 +108,9 @@ public class Queries{
 			while(resultSet.next()){
 				stringBuilder.append(String.format("INSERT INTO `stocksymbols` (`symbol`) select '%1$s' from dual where not exists" +
 						"(select * from `stocksymbols` where `symbol` = '%1$s' limit 1);",resultSet.getString(1)));
-
-
 			}
+
 			setQuery(stringBuilder.toString());
-			System.out.println(getQuery());
-			updateQuery();
 
 		}catch(SQLException e){
 			e.printStackTrace();

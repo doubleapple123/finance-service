@@ -18,7 +18,7 @@ public class Connector {
     public Connector(String database){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(String.format("jdbc:mysql://localhost/%s", database), user, password);
+            con = DriverManager.getConnection(String.format("jdbc:mysql://localhost/%s?allowMultiQueries=true", database), user, password);
             statement = con.createStatement();
 
         } catch(SQLException | ClassNotFoundException e){

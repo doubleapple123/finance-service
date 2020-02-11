@@ -20,12 +20,11 @@ public class TestRunner{
 //		queries.addToDatabaseSymbol(symbolsToAdd); //adds to database
 //		queries.updateQuery();
 
-//		queries.getTableFromSymbol("MSFT", "2018-01-23", "2020-02-08"); //gets data from database
 //		queries.getAllTable();
-//
 //		queries.printOutTable(queries.executeQuery()); //execute query
 
 		queries.inputSymbolsIntoSymbolDatabase();
+		queries.updateQuery();
 
 		queries.closeConnection();
 	}
