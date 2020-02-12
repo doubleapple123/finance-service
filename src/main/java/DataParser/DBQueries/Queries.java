@@ -14,7 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class Queries{
+public class Queries <T>{
+
 	private String query;
 	private Connection connection;
 	private Statement statement;
@@ -82,13 +83,15 @@ public class Queries{
 		setQuery("SELECT * FROM stockdata");
 	}
 
-	public ArrayList<ArrayList<Object>> executeQuery(){
+	public ArrayList<ArrayList<?>> executeQuery(){
 		try{
 			resultSet = statement.executeQuery(getQuery());
 			dataTable = dataOut.getTableFromSet(resultSet);
 
 			resultSet.close();
-			return dataOut.convertType(dataTable);
+
+			ArrayList<ArrayList<?>> arr = dataOut.convertType(dataTable);
+			return arr;
 
 		}catch (SQLException e){
 			System.out.println("fetch from symbol failed");
@@ -117,8 +120,8 @@ public class Queries{
 		}
 	}
 
-	public void printOutTable(ArrayList<ArrayList<Object>> table){
-		for(ArrayList<Object> row : table){
+	public void printOutTable(ArrayList<ArrayList<?>> table){
+		for(ArrayList<?> row : table){
 			System.out.println(row);
 		}
 	}

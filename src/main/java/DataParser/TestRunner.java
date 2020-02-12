@@ -20,11 +20,11 @@ public class TestRunner{
 //		queries.addToDatabaseSymbol(symbolsToAdd); //adds to database
 //		queries.updateQuery();
 
-//		queries.getAllTable();
-//		queries.printOutTable(queries.executeQuery()); //execute query
+		queries.getAllTable();
+		queries.printOutTable(queries.executeQuery()); //execute query
 
-		queries.inputSymbolsIntoSymbolDatabase();
-		queries.updateQuery();
+//		queries.inputSymbolsIntoSymbolDatabase();
+//		queries.updateQuery();
 
 		queries.closeConnection();
 	}

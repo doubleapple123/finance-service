@@ -11,16 +11,16 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DataFormatOut{
+public class DataFormatOut<T>{
 
 	//used in conjuction with method below
 	//converts mysql data type to java objects
-	public ArrayList<ArrayList<Object>> convertType(List<Map<Object, String>> table){
+	public ArrayList<ArrayList<?>> convertType(List<Map<Object, String>> table){
 		DecimalFormat df = new DecimalFormat("#");
 		df.setMaximumFractionDigits(3);
 
-		ArrayList<ArrayList<Object>> tableConverted = new ArrayList<>();
-		ArrayList<Object> convertedRow;
+		ArrayList<ArrayList<T>> tableConverted = new ArrayList<>();
+		ArrayList<String> convertedRow;
 
 		for(Map<Object, String> row : table){
 			convertedRow = new ArrayList<>();
@@ -29,9 +29,9 @@ public class DataFormatOut{
 				Class valObject = new SQLToJava().getType().get(entry.getValue());
 
 				if(valObject.equals(Double.class)){
-					convertedRow.add(df.format(entry.getKey()));
+					convertedRow.add( df.format(entry.getKey()));
 				}else{
-					convertedRow.add(valObject.cast(entry.getKey()));
+					convertedRow.add(entry.getKey());
 				}
 
 			}

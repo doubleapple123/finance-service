@@ -1,12 +1,13 @@
 package io.myfunstuff.stocks.service.rs;
 
-import io.myfunstuff.stocks.model.StockStatistics;
-import io.myfunstuff.stocks.model.TimeSeriesDataCollection;
-import io.myfunstuff.stocks.model.TimeSeriesType;
+import DataParser.DBQueries.Queries;
+import io.myfunstuff.stocks.model.*;
 import io.myfunstuff.stocks.service.StockAnalysisService;
 import io.myfunstuff.stocks.service.database.StockRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
+import java.util.ArrayList;
 
 @Controller
 public class StockServiceImpl implements StockService {
@@ -28,6 +29,12 @@ public class StockServiceImpl implements StockService {
 	public StockStatistics analyzeTimeSeriesData(String symbol, String startDate, String endDate, TimeSeriesType timeseriesType) {
 		TimeSeriesDataCollection timeSeriesData = stockAnalysisService.parseRawTimeSeriesData(startDate, endDate, symbol, timeseriesType);
 		return stockAnalysisService.getStockStatistics(symbol, timeSeriesData);
+	}
+
+	@Override
+	public ArrayList getStockData(String symbol, String startDate, String endDate){
+		StockTimeDataCollection stockTimeDataCollection = new StockTimeDataCollection(symbol, startDate, endDate);
+		return stockTimeDataCollection.getStockTimeData();
 	}
 
 //	@Override
