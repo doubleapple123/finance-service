@@ -1,11 +1,10 @@
 package io.myfunstuff.stocks.model;
 
-
 public class StockTimeData{
 	private String date;
-	private float open;
+	private Float open;
 
-	public StockTimeData(String date, float open){
+	public StockTimeData(String date, Float open){
 		this.date = date;
 		this.open = open;
 	}
@@ -18,4 +17,11 @@ public class StockTimeData{
 		this.date = date;
 	}
 
+	public Float getOpen(){
+		return open;
+	}
+
+	public void setOpen(Float open){
+		this.open = open;
+	}
 }

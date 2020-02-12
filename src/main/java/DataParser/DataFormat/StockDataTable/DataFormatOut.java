@@ -83,8 +83,4 @@ public class DataFormatOut{
 		}
 		return null;
 	}
-
-
-
-
 }

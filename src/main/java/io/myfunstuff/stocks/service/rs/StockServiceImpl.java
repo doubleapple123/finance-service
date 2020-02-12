@@ -1,6 +1,5 @@
 package io.myfunstuff.stocks.service.rs;
 
-import DataParser.DBQueries.Queries;
 import io.myfunstuff.stocks.model.*;
 import io.myfunstuff.stocks.service.StockAnalysisService;
 import io.myfunstuff.stocks.service.database.StockRepo;
