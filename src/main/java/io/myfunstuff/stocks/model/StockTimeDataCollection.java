@@ -2,10 +2,7 @@ package io.myfunstuff.stocks.model;
 
 import DataParser.DBQueries.Queries;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class StockTimeDataCollection{
 	private String symbol;
@@ -20,7 +17,6 @@ public class StockTimeDataCollection{
 		stockTimeDataList = new ArrayList<>();
 
 		convertArr();
-
 	}
 
 	public void convertArr(){

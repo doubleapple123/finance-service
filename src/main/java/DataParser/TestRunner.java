@@ -2,8 +2,6 @@ package DataParser;
 
 import DataParser.DBQueries.Queries;
 
-import java.util.ArrayList;
-
 public class TestRunner{
 
 /*

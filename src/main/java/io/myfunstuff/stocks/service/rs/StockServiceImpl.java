@@ -1,6 +1,9 @@
 package io.myfunstuff.stocks.service.rs;
 
-import io.myfunstuff.stocks.model.*;
+import io.myfunstuff.stocks.model.StockStatistics;
+import io.myfunstuff.stocks.model.StockTimeDataCollection;
+import io.myfunstuff.stocks.model.TimeSeriesDataCollection;
+import io.myfunstuff.stocks.model.TimeSeriesType;
 import io.myfunstuff.stocks.service.StockAnalysisService;
 import io.myfunstuff.stocks.service.database.StockRepo;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,6 @@
 package io.myfunstuff.stocks.service.rs;
 
 import io.myfunstuff.stocks.model.StockStatistics;
-import io.myfunstuff.stocks.model.StockTimeData;
 import io.myfunstuff.stocks.model.TimeSeriesType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

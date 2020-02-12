@@ -1,8 +1,8 @@
 package DataParser.DBQueries;
 
 import DataParser.DBConnector.Connector;
-import DataParser.DataFormat.StockDataTable.DataFormatIn;
-import DataParser.DataFormat.StockDataTable.DataFormatOut;
+import DataParser.DataFormat.DataFormatIn;
+import DataParser.DataFormat.DataFormatOut;
 import org.apache.wink.json4j.JSONException;
 
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package DataParser.DataFormat.StockDataTable;
+package DataParser.DataFormat;
 
 import DataParser.DataFormat.Parser;
 import org.apache.wink.json4j.JSONException;
