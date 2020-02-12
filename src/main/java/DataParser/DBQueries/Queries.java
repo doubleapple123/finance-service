@@ -11,10 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
-public class Queries <T>{
+public class Queries{
 
 	private String query;
 	private Connection connection;
@@ -23,7 +21,7 @@ public class Queries <T>{
 	private DataFormatIn dataIn = new DataFormatIn();
 	private DataFormatOut dataOut = new DataFormatOut();
 	private ResultSet resultSet;
-	private List<Map<Object, String>> dataTable;
+	private ArrayList<ArrayList<Object>> dataTable;
 
 	public Queries(){
 		Connector connector = new Connector("financedatabase");
@@ -83,15 +81,13 @@ public class Queries <T>{
 		setQuery("SELECT * FROM stockdata");
 	}
 
-	public ArrayList<ArrayList<?>> executeQuery(){
+	public ArrayList<ArrayList<Object>> executeQuery(){
 		try{
 			resultSet = statement.executeQuery(getQuery());
 			dataTable = dataOut.getTableFromSet(resultSet);
-
 			resultSet.close();
 
-			ArrayList<ArrayList<?>> arr = dataOut.convertType(dataTable);
-			return arr;
+			return dataTable;
 
 		}catch (SQLException e){
 			System.out.println("fetch from symbol failed");
@@ -120,7 +116,7 @@ public class Queries <T>{
 		}
 	}
 
-	public void printOutTable(ArrayList<ArrayList<?>> table){
+	public void printOutTable(ArrayList<ArrayList<Object>> table){
 		for(ArrayList<?> row : table){
 			System.out.println(row);
 		}

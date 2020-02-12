@@ -6,46 +6,47 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-public class DataFormatOut<T>{
+public class DataFormatOut{
 
 	//used in conjuction with method below
 	//converts mysql data type to java objects
-	public ArrayList<ArrayList<T>> convertType(List<Map<Object, String>> table){
-		DecimalFormat df = new DecimalFormat("#");
-		df.setMaximumFractionDigits(3);
-
-		ArrayList<ArrayList<T>> tableConverted = new ArrayList<>();
-		ArrayList<T> convertedRow;
-
-		for(Map<Object, String> row : table){
-			convertedRow = new ArrayList<>();
-
-			for(Map.Entry entry : row.entrySet()){
-				Class valObject = new SQLToJava().getType().get(entry.getValue());
-
-				if(valObject.equals(Double.class)){
-					convertedRow.add((T) df.format(entry.getKey()));
-				}else{
-					convertedRow.add((T) entry.getKey());
-				}
-
-			}
-			tableConverted.add(convertedRow);
-		}
-
-		return tableConverted;
-	}
+//	public ArrayList<ArrayList<T>> convertType(List<Map<T, T>> table){
+//		DecimalFormat df = new DecimalFormat("#");
+//		df.setMaximumFractionDigits(3);
+//
+//		ArrayList<ArrayList<T>> tableConverted = new ArrayList<>();
+//		ArrayList<T> convertedRow;
+//
+//		for(Map<T, T> row : table){
+//			convertedRow = new ArrayList<>();
+//
+//			for(Map.Entry<T, T> entry : row.entrySet()){
+//				Class valObject = new SQLToJava().getType().get(entry.getValue());
+//
+//				if(valObject.equals(Double.class)){
+//					convertedRow.add((T) df.format(entry.getKey()));
+//				}else{
+//					convertedRow.add(entry.getKey());
+//				}
+//
+//			}
+//			tableConverted.add(convertedRow);
+//		}
+//
+//		return tableConverted;
+//	}
 
 
 	//adds from a resultset to
-	public List<Map<Object, String>> getTableFromSet(ResultSet set){
-		Map<Object, String> row;
-		ArrayList<Map<Object, String>> table = new ArrayList<>();
+	public ArrayList<ArrayList<Object>> getTableFromSet(ResultSet set){
+		DecimalFormat df = new DecimalFormat("#");
+		df.setMaximumFractionDigits(3);
+		SQLToJava sqlToJava = new SQLToJava();
+		ArrayList<Object> arrayRow;
+		ArrayList<ArrayList<Object>> table = new ArrayList<>();
+
 		int colCount;
 
 		try {
@@ -59,13 +60,21 @@ public class DataFormatOut<T>{
 			}
 
 			while(set.next()) {
-				row = new LinkedHashMap<>();
+				arrayRow = new ArrayList<>();
 
 				for (int i = 1; i <= colCount; i++) {
-					row.put(set.getObject(i), metaData.getColumnTypeName(i));
+					Object object = set.getObject(i);
+
+					if(object.getClass().equals(Double.class)){
+						arrayRow.add(df.format(object));
+					}else{
+						arrayRow.add(object);
+					}
 				}
-				table.add(row);
+
+				table.add(arrayRow);
 			}
+
 
 			return table;
 

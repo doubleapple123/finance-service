@@ -8,7 +8,7 @@ public class StockTimeDataCollection<T>{
 	private String symbol;
 	private String startDate;
 	private String endDate;
-	private ArrayList<ArrayList<StockTimeData>> stockTimeData;
+	private ArrayList<ArrayList<Object>> stockTimeData;
 
 	public StockTimeDataCollection(String symbol, String startDate, String endDate){
 		this.symbol = symbol;

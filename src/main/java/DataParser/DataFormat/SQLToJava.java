@@ -20,6 +20,10 @@ public class SQLToJava {
         return type;
     }
 
+    public Class getClassFromObj(Object obj){
+        return type.get(obj);
+    }
+
     public void addTypes(){
         type = new HashMap<>();
         type.put("CHAR", String.class);
