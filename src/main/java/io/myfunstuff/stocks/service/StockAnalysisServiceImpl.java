@@ -1,7 +1,10 @@
 package io.myfunstuff.stocks.service;
 
 import DataParser.DBQueries.Queries;
-import io.myfunstuff.stocks.model.*;
+import io.myfunstuff.stocks.model.StockStatistics;
+import io.myfunstuff.stocks.model.TimeSeriesData;
+import io.myfunstuff.stocks.model.TimeSeriesDataCollection;
+import io.myfunstuff.stocks.model.TimeSeriesType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

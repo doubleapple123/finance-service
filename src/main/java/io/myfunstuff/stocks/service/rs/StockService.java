@@ -2,30 +2,29 @@ package io.myfunstuff.stocks.service.rs;
 
 import io.myfunstuff.stocks.model.StockStatistics;
 import io.myfunstuff.stocks.model.TimeSeriesType;
-import io.myfunstuff.stocks.service.technicalFunctions.TechnicalDetails;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-
-@Path("/stock")
-@Produces({MediaType.APPLICATION_JSON})
+@RestController
+@RequestMapping(path = "/stock", produces = {"application/json"})
 public interface StockService {
 
-	@GET
-	@Path("/analyze")
+	@RequestMapping(path = "/analyze", method = RequestMethod.GET)
 	StockStatistics analyzeTimeSeriesData(
-			@DefaultValue("MSFT") @QueryParam("symbol")String symbol,
-			@DefaultValue("1999-01-01") @QueryParam("startDate") String startDate,
-			@DefaultValue("2100-01-01") @QueryParam("endDate") String endDate,
-			@DefaultValue("DAILY") @QueryParam("timeseries") TimeSeriesType timeseriesType //currently not implemented
+			@RequestParam(value = "symbol", defaultValue = "MSFT") String symbol,
+			@RequestParam(value = "startDate", defaultValue = "1999-01-01") String startDate,
+			@RequestParam(value = "endDate", defaultValue = "2100-01-01") String endDate,
+			@RequestParam(value = "timeseries", defaultValue = "DAILY")TimeSeriesType timeSeriesType //currently not implemented
 
 //			@DefaultValue("false") @QueryParam("size") boolean dataSize
 	);
 
-	@GET
-	@Path("/getAnalysis")
-	TechnicalDetails getAnalysis(
-			@QueryParam("type") String techAnalysis,
-			@QueryParam("id") Long id
-	);
+//	@GET
+//	@Path("/getAnalysis")
+//	TechnicalDetails getAnalysis(
+//			@QueryParam("type") String techAnalysis,
+//			@QueryParam("id") Long id
+//	);
 }
