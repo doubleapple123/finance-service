@@ -15,12 +15,12 @@ public class DataFormatOut<T>{
 
 	//used in conjuction with method below
 	//converts mysql data type to java objects
-	public ArrayList<ArrayList<?>> convertType(List<Map<Object, String>> table){
+	public ArrayList<ArrayList<T>> convertType(List<Map<Object, String>> table){
 		DecimalFormat df = new DecimalFormat("#");
 		df.setMaximumFractionDigits(3);
 
 		ArrayList<ArrayList<T>> tableConverted = new ArrayList<>();
-		ArrayList<String> convertedRow;
+		ArrayList<T> convertedRow;
 
 		for(Map<Object, String> row : table){
 			convertedRow = new ArrayList<>();
@@ -29,9 +29,9 @@ public class DataFormatOut<T>{
 				Class valObject = new SQLToJava().getType().get(entry.getValue());
 
 				if(valObject.equals(Double.class)){
-					convertedRow.add( df.format(entry.getKey()));
+					convertedRow.add((T) df.format(entry.getKey()));
 				}else{
-					convertedRow.add(entry.getKey());
+					convertedRow.add((T) entry.getKey());
 				}
 
 			}
