@@ -10,7 +10,7 @@ import java.sql.Statement;
 
 public class Connector {
     private final String user = "root";
-    private final String password = "budgettestapple";
+    private final String password = "mnksp4yAcnD23yhkcLAbho7idbFm3lHn";
 
     private Connection con;
     private Statement statement;

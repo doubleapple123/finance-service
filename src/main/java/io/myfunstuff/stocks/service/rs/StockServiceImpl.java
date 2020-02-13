@@ -1,9 +1,9 @@
 package io.myfunstuff.stocks.service.rs;
 
-import io.myfunstuff.stocks.model.StockStatistics;
-import io.myfunstuff.stocks.model.StockTimeDataCollection;
-import io.myfunstuff.stocks.model.TimeSeriesDataCollection;
-import io.myfunstuff.stocks.model.TimeSeriesType;
+import DataParser.DBQueries.Queries;
+import DataParser.DataCollections.StockFullDC;
+import DataParser.DataCollections.StockTimeDC;
+import io.myfunstuff.stocks.model.*;
 import io.myfunstuff.stocks.service.StockAnalysisService;
 import io.myfunstuff.stocks.service.database.StockRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +16,19 @@ public class StockServiceImpl implements StockService {
 
 	@Autowired
 	StockAnalysisService stockAnalysisService;
-//
-//	@Autowired
-//	AlphaVantageClientService alphaVantageClientService;
 
 	@Autowired
 	StockRepo stockrepo;
 
 	@Autowired
 	public StockServiceImpl() {
+	}
+
+	public void addNotExist(String symbol){
+		Queries queries = new Queries();
+		if(queries.checkExist("stocksymbols", symbol)){
+
+		}
 	}
 
 	@Override
@@ -34,14 +38,17 @@ public class StockServiceImpl implements StockService {
 	}
 
 	@Override
-	public ArrayList getStockData(String symbol, String startDate, String endDate){
-		StockTimeDataCollection stockTimeDataCollection = new StockTimeDataCollection(symbol, startDate, endDate);
-		return stockTimeDataCollection.getStockTimeData();
+	public ArrayList getStockData(String timeseries, String symbol, String startDate, String endDate){
+		StockTimeDC stockTimeDC = new StockTimeDC(timeseries, symbol, startDate, endDate);
+		stockTimeDC.convertArr();
+		return stockTimeDC.getDataRow();
 	}
 
-//	@Override
-//	public TechnicalDetails getAnalysis(String type, Long id) {
-//		//analysis
-//		return null;
-//	}
+	@Override
+	public ArrayList getFullStockData(String timeseries, String symbol, String startDate, String endDate){
+		StockFullDC stockFullDC = new StockFullDC(timeseries, symbol, startDate, endDate);
+		stockFullDC.convertArr();
+		return stockFullDC.getDataRow();
+	}
+
 }

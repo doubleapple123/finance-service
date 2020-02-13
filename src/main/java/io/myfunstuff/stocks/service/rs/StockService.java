@@ -27,6 +27,15 @@ public interface StockService {
 	//mapping returns list of datapoints and associated date. this will be used to plot data points on a graph.
 	@RequestMapping(path = "/data", method = RequestMethod.GET)
 	ArrayList getStockData(
+			@RequestParam(value = "timeseries", defaultValue = "TIME_SERIES_DAILY") String timeseries,
+			@RequestParam(value = "symbol", defaultValue = "MSFT") String symbol,
+			@RequestParam(value = "startDate", defaultValue = "1999-01-01") String startDate,
+			@RequestParam(value = "endDate", defaultValue = "2100-01-01") String endDate
+	);
+
+	@RequestMapping(path = "/data/alldata", method = RequestMethod.GET)
+	ArrayList getFullStockData(
+			@RequestParam(value = "timeseries", defaultValue = "TIME_SERIES_DAILY") String timeseries,
 			@RequestParam(value = "symbol", defaultValue = "MSFT") String symbol,
 			@RequestParam(value = "startDate", defaultValue = "1999-01-01") String startDate,
 			@RequestParam(value = "endDate", defaultValue = "2100-01-01") String endDate

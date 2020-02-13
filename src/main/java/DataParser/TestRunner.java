@@ -6,7 +6,8 @@ public class TestRunner{
 
 /*
     plan for the future:
-    	- query functions overloading
+
+    	- check if stock input is in database, if not add info to database, then display data
         - add functionality to inputting and getting data (get data by symbol, date range, etc)
         - able to connect to amazon rds directly
  */

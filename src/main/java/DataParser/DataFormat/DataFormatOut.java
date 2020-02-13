@@ -7,6 +7,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class DataFormatOut{
+	//should already be generified to handle any data object
 	//adds from a resultset to datatable
 	public ArrayList<ArrayList<Object>> getTableFromSet(ResultSet set){
 		DecimalFormat df = new DecimalFormat("#");

@@ -13,8 +13,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class Queries{
-	private String curDatabase = "financeDatabase";
-	private String table = "stockData";
+	private String curDatabase = "financedatabase";
+	private String table = "stockdaily";
 
 	private String query;
 	private Connection connection;
@@ -44,9 +44,19 @@ public class Queries{
 		return query;
 	}
 
-	public void addToDatabaseSymbol(String[] listOfSymbols){
+	public boolean checkExist(String table, String symbol){
+		setQuery(String.format("select exists(select * from %s where `symbol` = '%s'", table, symbol));
+		ArrayList<ArrayList<Object>> exist = executeQuery();
+		if(Integer.parseInt(exist.get(0).get(0).toString()) == 0){
+			return false;
+		}else{
+			return true;
+		}
+	}
+
+	public void addToDatabaseSymbol(String[] listOfSymbols, String timeseries){
 		for(String symbol : listOfSymbols){
-			addToDatabaseSymbol(symbol);
+			addToDatabaseSymbol(symbol, timeseries);
 		}
 	}
 
@@ -71,16 +81,16 @@ public class Queries{
 		}
 	}
 	public void getTableFromSymbol(String symbol, String startDate, String endDate){
-		setQuery(String.format("SELECT * FROM stockdata where stock_symbol = '%s' and date between '%s' and '%s'", symbol, startDate, endDate));
+		setQuery(String.format("SELECT * FROM %s where symbol = '%s' and date between '%s' and '%s'",table, symbol, startDate, endDate));
 	}
 
 	public void getTableFromSymbol(String symbol){
-		setQuery(String.format("SELECT * FROM stockdata WHERE `stock_symbol` = '%s'", symbol));
+		setQuery(String.format("SELECT * FROM %s WHERE `symbol` = '%s'",table, symbol));
 	}
 
 	//uses data out
 	public void getAllTable(){
-		setQuery("SELECT * FROM stockdata");
+		setQuery(String.format("SELECT * FROM %s",table));
 	}
 
 	public ArrayList<ArrayList<Object>> executeQuery(){
@@ -103,7 +113,7 @@ public class Queries{
 			//gets distinct values from stockdata and inputs them into stocksymbols, a table
 			//which has all the stock symbols
 			StringBuilder stringBuilder = new StringBuilder();
-			setQuery("SELECT DISTINCT stock_symbol FROM stockdata"); //gets all symbols
+			setQuery(String.format("SELECT DISTINCT symbol FROM %s",table)); //gets all symbols
 			resultSet = statement.executeQuery(getQuery());
 
 			while(resultSet.next()){
