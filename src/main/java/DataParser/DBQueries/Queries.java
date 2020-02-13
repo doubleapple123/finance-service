@@ -13,6 +13,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class Queries{
+	private String curDatabase = "financeDatabase";
+	private String table = "stockData";
 
 	private String query;
 	private Connection connection;
@@ -24,7 +26,7 @@ public class Queries{
 	private ArrayList<ArrayList<Object>> dataTable;
 
 	public Queries(){
-		Connector connector = new Connector("financedatabase");
+		Connector connector = new Connector(curDatabase);
 		this.connection = connector.getCon();
 		this.statement = connector.getStatement();
 	}
@@ -55,7 +57,7 @@ public class Queries{
 	//uses data in
 	public void addToDatabaseSymbol(String symbol, String timeseries){
 		try{
-			setQuery("INSERT INTO stockdata VALUES" + dataIn.updateDatabase(symbol,timeseries));
+			setQuery("INSERT INTO " + table + " VALUES" + dataIn.updateDatabase(symbol,timeseries));
 		} catch(IOException | JSONException e){
 			e.printStackTrace();
 		}

@@ -38,6 +38,16 @@ public class DataFormatIn{
 			timeDate = LocalDate.parse(date, format);
 		}
 
+		public String[] parseArray(String [] arr){
+			String[] newArr = new String[arr.length];
+			for(int i = 0; i < arr.length; i++){
+				newArr[i] = arr[i].replaceAll("}", "").replaceAll("\\{", "");
+				System.out.println(newArr[i]);
+			}
+
+			return newArr;
+		}
+
 		//functionality
 
 		public void addStockData(Map<String, Object> dataMap){
@@ -56,15 +66,6 @@ public class DataFormatIn{
 			}
 		}
 
-		public String[] parseArray(String [] arr){
-			String[] newArr = new String[arr.length];
-			for(int i = 0; i < arr.length; i++){
-				newArr[i] = arr[i].substring(4).replaceAll("}", "");
-			}
-
-			return newArr;
-		}
-
 		//getters
 		public Map<LocalDate, ArrayList<Double>> getSymbolData(){
 			return symbolData;
@@ -78,6 +79,7 @@ public class DataFormatIn{
 			return timeDate;
 		}
 	}
+
 
 
 	//gets data with Parser class
