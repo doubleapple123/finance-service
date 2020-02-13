@@ -49,13 +49,13 @@ public class Queries{
 	}
 
 	public void addToDatabaseSymbol(String symbol){
-		addToDatabaseSymbol(symbol, false);
+		addToDatabaseSymbol(symbol, "TIME_SERIES_DAILY");
 	}
 
 	//uses data in
-	public void addToDatabaseSymbol(String symbol, boolean full){
+	public void addToDatabaseSymbol(String symbol, String timeseries){
 		try{
-			setQuery("INSERT INTO stockdata VALUES" + dataIn.updateDatabase(symbol,full));
+			setQuery("INSERT INTO stockdata VALUES" + dataIn.updateDatabase(symbol,timeseries));
 		} catch(IOException | JSONException e){
 			e.printStackTrace();
 		}

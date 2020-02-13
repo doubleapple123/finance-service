@@ -14,15 +14,24 @@ import java.util.Map;
 
 //class used to parse raw json data from public api
 
+//different tables for daily and weekly data
 public class Parser {
-    private String urlFormat = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=%s&apikey=728C9KPM2IY7IVDZ";
-    private String fullUrlFormat = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=%s&outputsize=full&apikey=728C9KPM2IY7IVDZ";
-    private boolean full;
+    private String dailyURLFormat = "https://www.alphavantage.co/query?function=%s&symbol=%s&outputsize=&apikey=728C9KPM2IY7IVDZ"; //daily or weekly, symbol
+    private String weeklyURLFormat = "https://www.alphavantage.co/query?function=%s&symbol=%s&apikey=728C9KPM2IY7IVDZ";
     private String symbol;
+    private String timeseries;
 
-    public Parser(String symbol, boolean full){
+    public Parser(String symbol, String timeseries){
         this.symbol = symbol;
-        this.full = full;
+        this.timeseries = timeseries;
+    }
+
+    public String getTimeseries(){
+        return this.timeseries;
+    }
+
+    public void setTimeseries(String timeseries){
+        this.timeseries = timeseries;
     }
 
     public String getSymbol(){
@@ -34,10 +43,10 @@ public class Parser {
     public String retrieveData() throws IOException {
         URL address;
 
-        if(full){
-            address = new URL(String.format(fullUrlFormat,symbol));
+        if(timeseries.equals("TIME_SERIES_DAILY")){
+            address = new URL(String.format(dailyURLFormat, "TIME_SERIES_DAILY", symbol));
         }else{
-            address = new URL(String.format(urlFormat,symbol));
+            address = new URL(String.format(weeklyURLFormat, "TIME_SERIES_WEEKLY", symbol));
         }
 
         InputStream in = address.openStream();
