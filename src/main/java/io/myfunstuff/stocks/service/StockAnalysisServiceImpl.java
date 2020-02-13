@@ -74,11 +74,11 @@ public class StockAnalysisServiceImpl implements StockAnalysisService{
 	}
 
 	@Override
-	public TimeSeriesDataCollection parseRawTimeSeriesData(String startDate, String endDate, String symbol, TimeSeriesType timeseriesType){
+	public TimeSeriesDataCollection parseRawTimeSeriesData(String dbTable, String startDate, String endDate, String symbol, TimeSeriesType timeseriesType){
 		TimeSeriesDataCollection timeSeriesDataCollection = new TimeSeriesDataCollection(startDate, endDate, symbol, timeseriesType);
 		Queries queries = new Queries();
 
-		queries.getTableFromSymbol(symbol, startDate, endDate);
+		queries.getTableFromSymbol(dbTable, symbol, startDate, endDate);
 		ArrayList<ArrayList<Object>> table = queries.executeQuery();
 
 		System.out.println(symbol);

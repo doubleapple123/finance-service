@@ -9,18 +9,11 @@
     <list default="true" id="70e5a1be-a043-4e94-88a7-050b7a61941b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DBQueries/Queries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/DBQueries/Queries.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DataCollections/DataCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/DataCollections/DataCollection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DataFormat/DataFormatIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/DataFormat/DataFormatIn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/TestRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/TestRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DBQueries/Queries.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/DBQueries/Queries.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DataCollections/DataCollection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/DataCollections/DataCollection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DataCollections/StockFullDC.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/DataCollections/StockFullDC.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DataCollections/StockTimeDC.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/DataCollections/StockTimeDC.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DataFormat/DataFormatIn$StockModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/DataFormat/DataFormatIn$StockModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DataFormat/DataFormatIn.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/DataFormat/DataFormatIn.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/TestRunner.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/TestRunner.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/rs/StockService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/rs/StockService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/rs/StockServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/rs/StockServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DataCollections/StockFullDC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/DataCollections/StockFullDC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/StockAnalysisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/StockAnalysisService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/StockAnalysisServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/StockAnalysisServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/rs/StockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/rs/StockService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/rs/StockServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/rs/StockServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,6 +87,18 @@
       <recent name="D:\JavaSpringStuff\finance-service\src\main\resources\static" />
       <recent name="D:\JavaSpringStuff\finance-service\src\main\resources" />
     </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager" selected="Application.TestRunner">
     <configuration name="DataExport" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">

@@ -16,6 +16,7 @@ public interface StockService {
 	//mapping returns one data point of analyzed data
 	@RequestMapping(path = "/analyze", method = RequestMethod.GET)
 	StockStatistics analyzeTimeSeriesData(
+			@RequestParam(value = "table", defaultValue = "stockdaily") String dbTable,
 			@RequestParam(value = "symbol", defaultValue = "MSFT") String symbol,
 			@RequestParam(value = "startDate", defaultValue = "1999-01-01") String startDate,
 			@RequestParam(value = "endDate", defaultValue = "2100-01-01") String endDate,

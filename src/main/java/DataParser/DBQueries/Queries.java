@@ -69,8 +69,12 @@ public class Queries{
 	//uses data in
 	public void addToDatabaseSymbol(String symbol, String timeseries){
 		try{
+			switch(timeseries){
+				case "TIME_SERIES_DAILY" : setQuery("INSERT INTO " + tableDaily + " VALUES" + dataIn.updateDatabase(symbol,timeseries)); break;
+				case "TIME_SERIES_WEEKLY" : setQuery("INSERT INTO " + tableWeekly + " VALUES" + dataIn.updateDatabase(symbol,timeseries)); break;
+				default : break;
+			}
 
-			setQuery("INSERT INTO " + tableDaily + " VALUES" + dataIn.updateDatabase(symbol,timeseries));
 		} catch(IOException | JSONException e){
 			e.printStackTrace();
 		}
@@ -83,8 +87,8 @@ public class Queries{
 			e.printStackTrace();
 		}
 	}
-	public void getTableFromSymbol(String symbol, String startDate, String endDate){
-		setQuery(String.format("SELECT * FROM %s where symbol = '%s' and date between '%s' and '%s'",tableDaily, symbol, startDate, endDate));
+	public void getTableFromSymbol(String table, String symbol, String startDate, String endDate){
+		setQuery(String.format("SELECT * FROM %s where symbol = '%s' and date between '%s' and '%s'",table, symbol, startDate, endDate));
 	}
 
 	public void getTableFromSymbol(String symbol){
@@ -92,8 +96,8 @@ public class Queries{
 	}
 
 	//uses data out
-	public void getAllTable(){
-		setQuery(String.format("SELECT * FROM %s",tableDaily));
+	public void getAllTable(String table){
+		setQuery(String.format("SELECT * FROM %s",table));
 	}
 
 	public ArrayList<ArrayList<Object>> executeQuery(){
