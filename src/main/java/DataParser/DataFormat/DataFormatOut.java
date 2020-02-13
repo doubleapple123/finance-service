@@ -15,9 +15,7 @@ public class DataFormatOut{
 		ArrayList<ArrayList<Object>> table = new ArrayList<>();
 
 		int colCount;
-
 		try {
-
 			ResultSetMetaData metaData = set.getMetaData();
 			colCount = metaData.getColumnCount();
 
