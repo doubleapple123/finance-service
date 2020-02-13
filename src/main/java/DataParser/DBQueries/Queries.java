@@ -14,7 +14,8 @@ import java.util.ArrayList;
 
 public class Queries{
 	private String curDatabase = "financedatabase";
-	private String table = "stockdaily";
+	private String tableDaily = "stockdaily";
+	private String tableWeekly = "stockweekly";
 
 	private String query;
 	private Connection connection;
@@ -57,6 +58,7 @@ public class Queries{
 	public void addToDatabaseSymbol(String[] listOfSymbols, String timeseries){
 		for(String symbol : listOfSymbols){
 			addToDatabaseSymbol(symbol, timeseries);
+			updateQuery();
 		}
 	}
 
@@ -67,7 +69,8 @@ public class Queries{
 	//uses data in
 	public void addToDatabaseSymbol(String symbol, String timeseries){
 		try{
-			setQuery("INSERT INTO " + table + " VALUES" + dataIn.updateDatabase(symbol,timeseries));
+
+			setQuery("INSERT INTO " + tableDaily + " VALUES" + dataIn.updateDatabase(symbol,timeseries));
 		} catch(IOException | JSONException e){
 			e.printStackTrace();
 		}
@@ -81,16 +84,16 @@ public class Queries{
 		}
 	}
 	public void getTableFromSymbol(String symbol, String startDate, String endDate){
-		setQuery(String.format("SELECT * FROM %s where symbol = '%s' and date between '%s' and '%s'",table, symbol, startDate, endDate));
+		setQuery(String.format("SELECT * FROM %s where symbol = '%s' and date between '%s' and '%s'",tableDaily, symbol, startDate, endDate));
 	}
 
 	public void getTableFromSymbol(String symbol){
-		setQuery(String.format("SELECT * FROM %s WHERE `symbol` = '%s'",table, symbol));
+		setQuery(String.format("SELECT * FROM %s WHERE `symbol` = '%s'",tableDaily, symbol));
 	}
 
 	//uses data out
 	public void getAllTable(){
-		setQuery(String.format("SELECT * FROM %s",table));
+		setQuery(String.format("SELECT * FROM %s",tableDaily));
 	}
 
 	public ArrayList<ArrayList<Object>> executeQuery(){
@@ -113,7 +116,7 @@ public class Queries{
 			//gets distinct values from stockdata and inputs them into stocksymbols, a table
 			//which has all the stock symbols
 			StringBuilder stringBuilder = new StringBuilder();
-			setQuery(String.format("SELECT DISTINCT symbol FROM %s",table)); //gets all symbols
+			setQuery(String.format("SELECT DISTINCT symbol FROM %s",tableDaily)); //gets all symbols
 			resultSet = statement.executeQuery(getQuery());
 
 			while(resultSet.next()){

@@ -51,4 +51,12 @@ public abstract class DataCollection<T>{
 	public void setEndDate(String endDate){
 		this.endDate = endDate;
 	}
+
+	public String getTimeseries(){
+		return timeseries;
+	}
+
+	public void setTimeseries(String timeseries){
+		this.timeseries = timeseries;
+	}
 }
