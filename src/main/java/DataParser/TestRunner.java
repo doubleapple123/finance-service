@@ -1,6 +1,10 @@
 package DataParser;
 
-import DataParser.DBQueries.Queries;
+import DataParser.DBQueries.AbstractQuery;
+import DataParser.DBQueries.QueryExecute;
+import DataParser.DBQueries.QueryUpdate;
+
+import javax.management.Query;
 
 public class TestRunner{
 
@@ -14,23 +18,26 @@ public class TestRunner{
  */
 
 	public static void main(String[] args){
-		Queries queries = new Queries();
+		QueryExecute execute = new QueryExecute();
+		QueryUpdate update = new QueryUpdate();
+
 		String[] symbolsToAdd = {"SPY", "TSLA", "MSFT"};
 
 //		queries.addToDatabaseSymbol(symbolsToAdd, "TIME_SERIES_DAILY"); //adds to database
 //		queries.addToDatabaseSymbol(symbolsToAdd, "TIME_SERIES_WEEKLY");
 
-		queries.setTimeser("TIME_SERIES_DAILY");
-		queries.setDBtable("TIME_SERIES_DAILY");
-		queries.addToDatabaseSymbol("SPY");
-		queries.updateQuery();
+		update.setTimeser("TIME_SERIES_DAILY");
+		update.addToDatabaseSymbol("F");
+		update.updateQuery();
 
-//		queries.getAllTable();
-//		queries.printOutTable(queries.executeQuery()); //execute query
+//		execute.setTimeser("TIME_SERIES_DAILY");
+//		execute.getAllTable();
+//		execute.printOutTable(execute.executeQuery()); //execute query
 
 //		queries.inputSymbolsIntoSymbolDatabase();
 //		queries.updateQuery();
 
-		queries.closeConnection();
+		update.closeConnection();
+		execute.closeConnection();
 	}
 }

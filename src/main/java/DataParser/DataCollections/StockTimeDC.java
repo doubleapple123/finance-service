@@ -1,6 +1,6 @@
 package DataParser.DataCollections;
 
-import DataParser.DBQueries.Queries;
+import DataParser.DBQueries.QueryExecute;
 import io.myfunstuff.stocks.model.StockTimeData;
 
 import java.util.ArrayList;
@@ -11,12 +11,12 @@ public class StockTimeDC extends DataCollection{
 	}
 
 	public void convertArr(){
-		Queries queries = new Queries();
-		queries.setTimeser(this.getTimeseries());
-		queries.setQuery(String.format("SELECT date, open FROM %s where `symbol` = '%s' and " +
-				"`date` between '%s' and '%s'",queries.getDBtable(), getSymbol(), getStartDate(), getEndDate()));
+		QueryExecute query = new QueryExecute();
+		query.setTimeser(this.getTimeseries());
+		query.setQuery(String.format("SELECT date, open FROM %s where `symbol` = '%s' and " +
+				"`date` between '%s' and '%s'",query.getDBtable(), getSymbol(), getStartDate(), getEndDate()));
 
-		for(ArrayList<Object> row: queries.executeQuery()){
+		for(ArrayList<Object> row: query.executeQuery()){
 			StockTimeData stockTimeData = new StockTimeData(row.get(0).toString(), Float.parseFloat(row.get(1).toString()));
 			addObject(stockTimeData);
 		}

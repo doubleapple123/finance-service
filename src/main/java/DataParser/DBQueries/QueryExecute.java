@@ -4,13 +4,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class QueryExecute extends AbstractQuery{
-
-	public boolean checkExist(String table, String symbol){
-		setQuery(String.format("select exists(select * from %s where `symbol` = '%s'", table, symbol));
+	public boolean checkExist(String symbol){
+		setQuery(String.format("select exists(select * from %s where `symbol` = '%s')", "stocksymbols", symbol));
 		ArrayList<ArrayList<Object>> exist = executeQuery();
 		if(Integer.parseInt(exist.get(0).get(0).toString()) == 0){
+			System.out.println("FALSE");
 			return false;
 		}else{
+			System.out.println("TRUE");
 			return true;
 		}
 	}

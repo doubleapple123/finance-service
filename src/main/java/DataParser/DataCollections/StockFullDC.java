@@ -1,6 +1,7 @@
 package DataParser.DataCollections;
 
-import DataParser.DBQueries.Queries;
+import DataParser.DBQueries.AbstractQuery;
+import DataParser.DBQueries.QueryExecute;
 import io.myfunstuff.stocks.model.StockFullTimeData;
 
 import java.util.ArrayList;
@@ -11,14 +12,14 @@ public class StockFullDC extends DataCollection{
 	}
 
 	public void convertArr(){
-		Queries queries = new Queries();
+		QueryExecute query = new QueryExecute();
 		String curTable = "";
-		queries.setTimeser(getTimeseries());
-		queries.getTableFromSymbol(getSymbol(), getStartDate(), getEndDate());
+		query.setTimeser(getTimeseries());
+		query.getTableFromSymbol(getSymbol(), getStartDate(), getEndDate());
 
 		StockFullTimeData data;
 
-		for(ArrayList<Object> row : queries.executeQuery()){
+		for(ArrayList<Object> row : query.executeQuery()){
 			data = new StockFullTimeData(row);
 			addObject(data);
 		}

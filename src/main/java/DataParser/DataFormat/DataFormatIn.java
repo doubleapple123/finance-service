@@ -118,7 +118,7 @@ public class DataFormatIn{
 
 		stringBuilder.deleteCharAt(stringBuilder.toString().length()-1);
 		stringBuilder.deleteCharAt(stringBuilder.toString().length()-1);
-
+		System.out.println(stringBuilder.toString());
 		return stringBuilder.toString();
 	}
 

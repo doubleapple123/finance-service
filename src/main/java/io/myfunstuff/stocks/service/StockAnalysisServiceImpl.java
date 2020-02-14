@@ -1,6 +1,6 @@
 package io.myfunstuff.stocks.service;
 
-import DataParser.DBQueries.Queries;
+import DataParser.DBQueries.QueryExecute;
 import io.myfunstuff.stocks.model.StockStatistics;
 import io.myfunstuff.stocks.model.TimeSeriesData;
 import io.myfunstuff.stocks.model.TimeSeriesDataCollection;
@@ -69,19 +69,16 @@ public class StockAnalysisServiceImpl implements StockAnalysisService{
 		stats.setPeriodEnd(new SimpleDateFormat(dateFormat).format(end));
 		stats.setLowDate(new SimpleDateFormat(dateFormat).format(lowDate));
 		stats.setHighDate(new SimpleDateFormat(dateFormat).format(highDate));
-		System.out.println(stats);
 		return stats;
 	}
 
 	@Override
 	public TimeSeriesDataCollection parseRawTimeSeriesData(String timeseries, String startDate, String endDate, String symbol, TimeSeriesType timeseriesType){
 		TimeSeriesDataCollection timeSeriesDataCollection = new TimeSeriesDataCollection(startDate, endDate, symbol, timeseriesType);
-		Queries queries = new Queries();
-		queries.setTimeser(timeseries);
-		queries.getTableFromSymbol(symbol, startDate, endDate);
-		ArrayList<ArrayList<Object>> table = queries.executeQuery();
-
-		System.out.println(symbol);
+		QueryExecute queryExecute = new QueryExecute();
+		queryExecute.setTimeser(timeseries);
+		queryExecute.getTableFromSymbol(symbol, startDate, endDate);
+		ArrayList<ArrayList<Object>> table = queryExecute.executeQuery();
 
 		String key = "";
 		Map<String, String> m = new HashMap<>();
@@ -113,9 +110,7 @@ public class StockAnalysisServiceImpl implements StockAnalysisService{
 
 			timeSeriesDataCollection.addTimeSeriesData((Date) row.get(1), TimeSeriesData.convertFromMap(m));
 		}
-		queries.closeConnection();
-
-
+		queryExecute.closeConnection();
 		return timeSeriesDataCollection;
 	}
 

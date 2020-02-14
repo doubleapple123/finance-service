@@ -7,6 +7,11 @@ import java.sql.SQLException;
 
 public class QueryUpdate extends AbstractQuery{
 
+	public void addToMainTable(String symbol){
+		setQuery(String.format("INSERT INTO stocksymbols VALUES ('%s')", symbol));
+		System.out.println(getQuery());
+	}
+
 	public void addToDatabaseSymbol(String[] listOfSymbols){
 		for(String symbol : listOfSymbols){
 			addToDatabaseSymbol(symbol);

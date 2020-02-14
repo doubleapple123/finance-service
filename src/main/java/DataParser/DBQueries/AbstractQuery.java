@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class AbstractQuery{
+public abstract class AbstractQuery{
 	protected String curDatabase = "financedatabase";
 	protected String DBtable;
 	protected String timeser;
