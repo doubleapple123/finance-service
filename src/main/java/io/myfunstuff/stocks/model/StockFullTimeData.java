@@ -12,12 +12,12 @@ public class StockFullTimeData {
 
     public StockFullTimeData(String date, ArrayList<Object> inData){
         this.date = date;
-        this.date = inData.get(1).toString();
-        this.open = Double.parseDouble(inData.get(2).toString());
-        this.high = Double.parseDouble(inData.get(3).toString());
-        this.low = Double.parseDouble(inData.get(4).toString());
-        this.close = Double.parseDouble(inData.get(5).toString());
-        this.volume = Double.parseDouble(inData.get(6).toString());
+        this.open = Double.parseDouble(inData.get(0).toString());
+        this.high = Double.parseDouble(inData.get(1).toString());
+        this.low = Double.parseDouble(inData.get(2).toString());
+        this.close = Double.parseDouble(inData.get(3).toString());
+        this.volume = Double.parseDouble(inData.get(4).toString());
+
     }
 
     public StockFullTimeData(ArrayList<Object> inData){
@@ -75,5 +75,10 @@ public class StockFullTimeData {
 
     public void setVolume(double volume) {
         this.volume = volume;
+    }
+
+    @Override
+    public String toString(){
+        return String.format("'%s', %f, %f, %f, %f, %f", date, open, high, low, close, volume);
     }
 }

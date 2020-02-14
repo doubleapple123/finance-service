@@ -57,22 +57,20 @@ public class Parser {
         return result.toString();
     }
     //TODO finish this method: planning to be the only format method into a stockFullTimeData object. Will generify to accept all datarows from alphavantage
-    public void formatData(String dataRow){
-        StringBuilder stringBuilder = new StringBuilder();
+    public ArrayList<Object> formatData(String dataRow){
+        ArrayList<Object> finRow = new ArrayList<>();
         dataRow = dataRow.replaceAll("/[^A-Za-z0-9]/", "").replaceAll(":", "");
 
-        System.out.println(dataRow);
+        //this block formats and removes all unnecessary characters
         String[] arr = dataRow.split("\"");
         List<String> list = new ArrayList<>(Arrays.asList(arr));
-        list.removeAll(Arrays.asList("", null, ",", " "));
+        list.removeAll(Arrays.asList("", null, ",", "{", "}"));
 
-//        for(int i = 0; i < arr.length; i+=2){
-//           System.out.println(arr[i]);
-//        }
+        for(int i = 1; i < list.size(); i+=2){
+            finRow.add(list.get(i));
+        }
 
-//        System.out.println("length = " + arr.length);
-        System.out.println(list.toString());
-
+        return finRow;
     }
     //returns parsed map object
 
@@ -98,10 +96,8 @@ public class Parser {
         while(iterator.hasNext()){
             key = iterator.next();
             objectMap.put(key.toString(), timeJson.get(key));
-            System.out.println("key " + key.toString() + " value" + timeJson.get(key));
-            formatData(timeJson.get(key).toString());
-
-            //stockData = new StockFullTimeData(key.toString(), stockRow);
+            stockData = new StockFullTimeData(key.toString(), formatData(timeJson.get(key).toString()));
+            System.out.println(stockData);
         }
 
         Object mapVal;
