@@ -24,6 +24,7 @@ public class StockServiceImpl implements StockService {
 	public StockServiceImpl() {
 	}
 
+	//TODO implement this function
 	public void addNotExist(String symbol){
 		Queries queries = new Queries();
 		if(queries.checkExist("stocksymbols", symbol)){
@@ -32,8 +33,8 @@ public class StockServiceImpl implements StockService {
 	}
 
 	@Override
-	public StockStatistics analyzeTimeSeriesData(String dbTable, String symbol, String startDate, String endDate, TimeSeriesType timeseriesType) {
-		TimeSeriesDataCollection timeSeriesData = stockAnalysisService.parseRawTimeSeriesData(dbTable, startDate, endDate, symbol, timeseriesType);
+	public StockStatistics analyzeTimeSeriesData(String timeseries, String symbol, String startDate, String endDate, TimeSeriesType timeseriesType) {
+		TimeSeriesDataCollection timeSeriesData = stockAnalysisService.parseRawTimeSeriesData(timeseries, startDate, endDate, symbol, timeseriesType);
 		return stockAnalysisService.getStockStatistics(symbol, timeSeriesData);
 	}
 

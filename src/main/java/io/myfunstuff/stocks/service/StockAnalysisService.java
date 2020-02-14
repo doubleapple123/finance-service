@@ -8,6 +8,6 @@ public interface StockAnalysisService {
 
 	StockStatistics getStockStatistics(String symbol, TimeSeriesDataCollection timeseriesData);
 	
-	TimeSeriesDataCollection parseRawTimeSeriesData(String dbTable, String startDate, String endDate, String symbol, TimeSeriesType timeseriesType);
+	TimeSeriesDataCollection parseRawTimeSeriesData(String timeseries, String startDate, String endDate, String symbol, TimeSeriesType timeseriesType);
 	
 }

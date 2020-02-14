@@ -13,11 +13,8 @@ public class StockFullDC extends DataCollection{
 	public void convertArr(){
 		Queries queries = new Queries();
 		String curTable = "";
-		switch(getTimeseries()){
-			case "TIME_SERIES_DAILY" : queries.getTableFromSymbol("stockdaily", getSymbol(), getStartDate(), getEndDate()); break;
-			case "TIME_SERIES_WEEKLY" : queries.getTableFromSymbol("stockweekly", getSymbol(), getStartDate(), getEndDate()); break;
-			default: break;
-		}
+		queries.setTimeser(getTimeseries());
+		queries.getTableFromSymbol(getSymbol(), getStartDate(), getEndDate());
 
 		StockFullTimeData data;
 

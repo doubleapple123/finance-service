@@ -16,7 +16,7 @@ import java.util.Map;
 
 //different tables for daily and weekly data
 public class Parser {
-    private String dailyURLFormat = "https://www.alphavantage.co/query?function=%s&symbol=%s&outputsize=&apikey=728C9KPM2IY7IVDZ"; //daily or weekly, symbol
+    private String dailyURLFormat = "https://www.alphavantage.co/query?function=%s&symbol=%s&outputsize=full&apikey=728C9KPM2IY7IVDZ"; //daily or weekly, symbol
     private String weeklyURLFormat = "https://www.alphavantage.co/query?function=%s&symbol=%s&apikey=728C9KPM2IY7IVDZ";
     private String symbol;
     private String timeseries;
@@ -42,7 +42,6 @@ public class Parser {
 
     public String retrieveData() throws IOException {
         URL address;
-
         if(timeseries.equals("TIME_SERIES_DAILY")){
             address = new URL(String.format(dailyURLFormat, "TIME_SERIES_DAILY", symbol));
         }else{
