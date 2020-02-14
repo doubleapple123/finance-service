@@ -1,6 +1,5 @@
 package DataParser.DataCollections;
 
-import DataParser.DBQueries.AbstractQuery;
 import DataParser.DBQueries.QueryExecute;
 import io.myfunstuff.stocks.model.StockFullTimeData;
 

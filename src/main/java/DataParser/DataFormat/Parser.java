@@ -1,6 +1,5 @@
 package DataParser.DataFormat;
 
-import io.myfunstuff.stocks.model.StockFullTimeData;
 import org.apache.wink.json4j.JSONException;
 import org.apache.wink.json4j.OrderedJSONObject;
 
@@ -9,12 +8,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 //class used to parse raw json data from public api
-
+//methods used for adding onto finalParsed instance variable
 //different tables for daily and weekly data
 public class Parser {
+    private StringBuilder finalParsed; //FINAL DATA -- important
     private String dailyURLFormat = "https://www.alphavantage.co/query?function=%s&symbol=%s&outputsize=compact&apikey=728C9KPM2IY7IVDZ"; //daily or weekly, symbol
     private String weeklyURLFormat = "https://www.alphavantage.co/query?function=%s&symbol=%s&apikey=728C9KPM2IY7IVDZ";
     private String symbol;
@@ -23,6 +26,7 @@ public class Parser {
     public Parser(String symbol, String timeseries){
         this.symbol = symbol;
         this.timeseries = timeseries;
+        finalParsed = new StringBuilder();
     }
 
     public String getTimeseries(){
@@ -35,6 +39,10 @@ public class Parser {
 
     public String getSymbol(){
         return this.symbol;
+    }
+
+    public StringBuilder getFinalParsed(){
+        return this.finalParsed;
     }
 
     //gets raw json string
@@ -56,25 +64,22 @@ public class Parser {
         }
         return result.toString();
     }
-    //TODO finish this method: planning to be the only format method into a stockFullTimeData object. Will generify to accept all datarows from alphavantage
-    public ArrayList<Object> formatData(String dataRow){
-        ArrayList<Object> finRow = new ArrayList<>();
+
+    public void formatData(String dataRow){
         dataRow = dataRow.replaceAll("/[^A-Za-z0-9]/", "").replaceAll(":", "");
 
         //this block formats and removes all unnecessary characters
         String[] arr = dataRow.split("\"");
         List<String> list = new ArrayList<>(Arrays.asList(arr));
         list.removeAll(Arrays.asList("", null, ",", "{", "}"));
-
         for(int i = 1; i < list.size(); i+=2){
-            finRow.add(list.get(i));
+            finalParsed.append(", " + list.get(i));
         }
-
-        return finRow;
+        finalParsed.append("),\n");
     }
     //returns parsed map object
 
-    public Map<String, Object> parseData() throws IOException, JSONException {
+    public void parseData() throws IOException, JSONException {
         String data = retrieveData();
         String timeObj;
 
@@ -86,40 +91,13 @@ public class Parser {
         }
         OrderedJSONObject timeJson = new OrderedJSONObject(timeObj);
         Iterator iterator = timeJson.getOrder();
-
-        Map<String, Object> objectMap = new LinkedHashMap<>();
-
-        ArrayList<Object> stockRow = new ArrayList<>();
-        StockFullTimeData stockData;
         Object key;
 
         while(iterator.hasNext()){
             key = iterator.next();
-            objectMap.put(key.toString(), timeJson.get(key));
-            stockData = new StockFullTimeData(key.toString(), formatData(timeJson.get(key).toString()));
-            System.out.println(stockData);
+            finalParsed.append("(");
+            finalParsed.append(String.format("'%s', '%s'", getSymbol(), key.toString()));
+            formatData((timeJson.get(key).toString()));
         }
-
-        Object mapVal;
-
-        //this is done because OrderedJSONObject formats the json data differently. I wrote the rest of the program
-        //with unordered data so i had to format this data to look exactly the same as the one before to fit the algorithm
-        //so everything works
-
-        for(Map.Entry entry : objectMap.entrySet()){
-            mapVal = entry.getValue();
-            mapVal = mapVal.toString().replaceAll("\"", "");
-            mapVal = mapVal.toString().replaceAll(":", " ");
-            mapVal = mapVal.toString().replaceAll("open ", "open=");
-            mapVal = mapVal.toString().replaceAll("high ", "high=");
-            mapVal = mapVal.toString().replaceAll("low ", "low=");
-            mapVal = mapVal.toString().replaceAll("close ", "close=");
-            mapVal = mapVal.toString().replaceAll("volume ", "volume=");
-
-            objectMap.replace(entry.getKey().toString(), mapVal);
-
-        }
-
-        return objectMap;
     }
 }

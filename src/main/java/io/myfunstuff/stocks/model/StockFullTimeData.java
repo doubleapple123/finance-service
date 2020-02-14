@@ -10,16 +10,6 @@ public class StockFullTimeData {
     private double close;
     private double volume;
 
-    public StockFullTimeData(String date, ArrayList<Object> inData){
-        this.date = date;
-        this.open = Double.parseDouble(inData.get(0).toString());
-        this.high = Double.parseDouble(inData.get(1).toString());
-        this.low = Double.parseDouble(inData.get(2).toString());
-        this.close = Double.parseDouble(inData.get(3).toString());
-        this.volume = Double.parseDouble(inData.get(4).toString());
-
-    }
-
     public StockFullTimeData(ArrayList<Object> inData){
         this.date = inData.get(1).toString();
         this.open = Double.parseDouble(inData.get(2).toString());

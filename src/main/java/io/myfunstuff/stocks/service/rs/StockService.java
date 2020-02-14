@@ -12,7 +12,7 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping(path = "/stock")
 public interface StockService {
-
+	//TODO: try to add one more to add a technical data with a table, etc
 	//mapping returns one data point of analyzed data
 	@RequestMapping(path = "/analyze", method = RequestMethod.GET, produces = {"application/json"})
 	StockStatistics analyzeTimeSeriesData(

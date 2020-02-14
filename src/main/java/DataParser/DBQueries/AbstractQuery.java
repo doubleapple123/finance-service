@@ -39,6 +39,7 @@ public abstract class AbstractQuery{
 		return this.timeser;
 	}
 
+	//TODO: add cases and set tables for different data inputs(technical indicators)
 	public void setDBtable(String timeseries){
 		switch(timeseries){
 			case "TIME_SERIES_DAILY" : this.DBtable = "stockdaily"; break;
