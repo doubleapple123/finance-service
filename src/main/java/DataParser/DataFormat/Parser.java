@@ -18,15 +18,25 @@ import java.util.List;
 //different tables for daily and weekly data
 public class Parser {
     private StringBuilder finalParsed; //FINAL DATA -- important
-    private String dailyURLFormat = "https://www.alphavantage.co/query?function=%s&symbol=%s&outputsize=compact&apikey=728C9KPM2IY7IVDZ"; //daily or weekly, symbol
+    private String dailyURLFormat = "https://www.alphavantage.co/query?function=%s&symbol=%s&outputsize=%s&apikey=728C9KPM2IY7IVDZ"; //daily or weekly, symbol
     private String weeklyURLFormat = "https://www.alphavantage.co/query?function=%s&symbol=%s&apikey=728C9KPM2IY7IVDZ";
     private String symbol;
     private String timeseries;
+    private String outputsize;
 
     public Parser(String symbol, String timeseries){
         this.symbol = symbol;
         this.timeseries = timeseries;
+        this.outputsize = "full";
         finalParsed = new StringBuilder();
+    }
+
+    public void setOutputsize(String size){
+        this.outputsize = size;
+    }
+
+    public String getOutputsize(){
+        return outputsize;
     }
 
     public String getTimeseries(){
@@ -49,10 +59,15 @@ public class Parser {
 
     public String retrieveData() throws IOException{
         URL address;
-        if(timeseries.equals("TIME_SERIES_DAILY")){
-            address = new URL(String.format(dailyURLFormat, "TIME_SERIES_DAILY", symbol));
-        } else{
-            address = new URL(String.format(weeklyURLFormat, "TIME_SERIES_WEEKLY", symbol));
+        switch(timeseries){
+            case "TIME_SERIES_DAILY" :
+            case "TIME_SERIES_DAILY_ADJUSTED" :
+                address = new URL(String.format(dailyURLFormat, timeseries, symbol, outputsize)); break;
+
+            case "TIME_SERIES_WEEKLY" : address = new URL(String.format(weeklyURLFormat, timeseries, symbol)); break;
+
+
+            default: throw new IllegalArgumentException();
         }
 
         InputStream in = address.openStream();
@@ -85,7 +100,10 @@ public class Parser {
 
         OrderedJSONObject jsonObject = new OrderedJSONObject(data);
         switch(getTimeseries()){
-            case "TIME_SERIES_DAILY" : timeObj = jsonObject.get("Time Series (Daily)").toString(); break;
+            case "TIME_SERIES_DAILY" :
+            case "TIME_SERIES_DAILY_ADJUSTED" :
+                timeObj = jsonObject.get("Time Series (Daily)").toString(); break;
+
             case "TIME_SERIES_WEEKLY" : timeObj = jsonObject.get("Weekly Time Series").toString(); break;
             default: throw new IllegalArgumentException();
         }

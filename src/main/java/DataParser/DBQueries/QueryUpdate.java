@@ -6,9 +6,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class QueryUpdate extends AbstractQuery{
-
 	public void addToMainTable(String symbol){
-		setQuery(String.format("INSERT INTO stocksymbols VALUES ('%s')", symbol));
+		setQuery(String.format("INSERT IGNORE INTO stocksymbols VALUES ('%s')", symbol));
 		System.out.println(getQuery());
 	}
 
@@ -22,7 +21,7 @@ public class QueryUpdate extends AbstractQuery{
 	//uses data in
 	public void addToDatabaseSymbol(String symbol){
 		try{
-			setQuery(String.format("INSERT INTO %s VALUES %s",getDBtable(), dataIn.updateDatabase(symbol, getTimeser())));
+			setQuery(String.format("INSERT IGNORE INTO %s VALUES %s",getDBtable(), dataIn.updateDatabase(symbol, getTimeser())));
 		} catch(IOException | JSONException e){
 			e.printStackTrace();
 		}

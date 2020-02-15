@@ -1,10 +1,8 @@
 package io.myfunstuff.stocks.service;
 
 import DataParser.DBQueries.QueryExecute;
-import io.myfunstuff.stocks.model.StockStatistics;
-import io.myfunstuff.stocks.model.TimeSeriesData;
-import io.myfunstuff.stocks.model.TimeSeriesDataCollection;
-import io.myfunstuff.stocks.model.TimeSeriesType;
+import DataParser.DataCollections.StockAdjustedDailyDC;
+import io.myfunstuff.stocks.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,49 +24,42 @@ public class StockAnalysisServiceImpl implements StockAnalysisService{
 	public StockAnalysisServiceImpl(){
 	}
 
+	//TODO fix this function
 	@Override
-	public StockStatistics getStockStatistics(String symbol, TimeSeriesDataCollection timeseriesData){
-		if(timeseriesData == null){
-			return null;
-		}
+	public StockStatistics getStockStatistics(StockAdjustedDailyDC stockDC){
+		System.out.println(stockDC);
+//		if(timeseriesData == null){
+//			return null;
+//		}
 
-		StockStatistics stats = new StockStatistics(timeseriesData.getSymbol(), timeseriesData.getType());
-		Date start = null;
-		Date end = null;
-		Date lowDate = null;
-		Date highDate = null;
-		float low = 0.0F;
+		StockStatistics stats = new StockStatistics();
+		String start = stockDC.getStartDate();
+		String end = stockDC.getEndDate();
+		String lowDate = stockDC.getStartDate();
+		String highDate = stockDC.getStartDate();
+		float low = Float.MAX_VALUE;
 		float high = 0.0F;
-		for(Map.Entry<Date, TimeSeriesData> e : timeseriesData.getTimeSeries().entrySet()){
-			Date d = e.getKey();
-			if(start == null){
-				start = d;
-				end = d;
-				lowDate = d;
-				highDate = d;
-				low = e.getValue().getLow();
-				high = e.getValue().getHigh();
-			} else{
-				if(d.before(start))
-					start = d;
-				if(d.after(end))
-					end = d;
-				if(e.getValue().getLow() < low){
-					low = e.getValue().getLow();
-					lowDate = d;
-				}
-				if(e.getValue().getHigh() > high){
-					high = e.getValue().getHigh();
-					highDate = d;
-				}
+
+		for(Object obj : stockDC.getDataRow()){
+			StockAdjustedDaily stockObj = ((StockAdjustedDaily)obj);
+
+			if(stockObj.getLow() < low){
+				low = (float) stockObj.getLow();
+				lowDate = stockObj.getDate();
+			}
+
+			if(stockObj.getHigh() > high){
+				high = (float) stockObj.getAdjustedClose();
+				highDate = stockObj.getDate();
 			}
 		}
+
 		stats.setLow(low);
 		stats.setHigh(high);
-		stats.setPeriodStart(new SimpleDateFormat(dateFormat).format(start));
-		stats.setPeriodEnd(new SimpleDateFormat(dateFormat).format(end));
-		stats.setLowDate(new SimpleDateFormat(dateFormat).format(lowDate));
-		stats.setHighDate(new SimpleDateFormat(dateFormat).format(highDate));
+		stats.setPeriodStart(start);
+		stats.setPeriodEnd(end);
+		stats.setLowDate(lowDate);
+		stats.setHighDate(highDate);
 		return stats;
 	}
 

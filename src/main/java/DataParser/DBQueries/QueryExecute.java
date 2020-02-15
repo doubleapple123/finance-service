@@ -8,10 +8,8 @@ public class QueryExecute extends AbstractQuery{
 		setQuery(String.format("select exists(select * from %s where `symbol` = '%s')", "stocksymbols", symbol));
 		ArrayList<ArrayList<Object>> exist = executeQuery();
 		if(Integer.parseInt(exist.get(0).get(0).toString()) == 0){
-			System.out.println("FALSE");
 			return false;
 		}else{
-			System.out.println("TRUE");
 			return true;
 		}
 	}
@@ -29,11 +27,26 @@ public class QueryExecute extends AbstractQuery{
 		setQuery(String.format("SELECT * FROM %s",getDBtable()));
 	}
 
+	//TODO finish this
+	//to update database
+	public void updateDatabase(String table){
+		describeTable(table);
+		String thisTable = executeQuery().toString();
+		System.out.println(thisTable);
+
+	}
+
+	public void describeTable(String table){
+		setQuery(String.format("SELECT column_name\n" +
+				"FROM information_schema.columns\n" +
+				"WHERE  table_name = '%s'\n" +
+				"   AND table_schema = 'financedatabase'", table));
+	}
+
 	public ArrayList<ArrayList<Object>> executeQuery(){
 		try{
 			resultSet = statement.executeQuery(getQuery());
 			dataTable = dataOut.getTableFromSet(resultSet);
-			resultSet.close();
 
 			return dataTable;
 
@@ -50,23 +63,5 @@ public class QueryExecute extends AbstractQuery{
 		}
 	}
 
-	public void inputSymbolsIntoSymbolDatabase(){
-		try{
-			//gets distinct values from stockdata and inputs them into stocksymbols, a table
-			//which has all the stock symbols
-			StringBuilder stringBuilder = new StringBuilder();
-			setQuery(String.format("SELECT DISTINCT symbol FROM %s",getDBtable())); //gets all symbols
-			resultSet = statement.executeQuery(getQuery());
 
-			while(resultSet.next()){
-				stringBuilder.append(String.format("INSERT INTO `stocksymbols` (`symbol`) select '%1$s' from dual where not exists" +
-						"(select * from `stocksymbols` where `symbol` = '%1$s' limit 1);",resultSet.getString(1)));
-			}
-
-			setQuery(stringBuilder.toString());
-
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
-	}
 }

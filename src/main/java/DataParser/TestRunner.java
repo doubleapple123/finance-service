@@ -2,6 +2,7 @@ package DataParser;
 
 import DataParser.DBQueries.QueryExecute;
 import DataParser.DBQueries.QueryUpdate;
+import org.apache.commons.lang3.builder.EqualsExclude;
 
 public class TestRunner{
 
@@ -23,10 +24,10 @@ public class TestRunner{
 //		queries.addToDatabaseSymbol(symbolsToAdd, "TIME_SERIES_DAILY"); //adds to database
 //		queries.addToDatabaseSymbol(symbolsToAdd, "TIME_SERIES_WEEKLY");
 
-//		update.setTimeser("TIME_SERIES_DAILY");
-//		update.addToDatabaseSymbol("F");
-//		System.out.println(update.getQuery());
-//		update.updateQuery();
+		update.setTimeser("TIME_SERIES_DAILY");
+		update.addToDatabaseSymbol("F");
+		System.out.println(update.getQuery());
+		update.updateQuery();
 
 //		execute.setTimeser("TIME_SERIES_DAILY");
 //		execute.getAllTable();

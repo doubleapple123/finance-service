@@ -2,6 +2,7 @@ package io.myfunstuff.stocks.service.rs;
 
 import DataParser.DBQueries.QueryExecute;
 import DataParser.DBQueries.QueryUpdate;
+import DataParser.DataCollections.StockAdjustedDailyDC;
 import DataParser.DataCollections.StockFullDC;
 import DataParser.DataCollections.StockTimeDC;
 import io.myfunstuff.stocks.model.StockStatistics;
@@ -27,18 +28,14 @@ public class StockServiceImpl implements StockService {
 	public StockServiceImpl() {
 	}
 
-	public void addNotExist(String symbol){
+	public void addNotExist(String timeseries, String symbol){
 		QueryExecute queryExecute = new QueryExecute();
 		QueryUpdate queryUpdate = new QueryUpdate();
 
 		if(!queryExecute.checkExist(symbol)){
 			//if the symbol does not exist in table `stocksymbols`, then add data from past 20 yrs
 			//to daily and weekly table
-			queryUpdate.setTimeser("TIME_SERIES_DAILY");
-			queryUpdate.addToDatabaseSymbol(symbol);
-			queryUpdate.updateQuery();
-
-			queryUpdate.setTimeser("TIME_SERIES_WEEKLY");
+			queryUpdate.setTimeser(timeseries);
 			queryUpdate.addToDatabaseSymbol(symbol);
 			queryUpdate.updateQuery();
 
@@ -48,15 +45,16 @@ public class StockServiceImpl implements StockService {
 	}
 
 	@Override
-	public StockStatistics analyzeTimeSeriesData(String timeseries, String symbol, String startDate, String endDate, TimeSeriesType timeseriesType) {
-		addNotExist(symbol);
-		TimeSeriesDataCollection timeSeriesData = stockAnalysisService.parseRawTimeSeriesData(timeseries, startDate, endDate, symbol, timeseriesType);
-		return stockAnalysisService.getStockStatistics(symbol, timeSeriesData);
+	public StockStatistics analyzeTimeSeriesData(String timeseries, String symbol, String startDate, String endDate) {
+		addNotExist(timeseries, symbol);
+		StockAdjustedDailyDC stockFullDC = new StockAdjustedDailyDC(timeseries, symbol, startDate, endDate);
+		stockFullDC.convertArr();
+		return stockAnalysisService.getStockStatistics(stockFullDC);
 	}
 
 	@Override
 	public ArrayList getStockData(String timeseries, String symbol, String startDate, String endDate){
-		addNotExist(symbol);
+		addNotExist(timeseries, symbol);
 		StockTimeDC stockTimeDC = new StockTimeDC(timeseries, symbol, startDate, endDate);
 		stockTimeDC.convertArr();
 		return stockTimeDC.getDataRow();
@@ -64,8 +62,8 @@ public class StockServiceImpl implements StockService {
 
 	@Override
 	public ArrayList getFullStockData(String timeseries, String symbol, String startDate, String endDate){
-		addNotExist(symbol);
-		StockFullDC stockFullDC = new StockFullDC(timeseries, symbol, startDate, endDate);
+		addNotExist(timeseries, symbol);
+		StockAdjustedDailyDC stockFullDC = new StockAdjustedDailyDC(timeseries, symbol, startDate, endDate);
 		stockFullDC.convertArr();
 		return stockFullDC.getDataRow();
 	}

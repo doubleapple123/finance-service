@@ -25,11 +25,12 @@ public class DataFormatOut{
 
 				for (int i = 1; i <= colCount; i++) {
 					Object object = set.getObject(i);
-
-					if(object.getClass().equals(Double.class)){
-						arrayRow.add(df.format(object));
-					}else{
-						arrayRow.add(object);
+					if(object != null){
+						if(object.getClass().equals(Double.class)){
+							arrayRow.add(df.format(object));
+						}else{
+							arrayRow.add(object);
+						}
 					}
 				}
 				table.add(arrayRow);
