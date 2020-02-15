@@ -27,14 +27,9 @@ public class StockAnalysisServiceImpl implements StockAnalysisService{
 	//TODO fix this function
 	@Override
 	public StockStatistics getStockStatistics(StockAdjustedDailyDC stockDC){
-		System.out.println(stockDC);
-//		if(timeseriesData == null){
-//			return null;
-//		}
 
 		StockStatistics stats = new StockStatistics();
-		String start = stockDC.getStartDate();
-		String end = stockDC.getEndDate();
+		int dataSize = stockDC.getDataRow().size();
 		String lowDate = stockDC.getStartDate();
 		String highDate = stockDC.getStartDate();
 		float low = Float.MAX_VALUE;
@@ -42,7 +37,6 @@ public class StockAnalysisServiceImpl implements StockAnalysisService{
 
 		for(Object obj : stockDC.getDataRow()){
 			StockAdjustedDaily stockObj = ((StockAdjustedDaily)obj);
-
 			if(stockObj.getLow() < low){
 				low = (float) stockObj.getLow();
 				lowDate = stockObj.getDate();
@@ -54,10 +48,12 @@ public class StockAnalysisServiceImpl implements StockAnalysisService{
 			}
 		}
 
+		stats.setDataPointType(stockDC.getTimeseries());
+		stats.setSymbol(stockDC.getSymbol());
 		stats.setLow(low);
 		stats.setHigh(high);
-		stats.setPeriodStart(start);
-		stats.setPeriodEnd(end);
+		stats.setPeriodStart(((StockAdjustedDaily)stockDC.getDataRow().get(0)).getDate());
+		stats.setPeriodEnd(((StockAdjustedDaily)stockDC.getDataRow().get(dataSize-1)).getDate());
 		stats.setLowDate(lowDate);
 		stats.setHighDate(highDate);
 		return stats;

@@ -19,7 +19,7 @@ public class StockAdjustedDaily{
 		this.high = Double.parseDouble(inData.get(3).toString());
 		this.low = Double.parseDouble(inData.get(4).toString());
 		this.close = Double.parseDouble(inData.get(5).toString());
-		this.close = Double.parseDouble(inData.get(6).toString());
+		this.adjustedClose = Double.parseDouble(inData.get(6).toString());
 		this.volume = Double.parseDouble(inData.get(7).toString());
 		this.dividend = Double.parseDouble(inData.get(8).toString());
 		this.splitco = Double.parseDouble(inData.get(9).toString());

@@ -13,7 +13,7 @@ public class StockTimeDC extends DataCollection{
 	public void convertArr(){
 		QueryExecute query = new QueryExecute();
 		query.setTimeser(this.getTimeseries());
-		query.setQuery(String.format("SELECT date, open FROM %s where `symbol` = '%s' and " +
+		query.setQuery(String.format("SELECT date, adjusted_close FROM %s where `symbol` = '%s' and " +
 				"`date` between '%s' and '%s'",query.getDBtable(), getSymbol(), getStartDate(), getEndDate()));
 
 		for(ArrayList<Object> row: query.executeQuery()){

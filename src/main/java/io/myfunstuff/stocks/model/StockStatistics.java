@@ -12,7 +12,7 @@ public class StockStatistics {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String symbol;
-	private TimeSeriesType dataPointType;
+	private String dataPointType;
 	private float high;
 	private float low;
 	
@@ -28,7 +28,7 @@ public class StockStatistics {
 		this.symbol = symbol;
 	}
 	
-	public StockStatistics(String symbol, TimeSeriesType dataPointType) {
+	public StockStatistics(String symbol, String dataPointType) {
 		this.symbol = symbol;
 		this.dataPointType = dataPointType;
 	}
@@ -49,11 +49,11 @@ public class StockStatistics {
 		this.symbol = symbol;
 	}
 
-	public TimeSeriesType getDataPointType() {
+	public String getDataPointType() {
 		return dataPointType;
 	}
 
-	public void setDataPointType(TimeSeriesType dataPointType) {
+	public void setDataPointType(String dataPointType) {
 		this.dataPointType = dataPointType;
 	}
 

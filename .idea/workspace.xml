@@ -7,31 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70e5a1be-a043-4e94-88a7-050b7a61941b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/DataParser/DataCollections/StockAdjustedDailyDC.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/model/StockAdjustedDaily.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DBQueries/AbstractQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/DBQueries/AbstractQuery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DBQueries/QueryExecute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/DBQueries/QueryExecute.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DBQueries/QueryUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/DBQueries/QueryUpdate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DataFormat/DataFormatOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/DataFormat/DataFormatOut.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/DataFormat/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/DataFormat/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataParser/TestRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataParser/TestRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/StockAnalysisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/StockAnalysisService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/model/StockAdjustedDaily.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/model/StockAdjustedDaily.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/model/StockStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/model/StockStatistics.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/StockAnalysisServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/StockAnalysisServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/rs/StockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/rs/StockService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/rs/StockServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/myfunstuff/stocks/service/rs/StockServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DBQueries/AbstractQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/DBQueries/AbstractQuery.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DBQueries/QueryExecute.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/DBQueries/QueryExecute.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DBQueries/QueryUpdate.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/DBQueries/QueryUpdate.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DataCollections/StockFullDC.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/DataCollections/StockFullDC.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DataFormat/DataFormatIn.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/DataFormat/DataFormatIn.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DataFormat/DataFormatOut.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/DataFormat/DataFormatOut.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/DataFormat/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/DataFormat/Parser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DataParser/TestRunner.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataParser/TestRunner.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/StockAnalysisService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/StockAnalysisService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/model/StockAdjustedDaily.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/model/StockAdjustedDaily.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/StockAnalysisServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/StockAnalysisServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/rs/StockService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/rs/StockService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/rs/StockServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/myfunstuff/stocks/service/rs/StockServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,7 +161,7 @@
       <workItem from="1581535112902" duration="5580000" />
       <workItem from="1581640436657" duration="17815000" />
       <workItem from="1581665121698" duration="3657000" />
-      <workItem from="1581716559957" duration="11580000" />
+      <workItem from="1581716559957" duration="13232000" />
     </task>
     <servers />
   </component>
@@ -251,62 +232,62 @@
       <screen x="2560" y="206" width="1920" height="1040" />
     </state>
     <state x="3300" y="480" key="FileChooserDialogImpl/0.0.2048.1112/2560.206.1920.1040@2560.206.1920.1040" timestamp="1581292090162" />
-    <state width="2005" height="259" key="GridCell.Tab.0.bottom" timestamp="1581728873117">
+    <state width="2005" height="259" key="GridCell.Tab.0.bottom" timestamp="1581730561336">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="259" key="GridCell.Tab.0.bottom/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581728873117" />
+    <state width="2005" height="259" key="GridCell.Tab.0.bottom/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581730561336" />
     <state width="1877" height="301" key="GridCell.Tab.0.bottom/0.0.2048.1112/2560.206.1920.1040@2560.206.1920.1040" timestamp="1581482568036" />
-    <state width="2005" height="259" key="GridCell.Tab.0.center" timestamp="1581728873117">
+    <state width="2005" height="259" key="GridCell.Tab.0.center" timestamp="1581730561335">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="259" key="GridCell.Tab.0.center/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581728873117" />
+    <state width="2005" height="259" key="GridCell.Tab.0.center/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581730561335" />
     <state width="1877" height="301" key="GridCell.Tab.0.center/0.0.2048.1112/2560.206.1920.1040@2560.206.1920.1040" timestamp="1581482568036" />
-    <state width="2005" height="259" key="GridCell.Tab.0.left" timestamp="1581728873116">
+    <state width="2005" height="259" key="GridCell.Tab.0.left" timestamp="1581730561335">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="259" key="GridCell.Tab.0.left/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581728873116" />
+    <state width="2005" height="259" key="GridCell.Tab.0.left/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581730561335" />
     <state width="1877" height="301" key="GridCell.Tab.0.left/0.0.2048.1112/2560.206.1920.1040@2560.206.1920.1040" timestamp="1581482568036" />
-    <state width="2005" height="259" key="GridCell.Tab.0.right" timestamp="1581728873117">
+    <state width="2005" height="259" key="GridCell.Tab.0.right" timestamp="1581730561336">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="259" key="GridCell.Tab.0.right/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581728873117" />
+    <state width="2005" height="259" key="GridCell.Tab.0.right/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581730561336" />
     <state width="1877" height="301" key="GridCell.Tab.0.right/0.0.2048.1112/2560.206.1920.1040@2560.206.1920.1040" timestamp="1581482568036" />
-    <state width="2005" height="259" key="GridCell.Tab.1.bottom" timestamp="1581728873117">
+    <state width="2005" height="259" key="GridCell.Tab.1.bottom" timestamp="1581730561336">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="259" key="GridCell.Tab.1.bottom/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581728873117" />
+    <state width="2005" height="259" key="GridCell.Tab.1.bottom/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581730561336" />
     <state width="1877" height="301" key="GridCell.Tab.1.bottom/0.0.2048.1112/2560.206.1920.1040@2560.206.1920.1040" timestamp="1581482568036" />
-    <state width="2005" height="259" key="GridCell.Tab.1.center" timestamp="1581728873117">
+    <state width="2005" height="259" key="GridCell.Tab.1.center" timestamp="1581730561336">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="259" key="GridCell.Tab.1.center/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581728873117" />
+    <state width="2005" height="259" key="GridCell.Tab.1.center/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581730561336" />
     <state width="1877" height="301" key="GridCell.Tab.1.center/0.0.2048.1112/2560.206.1920.1040@2560.206.1920.1040" timestamp="1581482568036" />
-    <state width="2005" height="259" key="GridCell.Tab.1.left" timestamp="1581728873117">
+    <state width="2005" height="259" key="GridCell.Tab.1.left" timestamp="1581730561336">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="259" key="GridCell.Tab.1.left/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581728873117" />
+    <state width="2005" height="259" key="GridCell.Tab.1.left/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581730561336" />
     <state width="1877" height="301" key="GridCell.Tab.1.left/0.0.2048.1112/2560.206.1920.1040@2560.206.1920.1040" timestamp="1581482568036" />
-    <state width="2005" height="259" key="GridCell.Tab.1.right" timestamp="1581728873117">
+    <state width="2005" height="259" key="GridCell.Tab.1.right" timestamp="1581730561336">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="259" key="GridCell.Tab.1.right/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581728873117" />
+    <state width="2005" height="259" key="GridCell.Tab.1.right/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581730561336" />
     <state width="1877" height="301" key="GridCell.Tab.1.right/0.0.2048.1112/2560.206.1920.1040@2560.206.1920.1040" timestamp="1581482568036" />
-    <state width="2005" height="376" key="GridCell.Tab.2.bottom" timestamp="1581490413902">
+    <state width="2005" height="376" key="GridCell.Tab.2.bottom" timestamp="1581730354933">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="376" key="GridCell.Tab.2.bottom/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581490413902" />
-    <state width="2005" height="376" key="GridCell.Tab.2.center" timestamp="1581490413902">
+    <state width="2005" height="376" key="GridCell.Tab.2.bottom/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581730354933" />
+    <state width="2005" height="376" key="GridCell.Tab.2.center" timestamp="1581730354933">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="376" key="GridCell.Tab.2.center/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581490413902" />
-    <state width="2005" height="376" key="GridCell.Tab.2.left" timestamp="1581490413902">
+    <state width="2005" height="376" key="GridCell.Tab.2.center/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581730354933" />
+    <state width="2005" height="376" key="GridCell.Tab.2.left" timestamp="1581730354933">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="376" key="GridCell.Tab.2.left/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581490413902" />
-    <state width="2005" height="376" key="GridCell.Tab.2.right" timestamp="1581490413902">
+    <state width="2005" height="376" key="GridCell.Tab.2.left/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581730354933" />
+    <state width="2005" height="376" key="GridCell.Tab.2.right" timestamp="1581730354933">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="376" key="GridCell.Tab.2.right/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581490413902" />
+    <state width="2005" height="376" key="GridCell.Tab.2.right/0.0.2048.1112/2560.206.1920.1040@0.0.2048.1112" timestamp="1581730354933" />
     <state x="605" y="299" key="IDE.errors.dialog" timestamp="1581487296815">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
