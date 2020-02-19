@@ -14,6 +14,11 @@ import java.util.ArrayList;
 public interface StockService {
 	//TODO: try to add one more to add a technical data with a table, etc
 	//mapping returns one data point of analyzed data
+	@RequestMapping(path = "/update", method = RequestMethod.GET)
+	void updateDatabase(
+
+	);
+
 	@RequestMapping(path = "/analyze", method = RequestMethod.GET, produces = {"application/json"})
 	StockStatistics analyzeTimeSeriesData(
 			@RequestParam(value = "timeseries", defaultValue = "TIME_SERIES_DAILY_ADJUSTED") String timeseries,

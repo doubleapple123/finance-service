@@ -3,11 +3,8 @@ package io.myfunstuff.stocks.service.rs;
 import DataParser.DBQueries.QueryExecute;
 import DataParser.DBQueries.QueryUpdate;
 import DataParser.DataCollections.StockAdjustedDailyDC;
-import DataParser.DataCollections.StockFullDC;
 import DataParser.DataCollections.StockTimeDC;
 import io.myfunstuff.stocks.model.StockStatistics;
-import io.myfunstuff.stocks.model.TimeSeriesDataCollection;
-import io.myfunstuff.stocks.model.TimeSeriesType;
 import io.myfunstuff.stocks.service.StockAnalysisService;
 import io.myfunstuff.stocks.service.database.StockRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,12 +33,32 @@ public class StockServiceImpl implements StockService {
 			//if the symbol does not exist in table `stocksymbols`, then add data from past 20 yrs
 			//to daily and weekly table
 			queryUpdate.setTimeser(timeseries);
-			queryUpdate.addToDatabaseSymbol(symbol);
+			queryUpdate.addToDatabaseSymbol(symbol, "full");
 			queryUpdate.updateQuery();
 
 			queryUpdate.addToMainTable(symbol);
 			queryUpdate.updateQuery();
 		}
+	}
+
+	public void updateAll(){
+		QueryExecute queryExecute = new QueryExecute();
+		QueryUpdate queryUpdate = new QueryUpdate();
+
+		queryExecute.getDistinctSymbols();
+		ArrayList<ArrayList<Object>> symbols = queryExecute.executeQuery();
+
+ 		for(ArrayList<Object> obj : symbols){
+ 			queryUpdate.setTimeser("TIME_SERIES_DAILY_ADJUSTED");
+ 			queryUpdate.addToDatabaseSymbol(obj.get(0).toString(), "compact");
+ 			queryUpdate.updateQuery();
+		}
+	}
+
+	@Override
+	public void updateDatabase(){
+		updateAll();
+
 	}
 
 	@Override

@@ -4,6 +4,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class QueryExecute extends AbstractQuery{
+	public void getDistinctSymbols(){
+		setQuery(String.format("select distinct symbol from stockadjusteddaily"));
+	}
+
 	public boolean checkExist(String symbol){
 		setQuery(String.format("select exists(select * from %s where `symbol` = '%s')", "stocksymbols", symbol));
 		ArrayList<ArrayList<Object>> exist = executeQuery();

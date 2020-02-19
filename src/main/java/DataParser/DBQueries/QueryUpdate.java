@@ -11,17 +11,17 @@ public class QueryUpdate extends AbstractQuery{
 		System.out.println(getQuery());
 	}
 
-	public void addToDatabaseSymbol(String[] listOfSymbols){
+	public void addToDatabaseSymbol(String[] listOfSymbols, String outputsize){
 		for(String symbol : listOfSymbols){
-			addToDatabaseSymbol(symbol);
+			addToDatabaseSymbol(symbol, outputsize);
 			updateQuery();
 		}
 	}
 
 	//uses data in
-	public void addToDatabaseSymbol(String symbol){
+	public void addToDatabaseSymbol(String symbol, String outputsize){
 		try{
-			setQuery(String.format("INSERT IGNORE INTO %s VALUES %s",getDBtable(), dataIn.updateDatabase(symbol, getTimeser())));
+			setQuery(String.format("INSERT IGNORE INTO %s VALUES %s",getDBtable(), dataIn.updateDatabase(symbol, getTimeser(), outputsize)));
 		} catch(IOException | JSONException e){
 			e.printStackTrace();
 		}

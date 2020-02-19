@@ -10,8 +10,11 @@ public class DataFormatIn{
 
 	//formats correctly data to import into mysql
 	//final step of the import process
-	public String updateDatabase(String symbol, String timeseries) throws IOException, JSONException{
+	public String updateDatabase(String symbol, String timeseries, String outputsize) throws IOException, JSONException{
 		Parser parser = new Parser(symbol,timeseries);
+		if(outputsize.equals("compact")){
+			parser.setOutputsize(outputsize);
+		}
 		DecimalFormat df = new DecimalFormat("#");
 		df.setMaximumFractionDigits(3);
 		parser.parseData();
