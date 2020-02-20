@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class WebServiceController{
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	@RequestMapping(value = "/hello", method = RequestMethod.GET)
 	public String getIndex(){
-		return "templates/index";
+		return "hello";
 	}
 }
