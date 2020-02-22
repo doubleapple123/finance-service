@@ -1,15 +1,22 @@
 package DataParser.DataFormat;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class DataFormatOut{
 	//should already be generified to handle any data object
 	//adds from a resultset to datatable
 	public ArrayList<ArrayList<Object>> getTableFromSet(ResultSet set){
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		dtf = dtf.withLocale(Locale.ENGLISH);
+		LocalDate date;
 		DecimalFormat df = new DecimalFormat("#");
 		df.setMaximumFractionDigits(3);
 		ArrayList<Object> arrayRow;
@@ -28,7 +35,13 @@ public class DataFormatOut{
 					if(object != null){
 						if(object.getClass().equals(Double.class)){
 							arrayRow.add(df.format(object));
-						}else{
+
+						}
+						else if (object.getClass().equals(Date.class)){
+							arrayRow.add(((Date) object).toLocalDate());
+
+						}
+						else{
 							arrayRow.add(object);
 						}
 					}

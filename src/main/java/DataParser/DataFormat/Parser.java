@@ -99,14 +99,10 @@ public class Parser {
         String timeObj;
 
         OrderedJSONObject jsonObject = new OrderedJSONObject(data);
-        switch(getTimeseries()){
-            case "TIME_SERIES_DAILY" :
-            case "TIME_SERIES_DAILY_ADJUSTED" :
-                timeObj = jsonObject.get("Time Series (Daily)").toString(); break;
+        Iterator jsonIte = jsonObject.getOrder();
+        jsonIte.next();
 
-            case "TIME_SERIES_WEEKLY" : timeObj = jsonObject.get("Weekly Time Series").toString(); break;
-            default: throw new IllegalArgumentException();
-        }
+        timeObj = jsonObject.get(jsonIte.next().toString()).toString();
         OrderedJSONObject timeJson = new OrderedJSONObject(timeObj);
         Iterator iterator = timeJson.getOrder();
         Object key;

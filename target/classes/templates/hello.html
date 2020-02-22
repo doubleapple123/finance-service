@@ -1,56 +1,54 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thmeleaf.org">
+<html xmlns:th="http://www.thmeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="ISO-8859-1">
 
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+
 </head>
 
 <body>
+
+<!--<p th:text = "'Hello,' + ${name}"/>-->
+
 <div class = "container">
     <canvas id = "myChart"></canvas>
 </div>
-<script>
+
+<script type = "text/javascript">
+   let typeOf = "[[${name}]]";
+   let dLabels = [[${dates}]];
+   let sData = [[${datas}]];
+    console.log(dLabels);
+   // dLabels.forEach(element => console.log(element));
+
    let myChart = document.getElementById('myChart').getContext('2d');
    let barChart = new Chart(myChart, {
-       type: 'bar',
+       type: 'line',
        data: {
-           labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+           labels: dLabels,
            datasets: [{
-               label: '# of Votes',
-               data: [12, 19, 3, 5, 2, 3],
-               backgroundColor: [
-                   'rgba(255, 99, 132, 0.2)',
-                   'rgba(54, 162, 235, 0.2)',
-                   'rgba(255, 206, 86, 0.2)',
-                   'rgba(75, 192, 192, 0.2)',
-                   'rgba(153, 102, 255, 0.2)',
-                   'rgba(255, 159, 64, 0.2)'
-               ],
-               borderColor: [
-                   'rgba(255, 99, 132, 1)',
-                   'rgba(54, 162, 235, 1)',
-                   'rgba(255, 206, 86, 1)',
-                   'rgba(75, 192, 192, 1)',
-                   'rgba(153, 102, 255, 1)',
-                   'rgba(255, 159, 64, 1)'
-               ],
+               lineTension : 0,
+               label: typeOf,
+               data: sData,
+               pointRadius: 0,
+               backgroundColor: 'rgba(0,100,0,0.8)',
                borderWidth: 1
            }]
        },
        options: {
            scales: {
-               yAxes: [{
-                   ticks: {
-                       beginAtZero: true
-                   }
+               xAxes: [{
+
                }]
            }
        }
    });
+
 </script>
-
-
-
 </body>
 </html>
