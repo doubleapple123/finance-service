@@ -21,16 +21,20 @@
 
 <script type = "text/javascript">
    let typeOf = "[[${name}]]";
-   let dLabels = [[${dates}]];
+   let dLabels = "[[${dates}]]";
    let sData = [[${datas}]];
-    console.log(dLabels);
-   // dLabels.forEach(element => console.log(element));
+
+   console.log(dLabels);
+
+   let dLabelArr = dLabels.split(",");
+   dLabelArr.pop();
+   console.log(dLabelArr);
 
    let myChart = document.getElementById('myChart').getContext('2d');
    let barChart = new Chart(myChart, {
        type: 'line',
        data: {
-           labels: dLabels,
+           labels: dLabelArr,
            datasets: [{
                lineTension : 0,
                label: typeOf,

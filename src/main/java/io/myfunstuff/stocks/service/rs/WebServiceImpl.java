@@ -25,10 +25,7 @@ public class WebServiceImpl implements  WebService{
 //		return "Hello test";
 //	}
 	public ModelAndView getHello(String symbol, String startDate, String endDate) throws IOException {
-//		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//		dtf = dtf.withLocale(Locale.ENGLISH);
-//		LocalDate date;
-
+		StringBuilder dateBuilder = new StringBuilder();
 		ModelAndView model = new ModelAndView("hello");
 		ArrayList<String> dates = new ArrayList<>();
 		ArrayList<Double> datas = new ArrayList<>();
@@ -44,17 +41,15 @@ public class WebServiceImpl implements  WebService{
 		JSONArray object = new JSONArray(result.toString());
 		JSONObject stockObj;
 		Iterator keys = object.iterator();
+
 		while (keys.hasNext()) {
 			stockObj = new JSONObject(keys.next().toString());
-//			date = LocalDate.parse(stockObj.get("date").toString(), dtf);
-			dates.add(JSONObject.quote(stockObj.get("date").toString()));
+			dateBuilder.append(stockObj.get("date").toString() + ",");
 			datas.add(Double.parseDouble(stockObj.get("open").toString()));
 		}
-		String someDate = "[\"2020-02-17\", \"2020-02-18\", \"2020-02-19\", \"2020-02-20\"]";
-		System.out.println(dates);
-		model.addObject("name", symbol);
 
-		model.addObject("dates", someDate);
+		model.addObject("name", symbol);
+		model.addObject("dates", dateBuilder);
 		model.addObject("datas", datas);
 
 		return model;
