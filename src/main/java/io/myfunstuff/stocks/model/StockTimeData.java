@@ -1,8 +1,5 @@
 package io.myfunstuff.stocks.model;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 public class StockTimeData{
 //	private Map<String, Float> stockMap = new LinkedHashMap<>();
 	private String date;

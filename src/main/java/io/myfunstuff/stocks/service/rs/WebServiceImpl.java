@@ -1,6 +1,5 @@
 package io.myfunstuff.stocks.service.rs;
 
-import com.google.gson.JsonObject;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
@@ -10,20 +9,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 @Service
 public class WebServiceImpl implements  WebService{
-//
-//	@Override
-//	public String getIndex(String symbol, Model model) {
-//		model.addAttribute("TESTING");
-//		return "Hello test";
-//	}
 	public ModelAndView getHello(String symbol, String startDate, String endDate) throws IOException {
 		StringBuilder dateBuilder = new StringBuilder();
 		ModelAndView model = new ModelAndView("hello");

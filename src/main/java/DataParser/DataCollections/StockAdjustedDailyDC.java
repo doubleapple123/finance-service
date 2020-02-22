@@ -2,7 +2,6 @@ package DataParser.DataCollections;
 
 import DataParser.DBQueries.QueryExecute;
 import io.myfunstuff.stocks.model.StockAdjustedDaily;
-import io.myfunstuff.stocks.model.StockFullTimeData;
 
 import java.util.ArrayList;
 

@@ -8,7 +8,6 @@ import java.sql.SQLException;
 public class QueryUpdate extends AbstractQuery{
 	public void addToMainTable(String symbol){
 		setQuery(String.format("INSERT IGNORE INTO stocksymbols VALUES ('%s')", symbol));
-		System.out.println(getQuery());
 	}
 
 	public void addToDatabaseSymbol(String[] listOfSymbols, String outputsize){

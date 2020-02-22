@@ -5,18 +5,14 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class DataFormatOut{
 	//should already be generified to handle any data object
 	//adds from a resultset to datatable
 	public ArrayList<ArrayList<Object>> getTableFromSet(ResultSet set){
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		dtf = dtf.withLocale(Locale.ENGLISH);
-		LocalDate date;
+		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 		DecimalFormat df = new DecimalFormat("#");
 		df.setMaximumFractionDigits(3);
 		ArrayList<Object> arrayRow;
@@ -38,8 +34,10 @@ public class DataFormatOut{
 
 						}
 						else if (object.getClass().equals(Date.class)){
-							arrayRow.add(((Date) object).toLocalDate());
+							Long epoch = ((Date) object).getTime();
+							epoch += 28800*1000;
 
+							arrayRow.add(formatter.format(new java.util.Date(epoch)));
 						}
 						else{
 							arrayRow.add(object);
