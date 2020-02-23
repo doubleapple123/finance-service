@@ -11,7 +11,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 
 @Service
@@ -21,7 +20,7 @@ public class WebServiceImpl implements WebService {
 		StringBuilder dataBuilder = new StringBuilder();
 //		StringBuilder dataVolumeBuilder = new StringBuilder();
 
-		URL address = new URL(String.format("http://localhost:8080/stock/data?symbol=%s&startDate=%s&endDate=%s", sym, start, end));
+		URL address = new URL(String.format("http://localhost:5000/stock/data?symbol=%s&startDate=%s&endDate=%s", sym, start, end));
 		InputStream in = address.openStream();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 		StringBuilder result = new StringBuilder();
@@ -66,7 +65,7 @@ public class WebServiceImpl implements WebService {
 			StringBuilder dataBuilder = new StringBuilder();
 			StringBuilder dataVolumeBuilder = new StringBuilder();
 
-			URL address = new URL(String.format("http://localhost:8080/stock/data?symbol=%s&startDate=%s&endDate=%s", symbol, startDate, endDate));
+			URL address = new URL(String.format("http://localhost:5000/stock/data?symbol=%s&startDate=%s&endDate=%s", symbol, startDate, endDate));
 			InputStream in = address.openStream();
 			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 			StringBuilder result = new StringBuilder();

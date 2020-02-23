@@ -9,7 +9,6 @@ public class TestRunner{
     plan for the future:
 
      --TODO     - add more tables and functionality for technical data
-     			- start researching charting libraries and functions
      			- fix and generify more classes
 
  */

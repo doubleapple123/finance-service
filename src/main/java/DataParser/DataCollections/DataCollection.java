@@ -5,7 +5,6 @@ import java.util.ArrayList;
 //meant to represent data in the database
 public abstract class DataCollection<T>{
 
-	//TODO fix start and end date, currently all dates is shifted by one
 	//represents a row of data
 	private String timeseries;
 	private String symbol;

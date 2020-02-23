@@ -23,7 +23,6 @@ public class StockAnalysisServiceImpl implements StockAnalysisService{
 	public StockAnalysisServiceImpl(){
 	}
 
-	//TODO fix this function
 	@Override
 	public StockStatistics getStockStatistics(StockAdjustedDailyDC stockDC){
 

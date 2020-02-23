@@ -31,7 +31,6 @@ public class QueryExecute extends AbstractQuery{
 		setQuery(String.format("SELECT * FROM %s",getDBtable()));
 	}
 
-	//TODO finish this
 	//to update database
 	public void updateDatabase(String table){
 		describeTable(table);
