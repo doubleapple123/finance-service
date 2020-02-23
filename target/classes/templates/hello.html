@@ -1,57 +1,141 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thmeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="ISO-8859-1">
-
-    <script src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-    <script
-            src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-            crossorigin="anonymous"></script>
-
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </head>
 
 <body>
 
 <!--<p th:text = "'Hello,' + ${name}"/>-->
 
-<div class = "container">
-    <canvas id = "myChart"></canvas>
-</div>
+<div id="myChart" style="height: 800px; width: 80%"></div>
+<div id="TAChart" style="height: 200px; width: 80%"></div>
+<p>
+</p>
+<script type="text/javascript">
+    let symbolName = "[[${name}]]";
+    let manySymbols = "[[${multSym}]]";
+    let manySymbolsArr = manySymbols.split("+");
+    manySymbolsArr.pop();
 
-<script type = "text/javascript">
-   let typeOf = "[[${name}]]";
-   let dLabels = "[[${dates}]]";
-   let sData = [[${datas}]];
+    console.log(manySymbolsArr);
 
-   console.log(dLabels);
+    let dataStr = "[[${dataColl}]]";
+    let volDataStr = "[[${volDataColl}]]";
 
-   let dLabelArr = dLabels.split(",");
-   dLabelArr.pop();
+    let volDataArr = volDataStr.split(":");
+    let dataArr = dataStr.split(":");
 
-   let myChart = document.getElementById('myChart').getContext('2d');
-   let barChart = new Chart(myChart, {
-       type: 'line',
-       data: {
-           labels: dLabelArr,
-           datasets: [{
-               lineTension : 0,
-               label: typeOf,
-               data: sData,
-               pointRadius: 0,
-               backgroundColor: 'rgba(0,100,0,0.8)',
-               borderWidth: 1
-           }]
-       },
-       options: {
-           scales: {
-               xAxes: [{
+    volDataArr.pop();
+    dataArr.pop();
 
-               }]
-           }
-       }
-   });
+    let volData = "";
+    let parsData = "";
 
+    for (var x = 0; x < volDataArr.length; x++) {
+        volData += volDataArr[x] + "\n";
+    }
+
+    for (var i = 0; i < dataArr.length; i++) {
+        parsData += dataArr[i] + "\n";
+    }
+
+    function getDataPointsFromCSV(csv) {
+        var dataPoints = csvLines = points = [];
+        csvLines = csv.split(/[\r?\n|\r|\n]+/);
+
+        for (var i = 0; i < csvLines.length; i++)
+            if (csvLines[i].length > 0) {
+                points = csvLines[i].split(",");
+                dataPoints.push({
+                    x: new Date(points[0]),
+                    y: parseFloat(points[1])
+                });
+            }
+        return dataPoints;
+    }
+
+    console.log(volData);
+
+    window.onload = function () {
+        var chart = new CanvasJS.Chart("myChart", {
+            animationEnabled: true,
+            zoomEnabled: true,
+            theme: "light2",
+
+            title: {
+                text: symbolName
+            },
+            toolTip: {
+                shared: true
+            },
+            axisY: {
+                title: "price",
+                logarithmic: false,
+                labelFontSize: 15
+            },
+            axisY2: {
+                labelFontSize: 15,
+                title: "Volume",
+                valueFormatString: "#,###,,.##M",
+                logarithmic: false
+            },
+            axisX: {
+                labelFontSize: 15
+            },
+            data: [
+                {
+
+                }
+            ]
+        });
+        chart.render();
+        if(manySymbolsArr.length === 0){
+            var dataSeries = {
+                color: "#289AFF",
+                type: "line",
+                name: "price",
+                showInLegend: true,
+                dataPoints: getDataPointsFromCSV(parsData)
+            };
+            var volSeries = {
+                color: "#FF8800",
+                type: "column",
+                axisYType: "secondary",
+                name: "volume",
+                showInLegend: true,
+                dataPoints: getDataPointsFromCSV(volData)
+            };
+            chart.options.data.push(volSeries);
+            chart.options.data.push(dataSeries);
+            chart.render();
+        }
+
+        for (var p = 0; p < manySymbolsArr.length; p++) {
+
+            let dataArrs = manySymbolsArr[p].split(":");
+
+            dataArrs.pop();
+
+            let parsDatas = "";
+
+            for (var l = 0; l < dataArrs.length; l++) {
+                parsDatas += dataArrs[l] + "\n";
+            }
+
+            console.log("parse datas " + parsDatas);
+
+            var newSeries = {
+                type: "line",
+                dataPoints: getDataPointsFromCSV(parsDatas)
+
+            };
+            chart.options.data.push(newSeries);
+            chart.render();
+        }
+    }
 </script>
 </body>
 </html>

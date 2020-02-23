@@ -12,13 +12,8 @@ import java.io.IOException;
 @Controller
 @RequestMapping(path = "/service")
 public interface WebService {
-//    @RequestMapping(path = "/getStock", method = RequestMethod.GET)
-//    String getIndex(
-//        @RequestParam(value = "symbol", defaultValue = "SPY") String symbol,
-//        Model model
-//    );
 
-    @GetMapping("/hello")
+    @GetMapping("/chart")
     ModelAndView getHello(
         @RequestParam(name = "symbol", defaultValue = "SPY") String symbol,
         @RequestParam(name = "startDate", defaultValue = "1999-01-01") String startDate,

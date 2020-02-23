@@ -143,5 +143,8 @@
     <orderEntry type="library" scope="TEST" name="Maven: net.minidev:accessors-smart:1.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.ow2.asm:asm:5.0.4" level="project" />
     <orderEntry type="library" name="jquery-3.4.1" level="application" />
+    <orderEntry type="library" name="dygraph" level="application" />
+    <orderEntry type="library" name="d3.v5" level="application" />
+    <orderEntry type="library" name="canvasjs" level="application" />
   </component>
 </module>

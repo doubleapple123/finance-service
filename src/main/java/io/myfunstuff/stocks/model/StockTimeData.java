@@ -1,22 +1,23 @@
 package io.myfunstuff.stocks.model;
 
 public class StockTimeData{
-//	private Map<String, Float> stockMap = new LinkedHashMap<>();
 	private String date;
 	private Float adjustedClose;
+	private Float volume;
 
-	public StockTimeData(String date, Float adjustedClose){
+	public StockTimeData(String date, Float adjustedClose, Float volume){
+		this.volume = volume;
 		this.date = date;
 		this.adjustedClose = adjustedClose;
 	}
 
-//	public Map<String, Float> getStockMap() {
-//		return stockMap;
-//	}
-//
-//	public void setStockMap(Map<String, Float> stockMap) {
-//		this.stockMap = stockMap;
-//	}
+	public Float getVolume() {
+		return volume;
+	}
+
+	public void setVolume(Float volume) {
+		this.volume = volume;
+	}
 
 	public String getDate(){
 		return date;

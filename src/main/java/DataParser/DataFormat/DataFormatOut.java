@@ -12,7 +12,7 @@ public class DataFormatOut{
 	//should already be generified to handle any data object
 	//adds from a resultset to datatable
 	public ArrayList<ArrayList<Object>> getTableFromSet(ResultSet set){
-		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
 		DecimalFormat df = new DecimalFormat("#");
 		df.setMaximumFractionDigits(3);
 		ArrayList<Object> arrayRow;

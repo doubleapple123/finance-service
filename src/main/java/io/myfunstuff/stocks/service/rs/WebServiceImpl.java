@@ -11,38 +11,87 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 @Service
-public class WebServiceImpl implements  WebService{
-	public ModelAndView getHello(String symbol, String startDate, String endDate) throws IOException {
-		StringBuilder dateBuilder = new StringBuilder();
-		ModelAndView model = new ModelAndView("hello");
-		ArrayList<String> dates = new ArrayList<>();
-		ArrayList<Double> datas = new ArrayList<>();
+public class WebServiceImpl implements WebService {
+	public String getData(String sym, String start, String end) throws IOException {
+		ArrayList<StringBuilder> dataList = new ArrayList<>();
+		StringBuilder dataBuilder = new StringBuilder();
+//		StringBuilder dataVolumeBuilder = new StringBuilder();
 
-		URL address = new URL(String.format("http://localhost:8080/stock/data?symbol=%s&startDate=%s&endDate=%s", symbol, startDate, endDate));
+		URL address = new URL(String.format("http://localhost:8080/stock/data?symbol=%s&startDate=%s&endDate=%s", sym, start, end));
 		InputStream in = address.openStream();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 		StringBuilder result = new StringBuilder();
 		String line;
-		while((line = reader.readLine()) != null){
+		while ((line = reader.readLine()) != null) {
 			result.append(line).append("\n");
 		}
+
 		JSONArray object = new JSONArray(result.toString());
 		JSONObject stockObj;
 		Iterator keys = object.iterator();
+		double firstOpen;
+
+		stockObj = new JSONObject(keys.next().toString());
+		firstOpen = Double.parseDouble(stockObj.get("open").toString());
+
+		dataBuilder.append(stockObj.get("date")).append(",").append(Double.parseDouble(stockObj.get("open").toString())/firstOpen).append(":");
 
 		while (keys.hasNext()) {
 			stockObj = new JSONObject(keys.next().toString());
-			dateBuilder.append(stockObj.get("date").toString() + ",");
-			datas.add(Double.parseDouble(stockObj.get("open").toString()));
+			dataBuilder.append(stockObj.get("date")).append(",").append(Double.parseDouble(stockObj.get("open").toString())/firstOpen).append(":");
+//			dataVolumeBuilder.append(stockObj.get("date")).append(",").append(stockObj.get("volume")).append(":");
 		}
 
-		model.addObject("name", symbol);
-		model.addObject("dates", dateBuilder);
-		model.addObject("datas", datas);
+		return dataBuilder.toString().replaceAll("/", "-");
 
-		return model;
 	}
+
+    public ModelAndView getHello(String symbol, String startDate, String endDate) throws IOException {
+		ModelAndView model = new ModelAndView("hello");
+        StringBuilder symbolsData = new StringBuilder();
+        String[] symbols = symbol.split(",");
+
+        if (symbols.length > 1) {
+        	for(String str:symbols){
+				symbolsData.append(getData(str,startDate,endDate)).append("+");
+			}
+			model.addObject("multSym",symbolsData);
+
+		}else{
+        	symbol = symbol.toUpperCase();
+			StringBuilder dataBuilder = new StringBuilder();
+			StringBuilder dataVolumeBuilder = new StringBuilder();
+
+			URL address = new URL(String.format("http://localhost:8080/stock/data?symbol=%s&startDate=%s&endDate=%s", symbol, startDate, endDate));
+			InputStream in = address.openStream();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+			StringBuilder result = new StringBuilder();
+			String line;
+			while ((line = reader.readLine()) != null) {
+				result.append(line).append("\n");
+			}
+
+			JSONArray object = new JSONArray(result.toString());
+			JSONObject stockObj;
+			Iterator keys = object.iterator();
+
+			while (keys.hasNext()) {
+				stockObj = new JSONObject(keys.next().toString());
+				dataBuilder.append(stockObj.get("date")).append(",").append(stockObj.get("open")).append(":");
+				dataVolumeBuilder.append(stockObj.get("date")).append(",").append(stockObj.get("volume")).append(":");
+			}
+
+			model.addObject("volDataColl", dataVolumeBuilder.toString().replaceAll("/", "-"));
+			model.addObject("dataColl", dataBuilder.toString().replaceAll("/", "-"));
+
+		}
+
+        model.addObject("name", symbol.toUpperCase());
+
+        return model;
+    }
 }
