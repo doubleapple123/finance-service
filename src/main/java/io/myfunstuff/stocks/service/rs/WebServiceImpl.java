@@ -1,6 +1,5 @@
 package io.myfunstuff.stocks.service.rs;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
