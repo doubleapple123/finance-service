@@ -1,26 +1,33 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thmeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thmeleaf.org">
 
 <head>
     <meta charset="ISO-8859-1">
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+           ></script>
 </head>
 
 <body>
-
-<!--<p th:text = "'Hello,' + ${name}"/>-->
 
 <div id="myChart" style="height: 800px; width: 80%"></div>
 <div id="TAChart" style="height: 200px; width: 80%"></div>
 <p>
 </p>
 <script type="text/javascript">
+    let symbolsName = "[[${symbols}]]";
+    symbolsName = symbolsName.replace("[", "");
+    symbolsName = symbolsName.replace("]", "");
+
     let symbolName = "[[${name}]]";
+
     let manySymbols = "[[${multSym}]]";
     let manySymbolsArr = manySymbols.split("+");
-    manySymbolsArr.pop();
 
-    console.log(manySymbolsArr);
+    let symbolsNameArr = symbolsName.split(",");
+
+    manySymbolsArr.pop();
 
     let dataStr = "[[${dataColl}]]";
     let volDataStr = "[[${volDataColl}]]";
@@ -57,85 +64,7 @@
         return dataPoints;
     }
 
-    console.log(volData);
-
-    window.onload = function () {
-        var chart = new CanvasJS.Chart("myChart", {
-            animationEnabled: true,
-            zoomEnabled: true,
-            theme: "light2",
-
-            title: {
-                text: symbolName
-            },
-            toolTip: {
-                shared: true
-            },
-            axisY: {
-                title: "price",
-                logarithmic: false,
-                labelFontSize: 15
-            },
-            axisY2: {
-                labelFontSize: 15,
-                title: "Volume",
-                valueFormatString: "#,###,,.##M",
-                logarithmic: false
-            },
-            axisX: {
-                labelFontSize: 15
-            },
-            data: [
-                {
-
-                }
-            ]
-        });
-        chart.render();
-        if(manySymbolsArr.length === 0){
-            var dataSeries = {
-                color: "#289AFF",
-                type: "line",
-                name: "price",
-                showInLegend: true,
-                dataPoints: getDataPointsFromCSV(parsData)
-            };
-            var volSeries = {
-                color: "#FF8800",
-                type: "column",
-                axisYType: "secondary",
-                name: "volume",
-                showInLegend: true,
-                dataPoints: getDataPointsFromCSV(volData)
-            };
-            chart.options.data.push(volSeries);
-            chart.options.data.push(dataSeries);
-            chart.render();
-        }
-
-        for (var p = 0; p < manySymbolsArr.length; p++) {
-
-            let dataArrs = manySymbolsArr[p].split(":");
-
-            dataArrs.pop();
-
-            let parsDatas = "";
-
-            for (var l = 0; l < dataArrs.length; l++) {
-                parsDatas += dataArrs[l] + "\n";
-            }
-
-            console.log("parse datas " + parsDatas);
-
-            var newSeries = {
-                type: "line",
-                dataPoints: getDataPointsFromCSV(parsDatas)
-
-            };
-            chart.options.data.push(newSeries);
-            chart.render();
-        }
-    }
 </script>
+<script type = "text/javascript" src = "/makeChart.js"></script>
 </body>
 </html>
