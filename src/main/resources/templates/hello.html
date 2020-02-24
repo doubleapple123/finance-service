@@ -11,20 +11,20 @@
 
 <body>
 
-<div id="myChart" style="height: 800px; width: 80%"></div>
+<div id="myChart" style="height: 60vh; width: 200vh"></div>
 <br/>
 
 <div>
 <form action = "" method = "get">
     <input type = "text" th:value = "${param.symbol}" name = "symbol"/>
     <input type = "text" th:value = "${param.startDate}" name = "startDate"/>
-    <input type = "text" th:value = "2100-01-01" name = "endDate"/>
+    <input type = "text" th:value = "${param.endDate}" name = "endDate"/>
     <input type = "submit" value = "Submit"/>
 
 </form>
 
 </div>
-<div id="TAChart" style="height: 200px; width: 80%"></div>
+<div id="TAChart" style="height: 20vh; width: 200vh"></div>
 
 <script type="text/javascript">
     let symbolsName = "[[${symbols}]]";
