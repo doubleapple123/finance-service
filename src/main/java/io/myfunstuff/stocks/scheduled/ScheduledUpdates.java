@@ -19,15 +19,16 @@ public class ScheduledUpdates{
 	private Iterator<?> symIte;
 
 	@Async
-	@Scheduled(fixedRate = 15000)
+	@Scheduled(fixedRate = 60000)
 	public void addSymbol(){
 		QueryUpdate queryUpdate = new QueryUpdate();
 		symIte = symbolQue.iterator();
 		if(symIte.hasNext()){
+			Object sym = symIte.next();
 			queryUpdate.setTimeser("TIME_SERIES_DAILY_ADJUSTED");
-			queryUpdate.addToDatabaseSymbol(symIte.next().toString(), "compact");
+			queryUpdate.addToDatabaseSymbol(sym.toString(), "compact");
 			queryUpdate.updateQuery();
-			log.info("The symbol added to database");
+			log.info("The symbol added to database {} ", sym.toString());
 			symIte.remove();
 		}
 	}

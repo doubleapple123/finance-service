@@ -13,8 +13,10 @@ function getDataPointsFromCSV(csv) {
     for (var i = 0; i < csvLines.length; i++)
         if (csvLines[i].length > 0) {
             points = csvLines[i].split(",");
+            var hereTime = new Date(points[0]).toLocaleString("en-US", {timeZone: "Australia/Brisbane"});
+            hereTime = new Date(hereTime);
             dataPoints.push({
-                x: new Date(points[0]),
+                x: hereTime,
                 y: parseFloat(points[1])
             });
         }
