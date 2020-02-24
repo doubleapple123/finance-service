@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class QueryExecute extends AbstractQuery{
 	public void getDistinctSymbols(){
-		setQuery(String.format("select distinct symbol from stockadjusteddaily"));
+		setQuery(String.format("select distinct symbol from stocksymbols"));
 	}
 
 	public boolean checkExist(String symbol){

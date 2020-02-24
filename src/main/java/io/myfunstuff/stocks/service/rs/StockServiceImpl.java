@@ -51,7 +51,6 @@ public class StockServiceImpl implements StockService {
  		for(ArrayList<Object> obj : symbols){
  			queryUpdate.setTimeser("TIME_SERIES_DAILY_ADJUSTED");
  			queryUpdate.addToDatabaseSymbol(obj.get(0).toString(), "compact");
-			System.out.println(queryUpdate.getQuery());
  			queryUpdate.updateQuery();
 		}
 	}
