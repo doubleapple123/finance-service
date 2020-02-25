@@ -16,9 +16,12 @@ import java.util.Iterator;
 
 @Service
 public class WebServiceImpl implements WebService {
+	private String thisTimeseries;
+
+
 	public String getData(String sym, String start, String end) throws IOException {
 		StringBuilder dataBuilder = new StringBuilder();
-		URL address = new URL(String.format("http://localhost:5000/stock/data/alldata?symbol=%s&startDate=%s&endDate=%s", sym, start, end));
+		URL address = new URL(String.format("http://localhost:5000/stock/data/alldata?symbol=%s&startDate=%s&endDate=%s&timeseries=%s", sym, start, end, thisTimeseries));
 //		URL address = new URL(String.format("http://stockscreener-env.applestock.us-west-1.elasticbeanstalk.com/stock/data?symbol=%s&startDate=%s&endDate=%s", sym, start, end));
 		InputStream in = address.openStream();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
@@ -47,7 +50,8 @@ public class WebServiceImpl implements WebService {
 
 	}
 
-    public ModelAndView getHello(String symbol, String startDate, String endDate) throws IOException {
+    public ModelAndView getHello(String symbol, String startDate, String endDate, String timeseries) throws IOException {
+		this.thisTimeseries = timeseries;
 		ModelAndView model = new ModelAndView("hello");
         StringBuilder symbolsData = new StringBuilder();
         String[] symbols = symbol.split(",");
@@ -63,7 +67,7 @@ public class WebServiceImpl implements WebService {
 			StringBuilder dataBuilder = new StringBuilder();
 			StringBuilder dataVolumeBuilder = new StringBuilder();
 
-			URL address = new URL(String.format("http://localhost:5000/stock/data/alldata?symbol=%s&startDate=%s&endDate=%s", symbol, startDate, endDate));
+			URL address = new URL(String.format("http://localhost:5000/stock/data/alldata?symbol=%s&startDate=%s&endDate=%s&timeseries=%s", symbol, startDate, endDate, thisTimeseries));
 //			URL address = new URL(String.format("http://stockscreener-env.applestock.us-west-1.elasticbeanstalk.com/stock/data?symbol=%s&startDate=%s&endDate=%s", symbol, startDate, endDate));
 			InputStream in = address.openStream();
 			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
@@ -85,6 +89,7 @@ public class WebServiceImpl implements WebService {
 
 			model.addObject("volDataColl", dataVolumeBuilder.toString().replaceAll("/", "-"));
 			model.addObject("dataColl", dataBuilder.toString().replaceAll("/", "-"));
+			model.addObject("timeseries", this.thisTimeseries);
 
 		}
 

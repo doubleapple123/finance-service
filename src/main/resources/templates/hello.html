@@ -19,13 +19,12 @@
     <input id = "paramSym" type = "text" th:value = "${param.symbol}" name = "symbol"/>
     <input id = "paramStart" type = "text" th:value = "${param.startDate}" name = "startDate"/>
     <input id = "paramEnd" type = "text" th:value = "${param.endDate}" name = "endDate"/>
+    <input type = "hidden" th:value = "${param.timeseries}" name = "timeseries"/>
     <input type = "submit" value = "Submit"/>
     <input type = "button" onclick="changeRange(1)" value= "1 year range"/>
     <input type = "button" onclick="changeRange(3)" value = "3 year range"/>
     <input type = "button" onclick="changeRange(5)" value = "5 year range"/>
     <input type = "button" onclick="changeRange(10)" value= "10 year range"/>
-
-
 </form>
     <h5>symbol(s)(compare multiple stock by separating them by commas(spy,msft...etc)), startDate, endDate(leave blank for full range)</h5>
     <h6>eg url: http://applestock.us-west-1.elasticbeanstalk.com/service/chart?symbol=spy%2Cmsft%2Camzn&startDate=2015-06-30&endDate=2020-01-01 </h6>
@@ -34,6 +33,7 @@
 <div id="TAChart" style="height: 20vh; width: 200vh"></div>
 
 <script type="text/javascript">
+
     let symbolsName = "[[${symbols}]]";
     symbolsName = symbolsName.replace("[", "");
     symbolsName = symbolsName.replace("]", "");
@@ -74,6 +74,15 @@
 
         document.inputForm.startDate.value=newDate.getFullYear()+"-"+nowMM+"-"+nowDD;
     }
+
+    function getYearDiff(dateStart) {
+        var yearNow = new Date().getFullYear();
+
+        var startYear = dateStart.split("-")[0];
+
+        console.log(yearNow - startYear)
+    }
+
 
 </script>
 <script type = "text/javascript" src = "/parseCSV.js"></script>
