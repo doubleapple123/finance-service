@@ -1,8 +1,8 @@
-package io.myfunstuff.stocks.model;
+package io.myfunstuff.stocks.model.StockModels;
 
 import java.util.ArrayList;
 
-public class StockAdjustedDaily{
+public class StockAdjustedWeekly{
 	private String date;
 	private double open;
 	private double high;
@@ -11,9 +11,8 @@ public class StockAdjustedDaily{
 	private double adjustedClose;
 	private double volume;
 	private double dividend;
-	private double splitco;
 
-	public StockAdjustedDaily(ArrayList<Object> inData){
+	public StockAdjustedWeekly(ArrayList<Object> inData){
 		this.date = inData.get(1).toString();
 		this.open = Double.parseDouble(inData.get(2).toString());
 		this.high = Double.parseDouble(inData.get(3).toString());
@@ -22,7 +21,6 @@ public class StockAdjustedDaily{
 		this.adjustedClose = Double.parseDouble(inData.get(6).toString());
 		this.volume = Double.parseDouble(inData.get(7).toString());
 		this.dividend = Double.parseDouble(inData.get(8).toString());
-		this.splitco = Double.parseDouble(inData.get(9).toString());
 	}
 
 	public String getDate(){
@@ -87,13 +85,5 @@ public class StockAdjustedDaily{
 
 	public void setDividend(double dividend){
 		this.dividend = dividend;
-	}
-
-	public double getSplitco(){
-		return splitco;
-	}
-
-	public void setSplitco(double splitco){
-		this.splitco = splitco;
 	}
 }

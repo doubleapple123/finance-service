@@ -15,11 +15,16 @@
 <br/>
 
 <div>
-<form action = "" method = "get">
-    <input type = "text" th:value = "${param.symbol}" name = "symbol"/>
-    <input type = "text" th:value = "${param.startDate}" name = "startDate"/>
-    <input type = "text" th:value = "${param.endDate}" name = "endDate"/>
+<form name = "inputForm" method = "get">
+    <input id = "paramSym" type = "text" th:value = "${param.symbol}" name = "symbol"/>
+    <input id = "paramStart" type = "text" th:value = "${param.startDate}" name = "startDate"/>
+    <input id = "paramEnd" type = "text" th:value = "${param.endDate}" name = "endDate"/>
     <input type = "submit" value = "Submit"/>
+    <input type = "button" onclick="changeRange(1)" value= "1 year range"/>
+    <input type = "button" onclick="changeRange(3)" value = "3 year range"/>
+    <input type = "button" onclick="changeRange(5)" value = "5 year range"/>
+    <input type = "button" onclick="changeRange(10)" value= "10 year range"/>
+
 
 </form>
     <h5>symbol(s)(compare multiple stock by separating them by commas(spy,msft...etc)), startDate, endDate(leave blank for full range)</h5>
@@ -56,8 +61,22 @@
 
 
 </script>
+<script type = "text/javascript">
+    function changeRange(numToAdd){
+        var newDate = new Date();
+
+        var nowDD = newDate.getDate();
+        var nowMM = newDate.getMonth()+1;
+
+        var dateNow = newDate.getFullYear();
+
+        newDate.setFullYear(dateNow-numToAdd);
+
+        document.inputForm.startDate.value=newDate.getFullYear()+"-"+nowMM+"-"+nowDD;
+    }
+
+</script>
+<script type = "text/javascript" src = "/parseCSV.js"></script>
 <script type = "text/javascript" src = "/makeChart.js"></script>
-
-
 </body>
 </html>

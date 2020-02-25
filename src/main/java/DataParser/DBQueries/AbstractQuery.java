@@ -40,11 +40,11 @@ public abstract class AbstractQuery{
 	}
 
 	//TODO: add cases and set tables for different data inputs(technical indicators)
+	//TODO: configure this when adding new data
 	public void setDBtable(String timeseries){
 		switch(timeseries){
-			case "TIME_SERIES_DAILY" : this.DBtable = "stockdaily"; break;
-			case "TIME_SERIES_WEEKLY" : this.DBtable = "stockweekly"; break;
 			case "TIME_SERIES_DAILY_ADJUSTED" : this.DBtable = "stockadjusteddaily"; break;
+			case "TIME_SERIES_WEEKLY_ADJUSTED" : this.DBtable = "stockadjustedweekly"; break;
 			default: break;
 		}
 	}

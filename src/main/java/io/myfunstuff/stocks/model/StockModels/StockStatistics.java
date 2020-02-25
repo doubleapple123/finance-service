@@ -1,4 +1,4 @@
-package io.myfunstuff.stocks.model;
+package io.myfunstuff.stocks.model.StockModels;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

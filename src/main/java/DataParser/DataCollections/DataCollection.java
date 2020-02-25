@@ -1,9 +1,12 @@
 package DataParser.DataCollections;
 
+import DataParser.DBQueries.QueryExecute;
+
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 //meant to represent data in the database
-public abstract class DataCollection<T>{
+public class DataCollection<T>{
 
 	//represents a row of data
 	private String timeseries;
@@ -18,6 +21,26 @@ public abstract class DataCollection<T>{
 		this.startDate = startDate;
 		this.endDate = endDate;
 		dataRow = new ArrayList<>();
+	}
+
+	//wtf is happening here? it works though
+	public void convertArr(Class myClass) {
+		try{
+			QueryExecute query = new QueryExecute();
+			String curTable = "";
+			query.setTimeser(getTimeseries());
+			query.getTableFromSymbol(getSymbol(), getStartDate(), getEndDate());
+
+			for(ArrayList<Object> row : query.executeQuery()){
+				addObject((T) myClass.getConstructor(ArrayList.class).newInstance(row));
+			}
+
+			query.closeConnection();
+
+		}catch(NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e){
+			e.printStackTrace();
+		}
+
 	}
 
 	public void addObject(T t){

@@ -17,11 +17,8 @@ import java.util.Iterator;
 @Service
 public class WebServiceImpl implements WebService {
 	public String getData(String sym, String start, String end) throws IOException {
-		ArrayList<StringBuilder> dataList = new ArrayList<>();
 		StringBuilder dataBuilder = new StringBuilder();
-//		StringBuilder dataVolumeBuilder = new StringBuilder();
-
-		URL address = new URL(String.format("http://localhost:5000/stock/data?symbol=%s&startDate=%s&endDate=%s", sym, start, end));
+		URL address = new URL(String.format("http://localhost:5000/stock/data/alldata?symbol=%s&startDate=%s&endDate=%s", sym, start, end));
 //		URL address = new URL(String.format("http://stockscreener-env.applestock.us-west-1.elasticbeanstalk.com/stock/data?symbol=%s&startDate=%s&endDate=%s", sym, start, end));
 		InputStream in = address.openStream();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
@@ -44,7 +41,6 @@ public class WebServiceImpl implements WebService {
 		while (keys.hasNext()) {
 			stockObj = new JSONObject(keys.next().toString());
 			dataBuilder.append(stockObj.get("date")).append(",").append(Double.parseDouble(stockObj.get("open").toString())/firstOpen).append(":");
-//			dataVolumeBuilder.append(stockObj.get("date")).append(",").append(stockObj.get("volume")).append(":");
 		}
 
 		return dataBuilder.toString().replaceAll("/", "-");
@@ -67,7 +63,7 @@ public class WebServiceImpl implements WebService {
 			StringBuilder dataBuilder = new StringBuilder();
 			StringBuilder dataVolumeBuilder = new StringBuilder();
 
-			URL address = new URL(String.format("http://localhost:5000/stock/data?symbol=%s&startDate=%s&endDate=%s", symbol, startDate, endDate));
+			URL address = new URL(String.format("http://localhost:5000/stock/data/alldata?symbol=%s&startDate=%s&endDate=%s", symbol, startDate, endDate));
 //			URL address = new URL(String.format("http://stockscreener-env.applestock.us-west-1.elasticbeanstalk.com/stock/data?symbol=%s&startDate=%s&endDate=%s", symbol, startDate, endDate));
 			InputStream in = address.openStream();
 			BufferedReader reader = new BufferedReader(new InputStreamReader(in));

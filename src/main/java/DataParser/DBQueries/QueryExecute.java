@@ -50,7 +50,7 @@ public class QueryExecute extends AbstractQuery{
 		try{
 			resultSet = statement.executeQuery(getQuery());
 			dataTable = dataOut.getTableFromSet(resultSet);
-
+			resultSet.close();
 			return dataTable;
 
 		}catch (SQLException e){

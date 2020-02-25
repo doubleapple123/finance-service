@@ -1,12 +1,13 @@
 //package DataParser.DataCollections;
 //
 //import DataParser.DBQueries.QueryExecute;
+//import io.myfunstuff.stocks.model.StockModels.StockAdjustedDaily;
 //import io.myfunstuff.stocks.model.StockModels.StockFullTimeData;
 //
 //import java.util.ArrayList;
 //
-//public class StockFullDC extends DataCollection{
-//	public StockFullDC(String timeseries, String symbol, String startDate, String endDate){
+//public class StockAdjustedDC extends DataCollection{
+//	public StockAdjustedDC(String timeseries, String symbol, String startDate, String endDate){
 //		super(timeseries, symbol, startDate, endDate);
 //	}
 //
@@ -16,12 +17,13 @@
 //		query.setTimeser(getTimeseries());
 //		query.getTableFromSymbol(getSymbol(), getStartDate(), getEndDate());
 //
-//		StockFullTimeData data;
+//		StockAdjustedDaily data;
 //
 //		for(ArrayList<Object> row : query.executeQuery()){
-//			data = new StockFullTimeData(row);
+//			data = new StockAdjustedDaily(row);
 //			addObject(data);
 //		}
+//
 //		query.closeConnection();
 //	}
 //}

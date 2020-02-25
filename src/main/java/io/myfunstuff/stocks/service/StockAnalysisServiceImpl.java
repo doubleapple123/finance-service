@@ -1,8 +1,10 @@
 package io.myfunstuff.stocks.service;
 
 import DataParser.DBQueries.QueryExecute;
-import DataParser.DataCollections.StockAdjustedDailyDC;
+import DataParser.DataCollections.DataCollection;
 import io.myfunstuff.stocks.model.*;
+import io.myfunstuff.stocks.model.StockModels.StockAdjustedDaily;
+import io.myfunstuff.stocks.model.StockModels.StockStatistics;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,7 @@ public class StockAnalysisServiceImpl implements StockAnalysisService{
 	}
 
 	@Override
-	public StockStatistics getStockStatistics(StockAdjustedDailyDC stockDC){
+	public StockStatistics getStockStatistics(DataCollection stockDC){
 
 		StockStatistics stats = new StockStatistics();
 		int dataSize = stockDC.getDataRow().size();

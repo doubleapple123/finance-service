@@ -57,14 +57,15 @@ public class Parser {
 
     //gets raw json string
 
+    //TODO configure this when adding new data
     public String retrieveData() throws IOException{
         URL address;
         switch(timeseries){
-            case "TIME_SERIES_DAILY" :
             case "TIME_SERIES_DAILY_ADJUSTED" :
                 address = new URL(String.format(dailyURLFormat, timeseries, symbol, outputsize)); break;
 
-            case "TIME_SERIES_WEEKLY" : address = new URL(String.format(weeklyURLFormat, timeseries, symbol)); break;
+            case "TIME_SERIES_WEEKLY_ADJUSTED" :
+                address = new URL(String.format(weeklyURLFormat, timeseries, symbol)); break;
 
 
             default: throw new IllegalArgumentException();
