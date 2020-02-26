@@ -20,8 +20,8 @@ public class WebServiceImpl implements WebService {
 
 	public String getData(String sym, String start, String end) throws IOException {
 		StringBuilder dataBuilder = new StringBuilder();
-		URL address = new URL(String.format("http://localhost:5000/stock/data/alldata?symbol=%s&startDate=%s&endDate=%s&timeseries=%s", sym, start, end, thisTimeseries));
-//		URL address = new URL(String.format("http://stockscreener-env.applestock.us-west-1.elasticbeanstalk.com/stock/data?symbol=%s&startDate=%s&endDate=%s", sym, start, end));
+//		URL address = new URL(String.format("http://localhost:5000/stock/data/alldata?symbol=%s&startDate=%s&endDate=%s&timeseries=%s", sym, start, end, thisTimeseries));
+		URL address = new URL(String.format("http://stockscreener-env.applestock.us-west-1.elasticbeanstalk.com/stock/data/alldata?symbol=%s&startDate=%s&endDate=%s&timeseries=%s", sym, start, end,thisTimeseries));
 		InputStream in = address.openStream();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 		StringBuilder result = new StringBuilder();
@@ -49,7 +49,7 @@ public class WebServiceImpl implements WebService {
 
 	}
 
-    public ModelAndView getHello(String symbol, String startDate, String endDate, String timeseries) throws IOException {
+    public ModelAndView getHello(String symbol, String startDate, String endDate, String timeseries, String chartType) throws IOException {
 		this.thisTimeseries = timeseries;
 		ModelAndView model = new ModelAndView("hello");
         StringBuilder symbolsData = new StringBuilder();
@@ -66,8 +66,8 @@ public class WebServiceImpl implements WebService {
 			StringBuilder dataBuilder = new StringBuilder();
 			StringBuilder dataVolumeBuilder = new StringBuilder();
 
-			URL address = new URL(String.format("http://localhost:5000/stock/data/alldata?symbol=%s&startDate=%s&endDate=%s&timeseries=%s", symbol, startDate, endDate, thisTimeseries));
-//			URL address = new URL(String.format("http://stockscreener-env.applestock.us-west-1.elasticbeanstalk.com/stock/data?symbol=%s&startDate=%s&endDate=%s", symbol, startDate, endDate));
+//			URL address = new URL(String.format("http://localhost:5000/stock/data/alldata?symbol=%s&startDate=%s&endDate=%s&timeseries=%s", symbol, startDate, endDate, thisTimeseries));
+			URL address = new URL(String.format("http://stockscreener-env.applestock.us-west-1.elasticbeanstalk.com/stock/data/alldata?symbol=%s&startDate=%s&endDate=%s&timeseries=%s", symbol, startDate, endDate, thisTimeseries));
 			InputStream in = address.openStream();
 			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 			StringBuilder result = new StringBuilder();
@@ -80,15 +80,25 @@ public class WebServiceImpl implements WebService {
 			JSONObject stockObj;
 			Iterator keys = object.iterator();
 
-			while (keys.hasNext()) {
-				stockObj = new JSONObject(keys.next().toString());
-				dataBuilder.append(stockObj.get("date")).append(",").append(stockObj.get("close")).append(":");
-				dataVolumeBuilder.append(stockObj.get("date")).append(",").append(stockObj.get("volume")).append(":");
+			if(chartType.equals("line")){
+				while (keys.hasNext()) {
+					stockObj = new JSONObject(keys.next().toString());
+					dataBuilder.append(stockObj.get("date")).append(",").append(stockObj.get("close")).append(":");
+					dataVolumeBuilder.append(stockObj.get("date")).append(",").append(stockObj.get("volume")).append(":");
+				}
+
+			}else if(chartType.equals("candle")){
+				while (keys.hasNext()) {
+					stockObj = new JSONObject(keys.next().toString());
+					dataBuilder.append(stockObj.get("date")).append(",").append(stockObj.get("open")).append(",").append(stockObj.get("high")).append(",").append(stockObj.get("low")).append(",").append(stockObj.get("close")).append(":");
+					dataVolumeBuilder.append(stockObj.get("date")).append(",").append(stockObj.get("volume")).append(":");
+				}
 			}
 
 			model.addObject("volDataColl", dataVolumeBuilder.toString().replaceAll("/", "-"));
 			model.addObject("dataColl", dataBuilder.toString().replaceAll("/", "-"));
 			model.addObject("timeseries", this.thisTimeseries);
+			model.addObject("chartType", chartType);
 
 		}
 

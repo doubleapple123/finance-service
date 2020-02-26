@@ -38,21 +38,42 @@ var chart = new CanvasJS.Chart("myChart", {
 });
 chart.render();
 if (manySymbolsArr.length === 0) {
-    var dataSeries = {
-        color: "#289AFF",
-        type: "line",
-        name: "price",
-        showInLegend: true,
-        dataPoints: getDataPointsFromCSV(parsData)
-    };
-    var volSeries = {
-        color: "#FF8800",
-        type: "column",
-        axisYType: "secondary",
-        name: "volume",
-        showInLegend: true,
-        dataPoints: getDataPointsFromCSV(volData)
-    };
+    if(chartType === "candle"){
+        var dataSeries = {
+            type: "candlestick",
+            name: "price",
+            showInLegend: true,
+            dataPoints: getDataCandleFromCSV(parsData)
+        };
+        var volSeries = {
+            color: "#FF8800",
+            type: "column",
+            axisYType: "secondary",
+            name: "volume",
+            showInLegend: true,
+            fillOpacity: 0.3,
+            dataPoints: getDataLineFromCSV(volData)
+        };
+
+    }else{
+        var dataSeries = {
+            color: "#289AFF",
+            type: "line",
+            name: "price",
+            showInLegend: true,
+            dataPoints: getDataLineFromCSV(parsData)
+        };
+        var volSeries = {
+            color: "#FF8800",
+            type: "column",
+            axisYType: "secondary",
+            name: "volume",
+            showInLegend: true,
+            fillOpacity: 0.3,
+            dataPoints: getDataLineFromCSV(volData)
+        };
+    }
+
     chart.options.data.push(volSeries);
     chart.options.data.push(dataSeries);
     chart.render();
@@ -77,7 +98,7 @@ for (var p = 0; p < manySymbolsArr.length; p++) {
         type: "line",
         name: symbolsNameArr[symbols],
         showInLegend: true,
-        dataPoints: getDataPointsFromCSV(parsDatas)
+        dataPoints: getDataLineFromCSV(parsDatas)
 
     };
     symbols++;

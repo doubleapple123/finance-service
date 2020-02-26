@@ -29,25 +29,33 @@
                 }
             }
         }
+
     </script>
 
 </head>
 
 <body>
 
-<div id="myChart" style="height: 60vh; width: 200vh"></div>
+<div id="myChart" style="height: 60vh; width: 190vh"></div>
 <br/>
 
 <form name = "inputForm" method = "get" onsubmit="getYearDiff()">
-    <input id = "paramSym" type = "text" th:value = "${param.symbol}" name = "symbol"/>
-    <input id = "paramStart" type = "text" th:value = "${param.startDate}" name = "startDate"/>
-    <input id = "paramEnd" type = "text" th:value = "${param.endDate}" name = "endDate"/>
+    <input  type = "text" th:value = "${param.symbol}" name = "symbol"/>
+    <input type = "text" th:value = "${param.startDate}" name = "startDate"/>
+    <input type = "text" th:value = "${param.endDate}" name = "endDate"/>
+    <input type = "hidden" th:value = "${param.chartType}" name = "chartType"/>
     <input type = "hidden" th:value = "${param.timeseries}" name = "timeseries"/>
     <input type = "submit" value = "submit_button"/>
     <input type = "button" onclick="changeRange(1)" value= "1 year range"/>
     <input type = "button" onclick="changeRange(3)" value = "3 year range"/>
     <input type = "button" onclick="changeRange(5)" value = "5 year range"/>
     <input type = "button" onclick="changeRange(10)" value= "10 year range"/>
+    <br> <h6>chart type not available when comparing stocks</h6>
+    <input type = "button" onclick = "document.inputForm.chartType.value = 'line'; document.inputForm.submit()" value = "line chart"/>
+    <input type = "button" onclick = "document.inputForm.chartType.value = 'candle'; document.inputForm.submit()" value = "candle chart"/>
+    <input type = "button" onclick="document.inputForm.timeseries.value = 'TIME_SERIES_DAILY_ADJUSTED'; document.inputForm.submit()" value = "daily data"/>
+    <input type = "button" onclick="document.inputForm.timeseries.value = 'TIME_SERIES_WEEKLY_ADJUSTED'; document.inputForm.submit()" value = "weekly data"/>
+
 </form>
     <h5>symbol(s)(compare multiple stock by separating them by commas(spy,msft...etc)), startDate, endDate(leave blank for full range)</h5>
     <h6>eg url: http://applestock.us-west-1.elasticbeanstalk.com/service/chart?symbol=spy%2Cmsft%2Camzn&startDate=2015-06-30&endDate=2020-01-01 </h6>
@@ -56,6 +64,7 @@
 <div id="TAChart" style="height: 20vh; width: 200vh"></div>
 
 <script type="text/javascript">
+    let chartType = "[[${chartType}]]";
 
     let symbolsName = "[[${symbols}]]";
     symbolsName = symbolsName.replace("[", "");
