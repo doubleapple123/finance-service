@@ -16,8 +16,7 @@ import java.util.ArrayList;
 
 @Controller
 public class StockServiceImpl <T> implements StockService {
-	//TODO add to this when adding new data (including TA)
-	private String[] listOfTimeseries = {"TIME_SERIES_DAILY_ADJUSTED", "TIME_SERIES_WEEKLY_ADJUSTED"};
+	QueryUpdate queryUpdate;
 
 	@Autowired
 	StockAnalysisService stockAnalysisService;
@@ -38,55 +37,10 @@ public class StockServiceImpl <T> implements StockService {
 		}
 	}
 
-	//TODO configure this when adding new data, need to setTimeser to corresponding correct database
-	public void addNotExist(String symbol){
-		QueryExecute queryExecute = new QueryExecute();
-		QueryUpdate queryUpdate = new QueryUpdate();
-
-		if(!queryExecute.checkExist(symbol)){
-			//if the symbol does not exist in table `stocksymbols`, then add data from past 20 yrs
-			//to daily and weekly table
-			for(String timeseries : listOfTimeseries){
-				queryUpdate.setTimeser(timeseries);
-				queryUpdate.addToDatabaseSymbol(symbol, "full");
-				System.out.println(queryUpdate.getQuery());
-				queryUpdate.updateQuery();
-
-			}
-
-			queryUpdate.addToMainTable(symbol);
-			queryUpdate.updateQuery();
-		}
-
-		queryExecute.closeConnection();
-		queryUpdate.closeConnection();
-	}
-
-	public void updateAll(){
-		QueryExecute queryExecute = new QueryExecute();
-		QueryUpdate queryUpdate = new QueryUpdate();
-
-		queryExecute.getDistinctSymbols();
-		ArrayList<ArrayList<Object>> symbols = queryExecute.executeQuery();
-
- 		for(ArrayList<Object> obj : symbols){
- 			queryUpdate.setTimeser("TIME_SERIES_DAILY_ADJUSTED");
- 			queryUpdate.addToDatabaseSymbol(obj.get(0).toString(), "compact");
- 			queryUpdate.updateQuery();
-		}
-
-		queryExecute.closeConnection();
-		queryUpdate.closeConnection();
-	}
-
-	@Override
-	public void updateDatabase(){
-		updateAll();
-	}
-
 	@Override
 	public StockStatistics analyzeTimeSeriesData(String timeseries, String symbol, String startDate, String endDate) {
-		addNotExist(symbol);
+		queryUpdate = new QueryUpdate();
+		queryUpdate.addNotExist(symbol);
 		DataCollection<StockAdjustedDaily> stockFullDC = new DataCollection<>(timeseries, symbol, startDate, endDate);
 		stockFullDC.convertArr(StockAdjustedDaily.class);
 		return stockAnalysisService.getStockStatistics(stockFullDC);
@@ -102,7 +56,8 @@ public class StockServiceImpl <T> implements StockService {
 
 	@Override
 	public ArrayList getFullStockData(String timeseries, String symbol, String startDate, String endDate) {
-		addNotExist(symbol);
+		queryUpdate = new QueryUpdate();
+		queryUpdate.addNotExist(symbol);
 		Class type = getDataObject(timeseries);
 		DataCollection<T> stockFullDC = new DataCollection<>(timeseries, symbol, startDate, endDate);
 		stockFullDC.convertArr(type);

@@ -13,10 +13,6 @@ import java.util.ArrayList;
 @RequestMapping(path = "/stock")
 public interface StockService {
 	//mapping returns one data point of analyzed data
-	@RequestMapping(path = "/update", method = RequestMethod.GET)
-	void updateDatabase(
-
-	);
 
 	@RequestMapping(path = "/analyze", method = RequestMethod.GET, produces = {"application/json"})
 	StockStatistics analyzeTimeSeriesData(
