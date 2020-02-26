@@ -6,7 +6,9 @@
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script
             src="https://code.jquery.com/jquery-3.4.1.min.js"
-           ></script>
+
+           >
+    </script>
 </head>
 
 <body>
@@ -20,7 +22,7 @@
     <input id = "paramStart" type = "text" th:value = "${param.startDate}" name = "startDate"/>
     <input id = "paramEnd" type = "text" th:value = "${param.endDate}" name = "endDate"/>
     <input type = "hidden" th:value = "${param.timeseries}" name = "timeseries"/>
-    <input type = "submit" value = "Submit"/>
+    <input type = "submit" value = "Submit" onclick = "getYearDiff()" />
     <input type = "button" onclick="changeRange(1)" value= "1 year range"/>
     <input type = "button" onclick="changeRange(3)" value = "3 year range"/>
     <input type = "button" onclick="changeRange(5)" value = "5 year range"/>
@@ -62,6 +64,17 @@
 
 </script>
 <script type = "text/javascript">
+    function getYearDiff() {
+        console.log("testing");
+        // var yearNow = new Date().getFullYear();
+        //
+        // var startYear = document.inputForm.startDate.value;
+        // console.log(startYear);
+        // if(yearNow-startYear < 3){
+        //     document.inputForm.timeseries.value = "TIME_SERIES_DAILY_ADJUSTED";
+        // }
+    }
+
     function changeRange(numToAdd){
         var newDate = new Date();
 
@@ -73,14 +86,6 @@
         newDate.setFullYear(dateNow-numToAdd);
 
         document.inputForm.startDate.value=newDate.getFullYear()+"-"+nowMM+"-"+nowDD;
-    }
-
-    function getYearDiff(dateStart) {
-        var yearNow = new Date().getFullYear();
-
-        var startYear = dateStart.split("-")[0];
-
-        console.log(yearNow - startYear)
     }
 
 

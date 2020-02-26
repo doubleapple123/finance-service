@@ -18,7 +18,6 @@ import java.util.Iterator;
 public class WebServiceImpl implements WebService {
 	private String thisTimeseries;
 
-
 	public String getData(String sym, String start, String end) throws IOException {
 		StringBuilder dataBuilder = new StringBuilder();
 		URL address = new URL(String.format("http://localhost:5000/stock/data/alldata?symbol=%s&startDate=%s&endDate=%s&timeseries=%s", sym, start, end, thisTimeseries));
