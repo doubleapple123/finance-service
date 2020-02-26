@@ -9,6 +9,24 @@
 
            >
     </script>
+    <script>
+        function getYearDiff() {
+            alert("form test");
+            // document.inputForm.timeseries.value = "TIME";
+
+            var yearNow = new Date().getFullYear();
+            var startDate = document.inputForm.startDate;
+
+            if(startDate != null){
+                var startYear =  startDate.value.split("-")[0];
+
+                if(yearNow-startYear <= 3){
+                    document.inputForm.timeseries.value = "TIME_SERIES_DAILY_ADJUSTED";
+                }
+            }
+        }
+    </script>
+
 </head>
 
 <body>
@@ -16,13 +34,12 @@
 <div id="myChart" style="height: 60vh; width: 200vh"></div>
 <br/>
 
-<div>
-<form name = "inputForm" method = "get">
+<form name = "inputForm" method = "get" onsubmit="getYearDiff()">
     <input id = "paramSym" type = "text" th:value = "${param.symbol}" name = "symbol"/>
     <input id = "paramStart" type = "text" th:value = "${param.startDate}" name = "startDate"/>
     <input id = "paramEnd" type = "text" th:value = "${param.endDate}" name = "endDate"/>
     <input type = "hidden" th:value = "${param.timeseries}" name = "timeseries"/>
-    <input type = "submit" value = "Submit" onclick = "getYearDiff()" />
+    <input type = "submit" value = "submit_button"/>
     <input type = "button" onclick="changeRange(1)" value= "1 year range"/>
     <input type = "button" onclick="changeRange(3)" value = "3 year range"/>
     <input type = "button" onclick="changeRange(5)" value = "5 year range"/>
@@ -64,16 +81,7 @@
 
 </script>
 <script type = "text/javascript">
-    function getYearDiff() {
-        console.log("testing");
-        // var yearNow = new Date().getFullYear();
-        //
-        // var startYear = document.inputForm.startDate.value;
-        // console.log(startYear);
-        // if(yearNow-startYear < 3){
-        //     document.inputForm.timeseries.value = "TIME_SERIES_DAILY_ADJUSTED";
-        // }
-    }
+
 
     function changeRange(numToAdd){
         var newDate = new Date();
