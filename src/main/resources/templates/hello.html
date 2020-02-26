@@ -11,17 +11,21 @@
     </script>
     <script>
         function getYearDiff() {
-            alert("form test");
-            // document.inputForm.timeseries.value = "TIME";
-
-            var yearNow = new Date().getFullYear();
+            var endDate = document.inputForm.endDate;
             var startDate = document.inputForm.startDate;
 
-            if(startDate != null){
+            if(startDate != null || endDate != null){
                 var startYear =  startDate.value.split("-")[0];
+                var endYear = endDate.value.split("-")[0];
 
-                if(yearNow-startYear <= 3){
-                    document.inputForm.timeseries.value = "TIME_SERIES_DAILY_ADJUSTED";
+                if(endYear-startYear <= 3){
+                    if(endYear-startYear === 0){
+                        document.inputForm.timeseries.value = "TIME_SERIES_WEEKLY_ADJUSTED";
+                    }else{
+                        document.inputForm.timeseries.value = "TIME_SERIES_DAILY_ADJUSTED";
+                    }
+                }else{
+                    document.inputForm.timeseries.value = "TIME_SERIES_WEEKLY_ADJUSTED";
                 }
             }
         }
@@ -93,7 +97,9 @@
 
         newDate.setFullYear(dateNow-numToAdd);
 
-        document.inputForm.startDate.value=newDate.getFullYear()+"-"+nowMM+"-"+nowDD;
+        var todayDate = new Date();
+        document.inputForm.endDate.value = todayDate.getFullYear() + "-" + todayDate.getMonth()+1 + "-" + todayDate.getDate();
+        document.inputForm.startDate.value= newDate.getFullYear()+"-"+nowMM+"-"+nowDD;
     }
 
 

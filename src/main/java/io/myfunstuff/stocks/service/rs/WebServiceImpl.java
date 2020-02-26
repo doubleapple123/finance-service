@@ -38,11 +38,11 @@ public class WebServiceImpl implements WebService {
 		stockObj = new JSONObject(keys.next().toString());
 		firstOpen = Double.parseDouble(stockObj.get("open").toString());
 
-		dataBuilder.append(stockObj.get("date")).append(",").append(Double.parseDouble(stockObj.get("open").toString())/firstOpen).append(":");
+		dataBuilder.append(stockObj.get("date")).append(",").append(Double.parseDouble(stockObj.get("close").toString())/firstOpen).append(":");
 
 		while (keys.hasNext()) {
 			stockObj = new JSONObject(keys.next().toString());
-			dataBuilder.append(stockObj.get("date")).append(",").append(Double.parseDouble(stockObj.get("open").toString())/firstOpen).append(":");
+			dataBuilder.append(stockObj.get("date")).append(",").append(Double.parseDouble(stockObj.get("close").toString())/firstOpen).append(":");
 		}
 
 		return dataBuilder.toString().replaceAll("/", "-");
@@ -82,7 +82,7 @@ public class WebServiceImpl implements WebService {
 
 			while (keys.hasNext()) {
 				stockObj = new JSONObject(keys.next().toString());
-				dataBuilder.append(stockObj.get("date")).append(",").append(stockObj.get("open")).append(":");
+				dataBuilder.append(stockObj.get("date")).append(",").append(stockObj.get("close")).append(":");
 				dataVolumeBuilder.append(stockObj.get("date")).append(",").append(stockObj.get("volume")).append(":");
 			}
 
