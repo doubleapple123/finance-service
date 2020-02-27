@@ -28,6 +28,7 @@ var chart = new CanvasJS.Chart("myChart", {
     axisY2: {
         labelFontSize: 15,
         title: "Volume",
+        includeZero: false,
         valueFormatString: "#,###,,.##M",
         logarithmic: false
     },

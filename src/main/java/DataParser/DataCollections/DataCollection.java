@@ -27,7 +27,6 @@ public class DataCollection<T>{
 	public void convertArr(Class myClass) {
 		try{
 			QueryExecute query = new QueryExecute();
-			String curTable = "";
 			query.setTimeser(getTimeseries());
 			query.getTableFromSymbol(getSymbol(), getStartDate(), getEndDate());
 

@@ -2,6 +2,7 @@ package DataParser.DataFormat;
 
 import org.apache.wink.json4j.JSONException;
 import org.apache.wink.json4j.OrderedJSONObject;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,8 +19,12 @@ import java.util.List;
 //different tables for daily and weekly data
 public class Parser {
     private StringBuilder finalParsed; //FINAL DATA -- important
-    private String dailyURLFormat = "https://www.alphavantage.co/query?function=%s&symbol=%s&outputsize=%s&apikey=728C9KPM2IY7IVDZ"; //daily or weekly, symbol
-    private String weeklyURLFormat = "https://www.alphavantage.co/query?function=%s&symbol=%s&apikey=728C9KPM2IY7IVDZ";
+
+    @Value("${apikey}")
+    private String API_KEY;
+
+    private String dailyURLFormat = "https://www.alphavantage.co/query?function=%s&symbol=%s&outputsize=%s&apikey=" + API_KEY; //daily or weekly, symbol
+    private String weeklyURLFormat = "https://www.alphavantage.co/query?function=%s&symbol=%s&apikey=" + API_KEY;
     private String symbol;
     private String timeseries;
     private String outputsize;

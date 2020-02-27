@@ -18,13 +18,13 @@ public class ScheduledUpdates{
 	private Iterator<?> symIte;
 
 	@Async
-	@Scheduled(fixedRate = 60000)
+	@Scheduled(fixedDelay = 100000)
 	public void addSymbol(){
 		QueryUpdate queryUpdate = new QueryUpdate();
 		symIte = symbolQue.iterator();
 		if(symIte.hasNext()){
 			Object sym = symIte.next();
-			queryUpdate.addNotExist(sym.toString(),"compact");
+			queryUpdate.addNotExist(sym.toString());
 			log.info("The symbol added to database {}", sym.toString());
 			symIte.remove();
 			queryUpdate.closeConnection();

@@ -3,6 +3,7 @@ package DataParser.DBQueries;
 import DataParser.DBConnector.Connector;
 import DataParser.DataFormat.DataFormatIn;
 import DataParser.DataFormat.DataFormatOut;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,7 +12,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public abstract class AbstractQuery{
-	protected String curDatabase = "financedatabase";
+	@Value("${dataDatabase}")
+	protected String curDatabase;
 	protected String DBtable;
 	protected String timeser;
 

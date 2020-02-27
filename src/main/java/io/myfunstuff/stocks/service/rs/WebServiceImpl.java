@@ -36,13 +36,13 @@ public class WebServiceImpl implements WebService {
 		double firstOpen;
 
 		stockObj = new JSONObject(keys.next().toString());
-		firstOpen = Double.parseDouble(stockObj.get("open").toString());
+		firstOpen = Double.parseDouble(stockObj.get("adjustedClose").toString());
 
-		dataBuilder.append(stockObj.get("date")).append(",").append(Double.parseDouble(stockObj.get("close").toString())/firstOpen).append(":");
+		dataBuilder.append(stockObj.get("date")).append(",").append(Double.parseDouble(stockObj.get("adjustedClose").toString())/firstOpen).append(":");
 
 		while (keys.hasNext()) {
 			stockObj = new JSONObject(keys.next().toString());
-			dataBuilder.append(stockObj.get("date")).append(",").append(Double.parseDouble(stockObj.get("close").toString())/firstOpen).append(":");
+			dataBuilder.append(stockObj.get("date")).append(",").append(Double.parseDouble(stockObj.get("adjustedClose").toString())/firstOpen).append(":");
 		}
 
 		return dataBuilder.toString().replaceAll("/", "-");
@@ -83,14 +83,20 @@ public class WebServiceImpl implements WebService {
 			if(chartType.equals("line")){
 				while (keys.hasNext()) {
 					stockObj = new JSONObject(keys.next().toString());
-					dataBuilder.append(stockObj.get("date")).append(",").append(stockObj.get("close")).append(":");
+					dataBuilder.append(stockObj.get("date")).append(",").append(stockObj.get("adjustedClose")).append(":");
 					dataVolumeBuilder.append(stockObj.get("date")).append(",").append(stockObj.get("volume")).append(":");
 				}
 
 			}else if(chartType.equals("candle")){
 				while (keys.hasNext()) {
 					stockObj = new JSONObject(keys.next().toString());
-					dataBuilder.append(stockObj.get("date")).append(",").append(stockObj.get("open")).append(",").append(stockObj.get("high")).append(",").append(stockObj.get("low")).append(",").append(stockObj.get("close")).append(":");
+					double adjustedRatio = Double.parseDouble(stockObj.get("close").toString())/Double.parseDouble(stockObj.get("adjustedClose").toString());
+
+					double open = Double.parseDouble(stockObj.get("open").toString())/adjustedRatio;
+					double high = Double.parseDouble(stockObj.get("high").toString())/adjustedRatio;
+					double low = Double.parseDouble(stockObj.get("low").toString())/adjustedRatio;
+
+					dataBuilder.append(stockObj.get("date")).append(",").append(open).append(",").append(high).append(",").append(low).append(",").append(stockObj.get("adjustedClose")).append(":");
 					dataVolumeBuilder.append(stockObj.get("date")).append(",").append(stockObj.get("volume")).append(":");
 				}
 			}

@@ -5,9 +5,8 @@
     <meta charset="ISO-8859-1">
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script
-            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            src="https://code.jquery.com/jquery-3.4.1.min.js">
 
-           >
     </script>
     <script>
         function getYearDiff() {
@@ -18,6 +17,14 @@
             if(startDate != null || endDate != null){
                 var startYear =  startDate.value.split("-")[0];
                 var endYear = endDate.value.split("-")[0];
+
+                if(startYear < 2000){
+                    startYear = 2000;
+                }
+
+                if(endYear > nowYear){
+                    endYear = nowYear;
+                }
 
                 if(endYear-startYear <= 3){
                     if(endYear-startYear === 0){
@@ -63,7 +70,6 @@
     <input type = "button" onclick="document.inputForm.timeseries.value = 'TIME_SERIES_WEEKLY_ADJUSTED'; document.inputForm.submit()" value = "weekly data"/>
 
 </form>
-    <h6>eg url: http://applestock.us-west-1.elasticbeanstalk.com/service/chart?symbol=spy%2Cmsft%2Camzn&startDate=2015-06-30&endDate=2020-01-01 </h6>
     <h6>plan for future: integrating a lot of technical data, dynamic and live intraday charts</h6>
 </div>
 <div id="TAChart" style="height: 20vh; width: 200vh"></div>
@@ -115,7 +121,6 @@
         document.inputForm.endDate.value = todayDate.getFullYear() + "-" + todayDate.getMonth()+1 + "-" + todayDate.getDate();
         document.inputForm.startDate.value= newDate.getFullYear()+"-"+nowMM+"-"+nowDD;
     }
-
 
 </script>
 <script type = "text/javascript" src = "/parseCSV.js"></script>

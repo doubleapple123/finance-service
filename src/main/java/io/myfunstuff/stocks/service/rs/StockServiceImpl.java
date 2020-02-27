@@ -11,7 +11,6 @@ import io.myfunstuff.stocks.service.database.StockRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 @Controller
@@ -45,14 +44,6 @@ public class StockServiceImpl <T> implements StockService {
 		stockFullDC.convertArr(StockAdjustedDaily.class);
 		return stockAnalysisService.getStockStatistics(stockFullDC);
 	}
-
-//	@Override
-//	public ArrayList getStockData(String timeseries, String symbol, String startDate, String endDate){
-//		addNotExist(timeseries, symbol);
-//		StockTimeDC stockTimeDC = new StockTimeDC(timeseries, symbol, startDate, endDate);
-//		stockTimeDC.convertArr();
-//		return stockTimeDC.getDataRow();
-//	}
 
 	@Override
 	public ArrayList getFullStockData(String timeseries, String symbol, String startDate, String endDate) {

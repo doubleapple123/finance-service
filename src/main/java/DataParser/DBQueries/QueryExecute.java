@@ -1,5 +1,7 @@
 package DataParser.DBQueries;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -43,7 +45,7 @@ public class QueryExecute extends AbstractQuery{
 		setQuery(String.format("SELECT column_name\n" +
 				"FROM information_schema.columns\n" +
 				"WHERE  table_name = '%s'\n" +
-				"   AND table_schema = 'financedatabase'", table));
+				"   AND table_schema = "+curDatabase, table));
 	}
 
 	public ArrayList<ArrayList<Object>> executeQuery(){
