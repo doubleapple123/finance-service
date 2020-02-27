@@ -21,10 +21,8 @@ var chart = new CanvasJS.Chart("myChart", {
     },
     axisY: {
         title: "price",
+        includeZero: false,
         logarithmic: false,
-        scaleBreaks:{
-            autoCalculate: true
-        },
         labelFontSize: 15
     },
     axisY2: {
