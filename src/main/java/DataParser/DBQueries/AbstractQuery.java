@@ -63,13 +63,19 @@ public abstract class AbstractQuery{
 
 	public void closeConnection(){
 		try{
-			statement.close();
-			connection.close();
+			if(resultSet != null){
+				resultSet.close();
+			}
+			if(statement != null){
+				statement.close();
+			}
+			if(connection != null){
+				connection.close();
+			}
+
 		}catch(SQLException e){
 			System.out.println("Close failed");
 			e.printStackTrace();
 		}
 	}
-
-
 }

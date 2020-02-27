@@ -17,21 +17,28 @@ public class QueryUpdate extends AbstractQuery{
 		QueryExecute queryExecute = new QueryExecute();
 		QueryUpdate queryUpdate = new QueryUpdate();
 
-		if(!queryExecute.checkExist(symbol)){
-			//if the symbol does not exist in table `stocksymbols`, then add data from past 20 yrs
-			//to daily and weekly table
-			for(String timeseries : listOfTimeseries){
-				queryUpdate.setTimeser(timeseries);
-				queryUpdate.addToDatabaseSymbol(symbol, times);
-				queryUpdate.updateQuery();
+		if(times.equals("compact")){
+			addDBMain(symbol, times, queryUpdate);
+		}else{
+			if(!queryExecute.checkExist(symbol)){
+				//if the symbol does not exist in table `stocksymbols`, then add data from past 20 yrs
+				//to daily and weekly table
+				addDBMain(symbol, times, queryUpdate);
 			}
+		}
+		queryExecute.closeConnection();
+		queryUpdate.closeConnection();
+	}
 
-			queryUpdate.addToMainTable(symbol);
+	private void addDBMain(String symbol, String times, QueryUpdate queryUpdate){
+		for(String timeseries : listOfTimeseries){
+			queryUpdate.setTimeser(timeseries);
+			queryUpdate.addToDatabaseSymbol(symbol, times);
 			queryUpdate.updateQuery();
 		}
 
-		queryExecute.closeConnection();
-		queryUpdate.closeConnection();
+		queryUpdate.addToMainTable(symbol);
+		queryUpdate.updateQuery();
 	}
 
 	public void addToMainTable(String symbol){

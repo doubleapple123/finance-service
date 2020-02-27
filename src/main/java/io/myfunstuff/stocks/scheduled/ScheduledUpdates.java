@@ -25,11 +25,10 @@ public class ScheduledUpdates{
 		if(symIte.hasNext()){
 			Object sym = symIte.next();
 			queryUpdate.addNotExist(sym.toString(),"compact");
-			log.info("The symbol added to database {} ", sym.toString());
+			log.info("The symbol added to database {}", sym.toString());
 			symIte.remove();
 			queryUpdate.closeConnection();
 		}
-
 	}
 
 	@Async

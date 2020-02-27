@@ -10,6 +10,7 @@ for (var i = 0; i < dataArr.length; i++) {
 var chart = new CanvasJS.Chart("myChart", {
     animationEnabled: true,
     zoomEnabled: true,
+    zoomType: "xy",
     theme: "light2",
 
     title: {
@@ -21,6 +22,9 @@ var chart = new CanvasJS.Chart("myChart", {
     axisY: {
         title: "price",
         logarithmic: false,
+        scaleBreaks:{
+            autoCalculate: true
+        },
         labelFontSize: 15
     },
     axisY2: {
