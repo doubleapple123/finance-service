@@ -14,7 +14,6 @@ import java.util.ArrayList;
 public abstract class AbstractQuery{
 	protected String DBtable;
 	protected String timeser;
-
 	protected String query;
 	protected Connection connection;
 	protected Statement statement;

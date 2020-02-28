@@ -16,12 +16,8 @@ import java.sql.Statement;
 public class Connector {
     private Connection con;
     private Statement statement;
-//
-//    @Autowired
-//    PropertyValues values;
 
     public Connector(String database, PropertyValues propertyValues){
-//        System.out.println(values.getApikey());
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String dbURL = propertyValues.getDataURL() + "/%s?allowMultiQueries=true";
