@@ -3,7 +3,7 @@ package DataParser.DBQueries;
 import DataParser.DBConnector.Connector;
 import DataParser.DataFormat.DataFormatIn;
 import DataParser.DataFormat.DataFormatOut;
-import org.springframework.beans.factory.annotation.Value;
+import io.myfunstuff.stocks.PropertyValues;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -12,8 +12,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public abstract class AbstractQuery{
-	@Value("${dataDatabase}")
-	protected String curDatabase;
 	protected String DBtable;
 	protected String timeser;
 
@@ -25,8 +23,8 @@ public abstract class AbstractQuery{
 	protected ResultSet resultSet;
 	protected ArrayList<ArrayList<Object>> dataTable;
 
-	public AbstractQuery(){
-		Connector connector = new Connector(curDatabase);
+	public AbstractQuery(PropertyValues propertyValues){
+		Connector connector = new Connector(propertyValues.getDataDatabase(), propertyValues);
 		this.connection = connector.getCon();
 		this.statement = connector.getStatement();
 		this.DBtable = "stocksymbols";

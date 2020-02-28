@@ -1,11 +1,17 @@
 package DataParser.DBQueries;
 
+import io.myfunstuff.stocks.PropertyValues;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class QueryExecute extends AbstractQuery{
+	private PropertyValues propertyValues;
+	public QueryExecute(PropertyValues propertyValues){
+		super(propertyValues);
+		this.propertyValues = propertyValues;
+	}
 	public void getDistinctSymbols(){
 		setQuery(String.format("select distinct symbol from stocksymbols"));
 	}
@@ -45,7 +51,7 @@ public class QueryExecute extends AbstractQuery{
 		setQuery(String.format("SELECT column_name\n" +
 				"FROM information_schema.columns\n" +
 				"WHERE  table_name = '%s'\n" +
-				"   AND table_schema = "+curDatabase, table));
+				"   AND table_schema = "+propertyValues.getDataDatabase(), table));
 	}
 
 	public ArrayList<ArrayList<Object>> executeQuery(){

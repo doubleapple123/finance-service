@@ -1,17 +1,21 @@
 package DataParser.DataFormat;
 
+import io.myfunstuff.stocks.PropertyValues;
 import org.apache.wink.json4j.JSONException;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
 
 //class used by other classes to format data into usable data
 public class DataFormatIn{
+	@Autowired
+	PropertyValues propertyValues;
 
 	//formats correctly data to import into mysql
 	//final step of the import process
 	public String updateDatabase(String symbol, String timeseries, String outputsize) throws IOException, JSONException{
-		Parser parser = new Parser(symbol,timeseries);
+		Parser parser = new Parser(symbol,timeseries, propertyValues);
 		if(outputsize.equals("compact")){
 			parser.setOutputsize(outputsize);
 		}

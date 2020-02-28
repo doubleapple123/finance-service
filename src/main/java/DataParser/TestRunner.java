@@ -14,8 +14,8 @@ public class TestRunner{
  */
 
 	public static void main(String[] args){
-		QueryExecute execute = new QueryExecute();
-		QueryUpdate update = new QueryUpdate();
+//		QueryExecute execute = new QueryExecute();
+//		QueryUpdate update = new QueryUpdate();
 
 		String[] symbolsToAdd = {"SPY", "TSLA", "MSFT"};
 
@@ -34,7 +34,7 @@ public class TestRunner{
 //		queries.inputSymbolsIntoSymbolDatabase();
 //		queries.updateQuery();
 
-		update.closeConnection();
-		execute.closeConnection();
+//		update.closeConnection();
+//		execute.closeConnection();
 	}
 }

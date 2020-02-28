@@ -3,6 +3,7 @@ package io.myfunstuff.stocks.service.rs;
 import DataParser.DBQueries.QueryExecute;
 import DataParser.DBQueries.QueryUpdate;
 import DataParser.DataCollections.DataCollection;
+import io.myfunstuff.stocks.PropertyValues;
 import io.myfunstuff.stocks.model.StockModels.StockAdjustedDaily;
 import io.myfunstuff.stocks.model.StockModels.StockAdjustedWeekly;
 import io.myfunstuff.stocks.model.StockModels.StockStatistics;
@@ -24,6 +25,9 @@ public class StockServiceImpl <T> implements StockService {
 	StockRepo stockrepo;
 
 	@Autowired
+	PropertyValues propertyValues;
+
+	@Autowired
 	public StockServiceImpl() {
 	}
 
@@ -38,7 +42,7 @@ public class StockServiceImpl <T> implements StockService {
 
 	@Override
 	public StockStatistics analyzeTimeSeriesData(String timeseries, String symbol, String startDate, String endDate) {
-		queryUpdate = new QueryUpdate();
+		queryUpdate = new QueryUpdate(propertyValues);
 		queryUpdate.addNotExist(symbol);
 		DataCollection<StockAdjustedDaily> stockFullDC = new DataCollection<>(timeseries, symbol, startDate, endDate);
 		stockFullDC.convertArr(StockAdjustedDaily.class);
@@ -47,7 +51,7 @@ public class StockServiceImpl <T> implements StockService {
 
 	@Override
 	public ArrayList getFullStockData(String timeseries, String symbol, String startDate, String endDate) {
-		queryUpdate = new QueryUpdate();
+		queryUpdate = new QueryUpdate(propertyValues);
 		queryUpdate.addNotExist(symbol);
 		Class type = getDataObject(timeseries);
 		DataCollection<T> stockFullDC = new DataCollection<>(timeseries, symbol, startDate, endDate);

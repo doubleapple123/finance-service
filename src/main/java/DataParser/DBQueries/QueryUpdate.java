@@ -1,11 +1,18 @@
 package DataParser.DBQueries;
 
+import io.myfunstuff.stocks.PropertyValues;
 import org.apache.wink.json4j.JSONException;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
 public class QueryUpdate extends AbstractQuery{
+	PropertyValues propertyValues;
+	public QueryUpdate(PropertyValues propertyValues){
+		super(propertyValues);
+		this.propertyValues = propertyValues;
+	}
+
 	private String[] listOfTimeseries = {"TIME_SERIES_DAILY_ADJUSTED", "TIME_SERIES_WEEKLY_ADJUSTED"};
 
 	public void addNotExist(String symbol){
@@ -14,8 +21,8 @@ public class QueryUpdate extends AbstractQuery{
 
 	//TODO configure this when adding new data, need to setTimeser to corresponding correct database
 	public void addNotExist(String symbol, String times){
-		QueryExecute queryExecute = new QueryExecute();
-		QueryUpdate queryUpdate = new QueryUpdate();
+		QueryExecute queryExecute = new QueryExecute(propertyValues);
+		QueryUpdate queryUpdate = new QueryUpdate(propertyValues);
 
 		if(times.equals("compact")){
 			addDBMain(symbol, times, queryUpdate);

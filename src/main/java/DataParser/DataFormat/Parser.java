@@ -1,5 +1,6 @@
 package DataParser.DataFormat;
 
+import io.myfunstuff.stocks.PropertyValues;
 import org.apache.wink.json4j.JSONException;
 import org.apache.wink.json4j.OrderedJSONObject;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,17 +20,16 @@ import java.util.List;
 //different tables for daily and weekly data
 public class Parser {
     private StringBuilder finalParsed; //FINAL DATA -- important
-
-    @Value("${apikey}")
-    private String API_KEY;
-
-    private String dailyURLFormat = "https://www.alphavantage.co/query?function=%s&symbol=%s&outputsize=%s&apikey=" + API_KEY; //daily or weekly, symbol
-    private String weeklyURLFormat = "https://www.alphavantage.co/query?function=%s&symbol=%s&apikey=" + API_KEY;
+    private String dailyURLFormat; //daily or weekly, symbol
+    private String weeklyURLFormat;
     private String symbol;
     private String timeseries;
     private String outputsize;
 
-    public Parser(String symbol, String timeseries){
+    public Parser(String symbol, String timeseries, PropertyValues propertyValues){
+        System.out.println(propertyValues.getApikey());
+        dailyURLFormat = "https://www.alphavantage.co/query?function=%s&symbol=%s&outputsize=%s&apikey=" + propertyValues.getApikey();
+        weeklyURLFormat = "https://www.alphavantage.co/query?function=%s&symbol=%s&apikey=" + propertyValues.getApikey();
         this.symbol = symbol;
         this.timeseries = timeseries;
         this.outputsize = "full";

@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 
 @Component
 public class PropertyValues{
-	public final String apikey;
-	public final String dataUser;
-	public final String dataPass;
-	public final String dataURL;
-	public final String dataDatabase;
+	private final String apikey;
+	private final String dataUser;
+	private final String dataPass;
+	private final String dataURL;
+	private final String dataDatabase;
 
 	public PropertyValues(@Value("${apikey}") String apikey,
 						  @Value("${spring.datasource.username}") String dataUser,
@@ -27,48 +27,25 @@ public class PropertyValues{
 		this.dataDatabase = dataDatabase;
 	}
 
+
 	public String getApikey(){
-		System.out.printf("Property apikey: %s\n", apikey);
 		return apikey;
 	}
 
+
 	public String getDataUser(){
-		System.out.printf("Property dataUser  : %s\n", dataUser);
 		return dataUser;
 	}
 
 	public String getDataPass(){
-		System.out.printf("Property dataPass: %s\n", dataPass);
 		return dataPass;
 	}
 
 	public String getDataURL(){
-		System.out.printf("Property dataURL  : %s\n", dataURL  );
 		return dataURL;
 	}
 
 	public String getDataDatabase(){
-		System.out.printf("Property dataDatabase  : %s\n", dataDatabase);
 		return dataDatabase;
 	}
-//
-//	public String getApikey(){
-//		return apikey;
-//	}
-//
-//	public String getDataUser(){
-//		return dataUser;
-//	}
-//
-//	public String getDataPass(){
-//		return dataPass;
-//	}
-//
-//	public String getDataURL(){
-//		return dataURL;
-//	}
-//
-//	public String getDataDatabase(){
-//		return dataDatabase;
-//	}
 }

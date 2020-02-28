@@ -2,6 +2,7 @@ package io.myfunstuff.stocks.service;
 
 import DataParser.DBQueries.QueryExecute;
 import DataParser.DataCollections.DataCollection;
+import io.myfunstuff.stocks.PropertyValues;
 import io.myfunstuff.stocks.model.*;
 import io.myfunstuff.stocks.model.StockModels.StockAdjustedDaily;
 import io.myfunstuff.stocks.model.StockModels.StockStatistics;
@@ -24,6 +25,9 @@ public class StockAnalysisServiceImpl implements StockAnalysisService{
 	@Autowired
 	public StockAnalysisServiceImpl(){
 	}
+
+	@Autowired
+	PropertyValues propertyValues;
 
 	@Override
 	public StockStatistics getStockStatistics(DataCollection stockDC){
@@ -62,7 +66,7 @@ public class StockAnalysisServiceImpl implements StockAnalysisService{
 	@Override
 	public TimeSeriesDataCollection parseRawTimeSeriesData(String timeseries, String startDate, String endDate, String symbol, TimeSeriesType timeseriesType){
 		TimeSeriesDataCollection timeSeriesDataCollection = new TimeSeriesDataCollection(startDate, endDate, symbol, timeseriesType);
-		QueryExecute queryExecute = new QueryExecute();
+		QueryExecute queryExecute = new QueryExecute(propertyValues);
 		queryExecute.setTimeser(timeseries);
 		queryExecute.getTableFromSymbol(symbol, startDate, endDate);
 		ArrayList<ArrayList<Object>> table = queryExecute.executeQuery();

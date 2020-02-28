@@ -14,7 +14,7 @@
 //	public String apik;
 //
 //	@Bean
-//	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer(){
-//		return new PropertySourcesPlaceholderConfigurer();
+//	public PropertyValues propertyValues(){
+//		return new PropertyValues();
 //	}
 //}
