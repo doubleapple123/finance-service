@@ -7,10 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
+
 //meant to represent data in the database
 public class DataCollection<T>{
-	@Autowired
-	PropertyValues propertyValues;
 	//represents a row of data
 	private String timeseries;
 	private String symbol;
@@ -27,7 +26,7 @@ public class DataCollection<T>{
 	}
 
 	//wtf is happening here? it works though
-	public void convertArr(Class myClass) {
+	public void convertArr(Class myClass, PropertyValues propertyValues) {
 		try{
 			QueryExecute query = new QueryExecute(propertyValues);
 			query.setTimeser(getTimeseries());

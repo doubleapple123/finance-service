@@ -4,6 +4,7 @@ import io.myfunstuff.stocks.PropertyValues;
 import org.apache.wink.json4j.JSONException;
 import org.apache.wink.json4j.OrderedJSONObject;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,7 +28,6 @@ public class Parser {
     private String outputsize;
 
     public Parser(String symbol, String timeseries, PropertyValues propertyValues){
-        System.out.println(propertyValues.getApikey());
         dailyURLFormat = "https://www.alphavantage.co/query?function=%s&symbol=%s&outputsize=%s&apikey=" + propertyValues.getApikey();
         weeklyURLFormat = "https://www.alphavantage.co/query?function=%s&symbol=%s&apikey=" + propertyValues.getApikey();
         this.symbol = symbol;

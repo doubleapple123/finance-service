@@ -1,6 +1,5 @@
 package io.myfunstuff.stocks.service.rs;
 
-import DataParser.DBQueries.QueryExecute;
 import DataParser.DBQueries.QueryUpdate;
 import DataParser.DataCollections.DataCollection;
 import io.myfunstuff.stocks.PropertyValues;
@@ -45,7 +44,7 @@ public class StockServiceImpl <T> implements StockService {
 		queryUpdate = new QueryUpdate(propertyValues);
 		queryUpdate.addNotExist(symbol);
 		DataCollection<StockAdjustedDaily> stockFullDC = new DataCollection<>(timeseries, symbol, startDate, endDate);
-		stockFullDC.convertArr(StockAdjustedDaily.class);
+		stockFullDC.convertArr(StockAdjustedDaily.class, propertyValues);
 		return stockAnalysisService.getStockStatistics(stockFullDC);
 	}
 
@@ -55,7 +54,7 @@ public class StockServiceImpl <T> implements StockService {
 		queryUpdate.addNotExist(symbol);
 		Class type = getDataObject(timeseries);
 		DataCollection<T> stockFullDC = new DataCollection<>(timeseries, symbol, startDate, endDate);
-		stockFullDC.convertArr(type);
+		stockFullDC.convertArr(type, propertyValues);
 		return stockFullDC.getDataRow();
 	}
 

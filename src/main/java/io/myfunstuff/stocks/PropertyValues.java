@@ -1,37 +1,39 @@
 package io.myfunstuff.stocks;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Component
+@Service
+@Configurable
 public class PropertyValues{
-	private final String apikey;
-	private final String dataUser;
-	private final String dataPass;
-	private final String dataURL;
-	private final String dataDatabase;
+	@Value("${apikey}")
+	private String apikey;
 
-	public PropertyValues(@Value("${apikey}") String apikey,
-						  @Value("${spring.datasource.username}") String dataUser,
-						  @Value("${spring.datasource.password}") String dataPass,
-						  @Value("${spring.datasource.url}") String dataURL,
-						  @Value("${dataDatabase}") String dataDatabase){
-		this.apikey = apikey;
-		this.dataUser = dataUser;
-		this.dataPass = dataPass;
-		this.dataURL = dataURL;
-		this.dataDatabase = dataDatabase;
+	@Value("${spring.datasource.username}")
+	private String dataUser;
+
+	@Value("${spring.datasource.password}")
+	private String dataPass;
+
+	@Value("${spring.datasource.url}")
+	private String dataURL;
+
+	@Value("${dataDatabase}")
+	private String dataDatabase;
+
+	public PropertyValues(){
+
 	}
-
 
 	public String getApikey(){
 		return apikey;
 	}
-
 
 	public String getDataUser(){
 		return dataUser;

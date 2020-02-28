@@ -24,15 +24,7 @@ public class QueryUpdate extends AbstractQuery{
 		QueryExecute queryExecute = new QueryExecute(propertyValues);
 		QueryUpdate queryUpdate = new QueryUpdate(propertyValues);
 
-		if(times.equals("compact")){
-			addDBMain(symbol, times, queryUpdate);
-		}else{
-			if(!queryExecute.checkExist(symbol)){
-				//if the symbol does not exist in table `stocksymbols`, then add data from past 20 yrs
-				//to daily and weekly table
-				addDBMain(symbol, times, queryUpdate);
-			}
-		}
+		addDBMain(symbol, times, queryUpdate);
 		queryExecute.closeConnection();
 		queryUpdate.closeConnection();
 	}
@@ -62,7 +54,7 @@ public class QueryUpdate extends AbstractQuery{
 	//uses data in
 	public void addToDatabaseSymbol(String symbol, String outputsize){
 		try{
-			setQuery(String.format("INSERT IGNORE INTO %s VALUES %s",getDBtable(), dataIn.updateDatabase(symbol, getTimeser(), outputsize)));
+			setQuery(String.format("INSERT IGNORE INTO %s VALUES %s",getDBtable(), dataIn.updateDatabase(symbol, getTimeser(), outputsize, propertyValues)));
 		} catch(IOException | JSONException e){
 			e.printStackTrace();
 		}
