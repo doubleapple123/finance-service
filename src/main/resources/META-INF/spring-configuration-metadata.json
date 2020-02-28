@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "apikey",
+      "type": "java.lang.String",
+      "description": "Description for apikey."
+    },
+    {
+      "name": "dataDatabase",
+      "type": "java.lang.String",
+      "description": "Description for dataDatabase."
+    }
+  ] }

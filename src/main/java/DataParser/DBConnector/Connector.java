@@ -1,8 +1,8 @@
 package DataParser.DBConnector;
 
+import io.myfunstuff.stocks.PropertyValues;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,27 +10,25 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 //class used solely for connecting to a mysql database
-@Service
 public class Connector {
-    @Value("${spring.datasource.username}")
-    private String user;
-
-    @Value("${spring.datasource.password}")
-    private String password;
-
-    @Value("${spring.datasource.url}")
-    private String databaseURL;
-
+    @Autowired
+    private PropertyValues propertyValues;
 
     private Connection con;
     private Statement statement;
 
     public Connector(String database){
+        System.out.println(propertyValues.getApikey());
+        System.out.println(propertyValues.getDataUser());
+        System.out.println(propertyValues.getDataURL());
+        System.out.println(propertyValues.getDataDatabase());
+        System.out.println(propertyValues.getDataPass());
         try {
+            System.out.println(propertyValues.apikey);
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String dbURL = password + databaseURL + "/%s?allowMultiQueries=true";
+            String dbURL = propertyValues.apikey + propertyValues.dataURL + "/%s?allowMultiQueries=true";
             System.out.println(dbURL);
-            con = DriverManager.getConnection(String.format(dbURL , database), user, password);
+            con = DriverManager.getConnection(String.format(dbURL, database), propertyValues.dataUser, propertyValues.dataPass);
             statement = con.createStatement();
 
         } catch(SQLException | ClassNotFoundException e){
