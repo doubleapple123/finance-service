@@ -44,9 +44,26 @@ var chart = new CanvasJS.Chart("myChart", {
 chart.render();
 var dps = [];
 
-if(timeSeries === "TIME_SERIES_INTRADAY"){
 
-}
+
+var updateChart = function() {
+    // var oldData = dps;
+    // oldData.push.apply(dps, getDataLineFromCSV(parsData));
+    // newData = onlyUnique(oldData);
+
+    if(timeSeries === "TIME_SERIES_INTRADAY")
+    {
+        if(chartType === "candle"){
+            dataSeries.push(getDataCandleFromCSV(parsData));
+
+        }else if (chartType === "line"){
+            dataSeries.dataPoints.push(getDataLineFromCSV(parsData));
+        }
+
+        chart.render();
+    }
+};
+
 
 if (manySymbolsArr.length === 0) {
     if(chartType === "candle"){
@@ -86,87 +103,37 @@ if (manySymbolsArr.length === 0) {
             dataPoints: getDataLineFromCSV(volData)
         };
     }
-
+    // updateChart();
     chart.options.data.push(volSeries);
     chart.options.data.push(dataSeries);
     chart.render();
 }
 
-//d3
-var data = d3CandleFromCSV(parsData);
 
-var yExtent = fc.extentLinear()
-    .accessors([
-        function(d) { return d.high; },
-        function(d) { return d.low; }
-    ]);
-
-var xExtent = fc.extentDate()
-    .accessors([function(d) { return d.date; }]);
-
-var gridlines = fc.annotationSvgGridline();
-var candlestick = fc.seriesSvgCandlestick();
-var multi = fc.seriesSvgMulti()
-    .series([gridlines, candlestick]);
-
-var mychart = fc.chartCartesian(
-    fc.scaleDiscontinuous(d3.scaleTime()),
-    d3.scaleLinear()
-)
-    .yDomain(yExtent(data))
-    .xDomain(xExtent(data))
-    .svgPlotArea(multi);
-
-d3.select('#chart')
-    .datum(data)
-    .call(mychart);
+// var dataLength = 390;
+// var newData = [];
 
 
-//end d3
 
-var dataLength = 390;
-var newData = [];
+// //https://stackoverflow.com/questions/11474422/deleting-both-values-from-array-if-duplicate-javascript-jquery
+// function onlyUnique(arr) {
+//     var counts = arr.reduce(function(counts, item) {
+//         counts[item] = (counts[item]||0)+1;
+//         return counts;
+//     }, {});
+//     return Object.keys(counts).reduce(function(arr, item) {
+//         if(counts[item] === 1) {
+//             arr.push(item);
+//         }
+//         return arr;
+//     }, []);
+// }
 
-var updateChart = function() {
-    var oldData = dps;
-    oldData.push.apply(dps, getDataLineFromCSV(parsData));
-    newData = onlyUnique(oldData);
-
-    if(timeSeries === "TIME_SERIES_INTRADAY")
-    {
-        if(chartType === "candle"){
-            dataSeries.push();
-
-        }else if (chartType === "line"){
-            dps.push(getDataLineFromCSV(newData));
-        }
-
-        if(dps.length > dataLength){
-            dps.shift();
-        }
-        chart.render();
-    }
-};
-// setInterval(function(){updateChart()}, 1000);
-
-//https://stackoverflow.com/questions/11474422/deleting-both-values-from-array-if-duplicate-javascript-jquery
-function onlyUnique(arr) {
-    var counts = arr.reduce(function(counts, item) {
-        counts[item] = (counts[item]||0)+1;
-        return counts;
-    }, {});
-    return Object.keys(counts).reduce(function(arr, item) {
-        if(counts[item] === 1) {
-            arr.push(item);
-        }
-        return arr;
-    }, []);
-}
-
+var symbols = 0;
 
 for (var p = 0; p < manySymbolsArr.length; p++) {
 
-    let dataArrs = manySymbolsArr[p].split(":");
+    let dataArrs = manySymbolsArr[p].split("?");
 
     dataArrs.pop();
 

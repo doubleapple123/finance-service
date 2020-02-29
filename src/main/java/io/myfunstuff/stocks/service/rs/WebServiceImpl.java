@@ -2,6 +2,7 @@ package io.myfunstuff.stocks.service.rs;
 
 import io.myfunstuff.stocks.model.StockModels.StockAdjustedDaily;
 import io.myfunstuff.stocks.model.StockModels.StockAdjustedWeekly;
+import io.myfunstuff.stocks.model.StockModels.StockStandardData;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +26,13 @@ public class WebServiceImpl implements WebService {
 	@Autowired
 	StockServiceImpl stockService;
 
-	@Async
-	@Scheduled(fixedRate = 60000)
-	public void getIntradayUpdates() throws IOException, ClassNotFoundException{
-		if(symbol != null && thisTimeseries.equals("TIME_SERIES_INTRADAY")){
-			getHello(symbol,startDate,endDate,thisTimeseries,chartType);
-		}
-	}
+//	@Async
+//	@Scheduled(fixedRate = 60000)
+//	public void getIntradayUpdates() throws IOException, ClassNotFoundException{
+//		if(symbol != null && thisTimeseries.equals("TIME_SERIES_INTRADAY")){
+//			getHello(symbol,startDate,endDate,thisTimeseries,chartType);
+//		}
+//	}
 
 	public String getData(String sym, String start, String end) {
 		ArrayList stockdata = stockService.getFullStockData(thisTimeseries,sym,start,end);
@@ -58,8 +59,7 @@ public class WebServiceImpl implements WebService {
 
 		}
 
-
-		return dataBuilder.toString();
+		return dataBuilder.toString().replaceAll("/", "-");
 
 	}
 
@@ -73,7 +73,6 @@ public class WebServiceImpl implements WebService {
 		StringBuilder dataBuilder = new StringBuilder();
 		StringBuilder dataVolumeBuilder = new StringBuilder();
 
-		ArrayList stockdata = stockService.getFullStockData(thisTimeseries,symbol,startDate,endDate);
 
 		ModelAndView model = new ModelAndView("hello");
         StringBuilder symbolsData = new StringBuilder();
@@ -87,14 +86,16 @@ public class WebServiceImpl implements WebService {
 			model.addObject("multSym",symbolsData);
 
 		}else{
+			ArrayList stockdata = stockService.getFullStockData(thisTimeseries,symbol,startDate,endDate);
 
-        	symbol = symbol.toUpperCase();
+			symbol = symbol.toUpperCase();
 			double open = 0,
 					high = 0,
 					low = 0,
 					adjustedRatio,
 					adjustedClose = 0,
-					volume = 0;
+					volume = 0,
+					close = 0;
 
 			String date = "";
 
@@ -117,14 +118,43 @@ public class WebServiceImpl implements WebService {
 					volume = ((StockAdjustedWeekly) obj).getVolume();
 					date = ((StockAdjustedWeekly) obj).getDate();
 
+				}else if(obj instanceof StockStandardData){
+					close = ((StockStandardData)obj).getClose();
+					open = ((StockStandardData) obj).getOpen();
+					high = ((StockStandardData) obj).getHigh();
+					low = ((StockStandardData) obj).getLow();
+					volume = ((StockStandardData) obj).getVolume();
+					date = ((StockStandardData) obj).getDate();
 				}
+
 				if(chartType.equals("line")){
-					dataBuilder.append(date).append(",").append(adjustedClose).append("?");
-					dataVolumeBuilder.append(date).append(",").append(volume).append("?");
+					//this if statement only gets data for the last trading day
+					//TODO if all data is in, how to fix the graph?
+					if(thisTimeseries.equals("TIME_SERIES_INTRADAY")){
+						if(date.split("-")[2].substring(0,3).equals(((StockStandardData)stockdata.get(0)).getDate().split("-")[2].substring(0,3))){
+							dataBuilder.append(date).append(",").append(close).append("?");
+							dataVolumeBuilder.append(date).append(",").append(volume).append("?");
+
+						}
+					}else{
+						dataBuilder.append(date).append(",").append(adjustedClose).append("?");
+						dataVolumeBuilder.append(date).append(",").append(volume).append("?");
+					}
 
 				}else if(chartType.equals("candle")){
-					dataBuilder.append(date).append(",").append(open).append(",").append(high).append(",").append(low).append(",").append(adjustedClose).append("?");
-					dataVolumeBuilder.append(date).append(",").append(volume).append("?");
+					if(thisTimeseries.equals("TIME_SERIES_INTRADAY")){
+						//this if statement only gets data for the last trading day
+						if(date.split("-")[2].substring(0,3).equals(((StockStandardData)stockdata.get(0)).getDate().split("-")[2].substring(0,3))){
+							dataBuilder.append(date).append(",").append(open).append(",").append(high).append(",").append(low).append(",").append(close).append("?");
+							dataVolumeBuilder.append(date).append(",").append(volume).append("?");
+						}
+
+					}else{
+						dataBuilder.append(date).append(",").append(open).append(",").append(high).append(",").append(low).append(",").append(adjustedClose).append("?");
+						dataVolumeBuilder.append(date).append(",").append(volume).append("?");
+
+					}
+
 				}
 			}
 
