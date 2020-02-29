@@ -5,6 +5,7 @@ import DataParser.DataCollections.DataCollection;
 import io.myfunstuff.stocks.PropertyValues;
 import io.myfunstuff.stocks.model.StockModels.StockAdjustedDaily;
 import io.myfunstuff.stocks.model.StockModels.StockAdjustedWeekly;
+import io.myfunstuff.stocks.model.StockModels.StockStandardData;
 import io.myfunstuff.stocks.model.StockModels.StockStatistics;
 import io.myfunstuff.stocks.service.StockAnalysisService;
 import io.myfunstuff.stocks.service.database.StockRepo;
@@ -35,6 +36,7 @@ public class StockServiceImpl <T> implements StockService {
 		switch(timeseries){
 			case "TIME_SERIES_DAILY_ADJUSTED" : return StockAdjustedDaily.class;
 			case "TIME_SERIES_WEEKLY_ADJUSTED" : return StockAdjustedWeekly.class;
+			case "TIME_SERIES_INTRADAY" : return StockStandardData.class;
 			default: return null;
 		}
 	}

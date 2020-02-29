@@ -44,6 +44,7 @@ public abstract class AbstractQuery{
 		switch(timeseries){
 			case "TIME_SERIES_DAILY_ADJUSTED" : this.DBtable = "stockadjusteddaily"; break;
 			case "TIME_SERIES_WEEKLY_ADJUSTED" : this.DBtable = "stockadjustedweekly"; break;
+			case "TIME_SERIES_INTRADAY" : this.DBtable = "stockintraday";
 			default: break;
 		}
 	}

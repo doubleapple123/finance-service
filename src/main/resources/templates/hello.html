@@ -68,7 +68,7 @@
     <input type = "button" onclick = "document.inputForm.chartType.value = 'candle'; document.inputForm.submit()" value = "candle chart"/>
     <input type = "button" onclick="document.inputForm.timeseries.value = 'TIME_SERIES_DAILY_ADJUSTED'; document.inputForm.submit()" value = "daily data"/>
     <input type = "button" onclick="document.inputForm.timeseries.value = 'TIME_SERIES_WEEKLY_ADJUSTED'; document.inputForm.submit()" value = "weekly data"/>
-
+    <input type = "button" onclick="document.inputForm.timeseries.value = 'TIME_SERIES_INTRADAY';document.inputForm.submit()" value = "intraday data"/>
 </form>
     <h6>plan for future: integrating a lot of technical data, dynamic and live intraday charts</h6>
 </div>
@@ -77,6 +77,7 @@
 <script type="text/javascript">
 
     let chartType = "[[${chartType}]]";
+    let timeSeries = "[[${timeseries}]]";
 
     let symbolsName = "[[${symbols}]]";
     symbolsName = symbolsName.replace("[", "");

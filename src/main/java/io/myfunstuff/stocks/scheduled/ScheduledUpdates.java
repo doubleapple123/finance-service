@@ -28,7 +28,7 @@ public class ScheduledUpdates{
 		symIte = symbolQue.iterator();
 		if(symIte.hasNext()){
 			Object sym = symIte.next();
-			queryUpdate.addNotExist(sym.toString());
+			queryUpdate.addScheduled(sym.toString());
 			log.info("The symbol added to database {}", sym.toString());
 			symIte.remove();
 			queryUpdate.closeConnection();

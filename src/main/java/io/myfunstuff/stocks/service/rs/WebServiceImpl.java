@@ -2,6 +2,8 @@ package io.myfunstuff.stocks.service.rs;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,10 +20,16 @@ import java.util.Iterator;
 public class WebServiceImpl implements WebService {
 	private String thisTimeseries;
 
+	@Async
+	@Scheduled(fixedRate = 60000)
+	public void getIntradayUpdates(){
+
+	}
+
 	public String getData(String sym, String start, String end) throws IOException {
 		StringBuilder dataBuilder = new StringBuilder();
-//		URL address = new URL(String.format("http://localhost:5000/stock/data/alldata?symbol=%s&startDate=%s&endDate=%s&timeseries=%s", sym, start, end, thisTimeseries));
-		URL address = new URL(String.format("http://stockscreener-env.applestock.us-west-1.elasticbeanstalk.com/stock/data/alldata?symbol=%s&startDate=%s&endDate=%s&timeseries=%s", sym, start, end,thisTimeseries));
+		URL address = new URL(String.format("http://localhost:5000/stock/data/alldata?symbol=%s&startDate=%s&endDate=%s&timeseries=%s", sym, start, end, thisTimeseries));
+//		URL address = new URL(String.format("http://applestock.us-west-1.elasticbeanstalk.com/stock/data/alldata?symbol=%s&startDate=%s&endDate=%s&timeseries=%s", sym, start, end,thisTimeseries));
 		InputStream in = address.openStream();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 		StringBuilder result = new StringBuilder();
@@ -55,6 +63,7 @@ public class WebServiceImpl implements WebService {
         StringBuilder symbolsData = new StringBuilder();
         String[] symbols = symbol.split(",");
 		model.addObject("symbols", Arrays.toString(symbols).toUpperCase());
+
         if (symbols.length > 1) {
         	for(String str:symbols){
 				symbolsData.append(getData(str,startDate,endDate)).append("+");
@@ -66,8 +75,8 @@ public class WebServiceImpl implements WebService {
 			StringBuilder dataBuilder = new StringBuilder();
 			StringBuilder dataVolumeBuilder = new StringBuilder();
 
-//			URL address = new URL(String.format("http://localhost:5000/stock/data/alldata?symbol=%s&startDate=%s&endDate=%s&timeseries=%s", symbol, startDate, endDate, thisTimeseries));
-			URL address = new URL(String.format("http://stockscreener-env.applestock.us-west-1.elasticbeanstalk.com/stock/data/alldata?symbol=%s&startDate=%s&endDate=%s&timeseries=%s", symbol, startDate, endDate, thisTimeseries));
+			URL address = new URL(String.format("http://localhost:5000/stock/data/alldata?symbol=%s&startDate=%s&endDate=%s&timeseries=%s", symbol, startDate, endDate, thisTimeseries));
+//			URL address = new URL(String.format("http://applestock.us-west-1.elasticbeanstalk.com/stock/data/alldata?symbol=%s&startDate=%s&endDate=%s&timeseries=%s", symbol, startDate, endDate, thisTimeseries));
 			InputStream in = address.openStream();
 			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 			StringBuilder result = new StringBuilder();

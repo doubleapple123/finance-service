@@ -2,7 +2,6 @@ package DataParser.DataCollections;
 
 import DataParser.DBQueries.QueryExecute;
 import io.myfunstuff.stocks.PropertyValues;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;

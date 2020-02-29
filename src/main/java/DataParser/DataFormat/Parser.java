@@ -23,6 +23,7 @@ public class Parser {
     private StringBuilder finalParsed; //FINAL DATA -- important
     private String dailyURLFormat; //daily or weekly, symbol
     private String weeklyURLFormat;
+    private String intradayURLFormat;
     private String symbol;
     private String timeseries;
     private String outputsize;
@@ -30,6 +31,8 @@ public class Parser {
     public Parser(String symbol, String timeseries, PropertyValues propertyValues){
         dailyURLFormat = "https://www.alphavantage.co/query?function=%s&symbol=%s&outputsize=%s&apikey=" + propertyValues.getApikey();
         weeklyURLFormat = "https://www.alphavantage.co/query?function=%s&symbol=%s&apikey=" + propertyValues.getApikey();
+        intradayURLFormat = "https://www.alphavantage.co/query?function=%s&symbol=%s&interval=1min&outputsize=full&apikey=" + propertyValues.getApikey();
+
         this.symbol = symbol;
         this.timeseries = timeseries;
         this.outputsize = "full";
@@ -72,7 +75,8 @@ public class Parser {
             case "TIME_SERIES_WEEKLY_ADJUSTED" :
                 address = new URL(String.format(weeklyURLFormat, timeseries, symbol)); break;
 
-
+            case "TIME_SERIES_INTRADAY":
+                address = new URL(String.format(intradayURLFormat, timeseries, symbol)); break;
             default: throw new IllegalArgumentException();
         }
 

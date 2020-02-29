@@ -40,13 +40,16 @@ var chart = new CanvasJS.Chart("myChart", {
     ]
 });
 chart.render();
+var dps = [];
+
 if (manySymbolsArr.length === 0) {
     if(chartType === "candle"){
+        dps = getDataCandleFromCSV(parsData);
         var dataSeries = {
             type: "candlestick",
             name: "price",
             showInLegend: true,
-            dataPoints: getDataCandleFromCSV(parsData)
+            dataPoints: dps
         };
         var volSeries = {
             color: "#FF8800",
@@ -59,12 +62,14 @@ if (manySymbolsArr.length === 0) {
         };
 
     }else{
+        dps = getDataLineFromCSV(parsData);
         var dataSeries = {
             color: "#289AFF",
             type: "line",
             name: "price",
             showInLegend: true,
-            dataPoints: getDataLineFromCSV(parsData)
+            dataPoints: dps
+            // dataPoints:  getDataLineFromCSV(parsData)
         };
         var volSeries = {
             color: "#FF8800",
@@ -77,12 +82,61 @@ if (manySymbolsArr.length === 0) {
         };
     }
 
+    currentData = getDataLineFromCSV(parsData);
+
+    var testAr = currentData;
+
+    currentData.push.apply(currentData,testAr);
+
+    var uniq = onlyUnique(currentData);
+
+
     chart.options.data.push(volSeries);
     chart.options.data.push(dataSeries);
     chart.render();
 }
 
 var symbols = 0;
+
+//TODO what to do here, need only updated data
+var dataLength = 390;
+var xVal = dps.length + 1;
+
+var updateChart = function() {
+    var xData = currentData;
+    // if(timeSeries === "TIME_SERIES_INTRADAY")
+    if(timeSeries === "TIME_SERIES_DAILY_ADJUSTED")
+    {
+        if(chartType === "candle"){
+            dataSeries.push();
+        }else if (chartType === "line"){
+            dps.push({
+                x: xVal,
+                y: 2000+Math.random(),
+            });
+            if(dps.length > dataLength){
+                dps.shift();
+            }
+            xVal++;
+            chart.render();
+        }
+    }
+};
+setInterval(function(){updateChart()}, 1000);
+
+//https://stackoverflow.com/questions/11474422/deleting-both-values-from-array-if-duplicate-javascript-jquery
+function onlyUnique(arr) {
+    var counts = arr.reduce(function(counts, item) {
+        counts[item] = (counts[item]||0)+1;
+        return counts;
+    }, {});
+    return Object.keys(counts).reduce(function(arr, item) {
+        if(counts[item] === 1) {
+            arr.push(item);
+        }
+        return arr;
+    }, []);
+}
 
 
 for (var p = 0; p < manySymbolsArr.length; p++) {

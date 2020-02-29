@@ -8,23 +8,41 @@ import java.sql.SQLException;
 
 public class QueryUpdate extends AbstractQuery{
 	PropertyValues propertyValues;
+
 	public QueryUpdate(PropertyValues propertyValues){
 		super(propertyValues);
 		this.propertyValues = propertyValues;
 	}
 
+	//TODO configure this when adding new data, need to setTimeser to corresponding correct database
 	private String[] listOfTimeseries = {"TIME_SERIES_DAILY_ADJUSTED", "TIME_SERIES_WEEKLY_ADJUSTED"};
+
+	public void addIntraday(String symbol){
+
+	}
 
 	public void addNotExist(String symbol){
 		addNotExist(symbol, "full");
 	}
 
-	//TODO configure this when adding new data, need to setTimeser to corresponding correct database
+	public void addScheduled(String symbol){
+		QueryExecute queryExecute = new QueryExecute(propertyValues);
+		QueryUpdate queryUpdate = new QueryUpdate(propertyValues);
+
+		addDBMain(symbol, "full", queryUpdate);
+
+		queryExecute.closeConnection();
+		queryUpdate.closeConnection();
+	}
+
 	public void addNotExist(String symbol, String times){
 		QueryExecute queryExecute = new QueryExecute(propertyValues);
 		QueryUpdate queryUpdate = new QueryUpdate(propertyValues);
 
-		addDBMain(symbol, times, queryUpdate);
+		if(!queryExecute.checkExist(symbol)){
+			addDBMain(symbol, times, queryUpdate);
+		}
+
 		queryExecute.closeConnection();
 		queryUpdate.closeConnection();
 	}
