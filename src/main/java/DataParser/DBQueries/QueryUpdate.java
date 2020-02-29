@@ -15,11 +15,7 @@ public class QueryUpdate extends AbstractQuery{
 	}
 
 	//TODO configure this when adding new data, need to setTimeser to corresponding correct database
-	private String[] listOfTimeseries = {"TIME_SERIES_DAILY_ADJUSTED", "TIME_SERIES_WEEKLY_ADJUSTED"};
-
-	public void addIntraday(String symbol){
-
-	}
+	private String[] listOfTimeseries = {"TIME_SERIES_DAILY_ADJUSTED", "TIME_SERIES_WEEKLY_ADJUSTED", "TIME_SERIES_INTRADAY"};
 
 	public void addNotExist(String symbol){
 		addNotExist(symbol, "full");

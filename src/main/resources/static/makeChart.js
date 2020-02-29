@@ -1,3 +1,5 @@
+
+
 for (var x = 0; x < volDataArr.length; x++) {
     volData += volDataArr[x] + "\n";
 }
@@ -33,7 +35,7 @@ var chart = new CanvasJS.Chart("myChart", {
         logarithmic: false
     },
     axisX: {
-        labelFontSize: 15
+        labelFontSize: 15,
     },
     data: [
         {}
@@ -41,6 +43,10 @@ var chart = new CanvasJS.Chart("myChart", {
 });
 chart.render();
 var dps = [];
+
+if(timeSeries === "TIME_SERIES_INTRADAY"){
+
+}
 
 if (manySymbolsArr.length === 0) {
     if(chartType === "candle"){
@@ -69,7 +75,6 @@ if (manySymbolsArr.length === 0) {
             name: "price",
             showInLegend: true,
             dataPoints: dps
-            // dataPoints:  getDataLineFromCSV(parsData)
         };
         var volSeries = {
             color: "#FF8800",
@@ -82,47 +87,67 @@ if (manySymbolsArr.length === 0) {
         };
     }
 
-    currentData = getDataLineFromCSV(parsData);
-
-    var testAr = currentData;
-
-    currentData.push.apply(currentData,testAr);
-
-    var uniq = onlyUnique(currentData);
-
-
     chart.options.data.push(volSeries);
     chart.options.data.push(dataSeries);
     chart.render();
 }
 
-var symbols = 0;
+//d3
+var data = d3CandleFromCSV(parsData);
 
-//TODO what to do here, need only updated data
+var yExtent = fc.extentLinear()
+    .accessors([
+        function(d) { return d.high; },
+        function(d) { return d.low; }
+    ]);
+
+var xExtent = fc.extentDate()
+    .accessors([function(d) { return d.date; }]);
+
+var gridlines = fc.annotationSvgGridline();
+var candlestick = fc.seriesSvgCandlestick();
+var multi = fc.seriesSvgMulti()
+    .series([gridlines, candlestick]);
+
+var mychart = fc.chartCartesian(
+    fc.scaleDiscontinuous(d3.scaleTime()),
+    d3.scaleLinear()
+)
+    .yDomain(yExtent(data))
+    .xDomain(xExtent(data))
+    .svgPlotArea(multi);
+
+d3.select('#chart')
+    .datum(data)
+    .call(mychart);
+
+
+//end d3
+
 var dataLength = 390;
-var xVal = dps.length + 1;
+var newData = [];
 
 var updateChart = function() {
-    var xData = currentData;
-    // if(timeSeries === "TIME_SERIES_INTRADAY")
-    if(timeSeries === "TIME_SERIES_DAILY_ADJUSTED")
+    var oldData = dps;
+    oldData.push.apply(dps, getDataLineFromCSV(parsData));
+    newData = onlyUnique(oldData);
+
+    if(timeSeries === "TIME_SERIES_INTRADAY")
     {
         if(chartType === "candle"){
             dataSeries.push();
+
         }else if (chartType === "line"){
-            dps.push({
-                x: xVal,
-                y: 2000+Math.random(),
-            });
-            if(dps.length > dataLength){
-                dps.shift();
-            }
-            xVal++;
-            chart.render();
+            dps.push(getDataLineFromCSV(newData));
         }
+
+        if(dps.length > dataLength){
+            dps.shift();
+        }
+        chart.render();
     }
 };
-setInterval(function(){updateChart()}, 1000);
+// setInterval(function(){updateChart()}, 1000);
 
 //https://stackoverflow.com/questions/11474422/deleting-both-values-from-array-if-duplicate-javascript-jquery
 function onlyUnique(arr) {

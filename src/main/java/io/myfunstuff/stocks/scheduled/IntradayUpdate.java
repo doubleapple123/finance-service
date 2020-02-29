@@ -19,6 +19,6 @@ public class IntradayUpdate{
 	@Async
 	@Scheduled(fixedDelay = 60000)
 	public void updateIntraday(){
-		QueryUpdate queryUpdate = new QueryUpdate(propertyValues);
+//		QueryUpdate queryUpdate = new QueryUpdate(propertyValues);
 	}
 }

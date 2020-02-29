@@ -96,4 +96,19 @@ public class StockAdjustedDaily{
 	public void setSplitco(double splitco){
 		this.splitco = splitco;
 	}
+
+	@Override
+	public String toString(){
+		return "StockAdjustedDaily{" +
+				"date='" + date + '\'' +
+				", open=" + open +
+				", high=" + high +
+				", low=" + low +
+				", close=" + close +
+				", adjustedClose=" + adjustedClose +
+				", volume=" + volume +
+				", dividend=" + dividend +
+				", splitco=" + splitco +
+				'}';
+	}
 }

@@ -27,6 +27,7 @@ public class DataFormatIn{
 		//example data
 		//"'MSFT','2020-03-01', 100, 200, 300, 400, 500";
 		stringBuilder.deleteCharAt(stringBuilder.length()-2);
+
 		return stringBuilder.toString().trim();
 	}
 
