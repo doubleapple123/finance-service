@@ -4,8 +4,8 @@
 <head>
     <meta charset="ISO-8859-1">
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-    <script src="https://unpkg.com/d3/dist/d3.min.js"></script>
-    <script src="https://unpkg.com/d3fc/build/d3fc.min.js"></script>
+<!--    <script src="https://unpkg.com/d3/dist/d3.min.js"></script>-->
+<!--    <script src="https://unpkg.com/d3fc/build/d3fc.min.js"></script>-->
 <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3fc/11.0.0/d3fc.bundle.min.js"></script>-->
 
     <script>
@@ -109,8 +109,10 @@
 
         newDate.setFullYear(dateNow-numToAdd);
 
+
         var todayDate = new Date();
-        document.inputForm.endDate.value = todayDate.getFullYear() + "-" + todayDate.getMonth()+1 + "-" + todayDate.getDate();
+        var todayMonth = todayDate.getMonth()+1;
+        document.inputForm.endDate.value = todayDate.getFullYear() + "-" + todayMonth + "-" + todayDate.getDate();
         document.inputForm.startDate.value= newDate.getFullYear()+"-"+nowMM+"-"+nowDD;
     }
 
@@ -124,7 +126,7 @@
     var updateChart = function() {
         var oldData = dps;
 
-        var newDataStr = "[[$dataColl}]]";
+        var newDataStr = "[[${dataColl}]]";
         let newDataArr = newDataStr.split("?");
         newDataArr.pop();
 
@@ -156,7 +158,7 @@
         }
     };
 
-    setInterval(function(){updateChart()}, 6000);
+    // setInterval(function(){updateChart()}, 6000);
 </script>
 </body>
 </html>

@@ -26,7 +26,7 @@ import java.util.*;
 public class WebServiceImpl implements WebService {
 	private String thisTimeseries;
 	private String symbol, startDate, endDate, chartType;
-		public static final Logger log = LoggerFactory.getLogger(WebServiceImpl.class);
+	public static final Logger log = LoggerFactory.getLogger(WebServiceImpl.class);
 
 
 	@Autowired
@@ -35,18 +35,18 @@ public class WebServiceImpl implements WebService {
 	@Autowired
 	PropertyValues propertyValues;
 
-	@Async
-	@Scheduled(fixedRate = 60000)
-	public void getIntradayUpdates() throws IOException, ClassNotFoundException{
-		log.info("Current symbol is {}", symbol);
-		log.info("CUrrent timeseries is {}", thisTimeseries);
-		if(symbol != null && thisTimeseries.equals("TIME_SERIES_INTRADAY")){
-			QueryUpdate queryUpdate = new QueryUpdate(propertyValues);
-			log.info("Intraday update symbol {}", symbol);
-			queryUpdate.intradayUpdates(symbol);
-			getHello(symbol,startDate,endDate,thisTimeseries,chartType);
-		}
-	}
+//	@Async
+//	@Scheduled(fixedRate = 60000)
+//	public void getIntradayUpdates() throws IOException, ClassNotFoundException{
+//		log.info("Current symbol is {}", symbol);
+//		log.info("CUrrent timeseries is {}", thisTimeseries);
+//		if(symbol != null && thisTimeseries.equals("TIME_SERIES_INTRADAY")){
+//			QueryUpdate queryUpdate = new QueryUpdate(propertyValues);
+//			log.info("Intraday update symbol {}", symbol);
+//			queryUpdate.intradayUpdates(symbol);
+//			getHello(symbol,startDate,endDate,thisTimeseries,chartType);
+//		}
+//	}
 
 	public String getData(String sym, String start, String end) {
 		ArrayList stockdata = stockService.getFullStockData(thisTimeseries,sym,start,end);
@@ -148,7 +148,6 @@ public class WebServiceImpl implements WebService {
 						if(date.split("-")[2].substring(0,3).equals(((StockStandardData)stockdata.get(0)).getDate().split("-")[2].substring(0,3))){
 							dataBuilder.append(date).append(",").append(close).append("?");
 							dataVolumeBuilder.append(date).append(",").append(volume).append("?");
-
 						}
 					}else{
 						dataBuilder.append(date).append(",").append(adjustedClose).append("?");
