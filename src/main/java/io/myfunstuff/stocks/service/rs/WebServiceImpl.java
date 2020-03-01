@@ -1,10 +1,14 @@
 package io.myfunstuff.stocks.service.rs;
 
+import DataParser.DBQueries.QueryUpdate;
+import io.myfunstuff.stocks.PropertyValues;
 import io.myfunstuff.stocks.model.StockModels.StockAdjustedDaily;
 import io.myfunstuff.stocks.model.StockModels.StockAdjustedWeekly;
 import io.myfunstuff.stocks.model.StockModels.StockStandardData;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -22,17 +26,27 @@ import java.util.*;
 public class WebServiceImpl implements WebService {
 	private String thisTimeseries;
 	private String symbol, startDate, endDate, chartType;
+		public static final Logger log = LoggerFactory.getLogger(WebServiceImpl.class);
+
 
 	@Autowired
 	StockServiceImpl stockService;
 
-//	@Async
-//	@Scheduled(fixedRate = 60000)
-//	public void getIntradayUpdates() throws IOException, ClassNotFoundException{
-//		if(symbol != null && thisTimeseries.equals("TIME_SERIES_INTRADAY")){
-//			getHello(symbol,startDate,endDate,thisTimeseries,chartType);
-//		}
-//	}
+	@Autowired
+	PropertyValues propertyValues;
+
+	@Async
+	@Scheduled(fixedRate = 60000)
+	public void getIntradayUpdates() throws IOException, ClassNotFoundException{
+		log.info("Current symbol is {}", symbol);
+		log.info("CUrrent timeseries is {}", thisTimeseries);
+		if(symbol != null && thisTimeseries.equals("TIME_SERIES_INTRADAY")){
+			QueryUpdate queryUpdate = new QueryUpdate(propertyValues);
+			log.info("Intraday update symbol {}", symbol);
+			queryUpdate.intradayUpdates(symbol);
+			getHello(symbol,startDate,endDate,thisTimeseries,chartType);
+		}
+	}
 
 	public String getData(String sym, String start, String end) {
 		ArrayList stockdata = stockService.getFullStockData(thisTimeseries,sym,start,end);

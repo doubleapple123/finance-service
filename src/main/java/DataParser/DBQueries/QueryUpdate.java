@@ -21,13 +21,21 @@ public class QueryUpdate extends AbstractQuery{
 		addNotExist(symbol, "full");
 	}
 
+	public void intradayUpdates(String symbol){
+		QueryUpdate queryUpdate = new QueryUpdate(propertyValues);
+
+		queryUpdate.setTimeser("TIME_SERIES_INTRADAY");
+		queryUpdate.addToDatabaseSymbol(symbol, "TIME_SERIES_INTRADAY");
+		queryUpdate.updateQuery();
+
+		queryUpdate.closeConnection();
+	}
+
 	public void addScheduled(String symbol){
-		QueryExecute queryExecute = new QueryExecute(propertyValues);
 		QueryUpdate queryUpdate = new QueryUpdate(propertyValues);
 
 		addDBMain(symbol, "full", queryUpdate);
 
-		queryExecute.closeConnection();
 		queryUpdate.closeConnection();
 	}
 

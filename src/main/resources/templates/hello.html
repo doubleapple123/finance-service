@@ -118,6 +118,45 @@
 <script type = "text/javascript" src = "/parseCSV.js"></script>
 <script type = "text/javascript" src = "/makeChart.js"></script>
 <!--<script type = "text/javascript" src = "/makeD3Chart.js"></script>-->
+<script>
+    var newData = [];
 
+    var updateChart = function() {
+        var oldData = dps;
+
+        var newDataStr = "[[$dataColl}]]";
+        let newDataArr = newDataStr.split("?");
+        newDataArr.pop();
+
+        let newParsData = "";
+
+        for (var k = 0; k < newDataArr.length; k++) {
+            newParsData += newDataArr[k] + "\n";
+        }
+
+        oldData.push.apply(dps, getDataLineFromCSV(newParsData));
+        newData = onlyUnique(oldData);
+
+        console.log("new datastr = ");
+        console.log(newDataStr);
+
+        console.log(oldData);
+        console.log(newData);
+
+        if(timeSeries === "TIME_SERIES_INTRADAY")
+        {
+            if(chartType === "candle"){
+                dps.push(getDataCandleFromCSV(newData));
+
+            }else if (chartType === "line"){
+                dps.push(getDataLineFromCSV(newData));
+            }
+
+            chart.render();
+        }
+    };
+
+    setInterval(function(){updateChart()}, 6000);
+</script>
 </body>
 </html>

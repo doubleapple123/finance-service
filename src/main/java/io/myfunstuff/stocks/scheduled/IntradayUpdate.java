@@ -8,17 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
-@Component
-public class IntradayUpdate{
-	public static final Logger log = LoggerFactory.getLogger(IntradayUpdate.class);
-
-	@Autowired
-	PropertyValues propertyValues;
-
-	@Async
-	@Scheduled(fixedDelay = 60000)
-	public void updateIntraday(){
+//
+//@Component
+//public class IntradayUpdate{
+//	public static final Logger log = LoggerFactory.getLogger(IntradayUpdate.class);
+//
+//	@Autowired
+//	PropertyValues propertyValues;
+//
+//	@Async
+//	@Scheduled(fixedDelay = 60000)
+//	public void updateIntraday(){
 //		QueryUpdate queryUpdate = new QueryUpdate(propertyValues);
-	}
-}
+//	}
+//}

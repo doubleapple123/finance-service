@@ -45,26 +45,6 @@ chart.render();
 var dps = [];
 
 
-
-var updateChart = function() {
-    // var oldData = dps;
-    // oldData.push.apply(dps, getDataLineFromCSV(parsData));
-    // newData = onlyUnique(oldData);
-
-    if(timeSeries === "TIME_SERIES_INTRADAY")
-    {
-        if(chartType === "candle"){
-            dataSeries.push(getDataCandleFromCSV(parsData));
-
-        }else if (chartType === "line"){
-            dataSeries.dataPoints.push(getDataLineFromCSV(parsData));
-        }
-
-        chart.render();
-    }
-};
-
-
 if (manySymbolsArr.length === 0) {
     if(chartType === "candle"){
         dps = getDataCandleFromCSV(parsData);
@@ -103,31 +83,29 @@ if (manySymbolsArr.length === 0) {
             dataPoints: getDataLineFromCSV(volData)
         };
     }
-    // updateChart();
     chart.options.data.push(volSeries);
     chart.options.data.push(dataSeries);
     chart.render();
 }
 
 
-// var dataLength = 390;
-// var newData = [];
+var dataLength = 390;
 
 
 
-// //https://stackoverflow.com/questions/11474422/deleting-both-values-from-array-if-duplicate-javascript-jquery
-// function onlyUnique(arr) {
-//     var counts = arr.reduce(function(counts, item) {
-//         counts[item] = (counts[item]||0)+1;
-//         return counts;
-//     }, {});
-//     return Object.keys(counts).reduce(function(arr, item) {
-//         if(counts[item] === 1) {
-//             arr.push(item);
-//         }
-//         return arr;
-//     }, []);
-// }
+//https://stackoverflow.com/questions/11474422/deleting-both-values-from-array-if-duplicate-javascript-jquery
+function onlyUnique(arr) {
+    var counts = arr.reduce(function(counts, item) {
+        counts[item] = (counts[item]||0)+1;
+        return counts;
+    }, {});
+    return Object.keys(counts).reduce(function(arr, item) {
+        if(counts[item] === 1) {
+            arr.push(item);
+        }
+        return arr;
+    }, []);
+}
 
 var symbols = 0;
 
