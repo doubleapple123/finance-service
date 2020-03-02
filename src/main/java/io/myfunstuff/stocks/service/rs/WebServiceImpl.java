@@ -35,18 +35,18 @@ public class WebServiceImpl implements WebService {
 	@Autowired
 	PropertyValues propertyValues;
 
-//	@Async
-//	@Scheduled(fixedRate = 60000)
-//	public void getIntradayUpdates() throws IOException, ClassNotFoundException{
-//		log.info("Current symbol is {}", symbol);
-//		log.info("CUrrent timeseries is {}", thisTimeseries);
-//		if(symbol != null && thisTimeseries.equals("TIME_SERIES_INTRADAY")){
-//			QueryUpdate queryUpdate = new QueryUpdate(propertyValues);
-//			log.info("Intraday update symbol {}", symbol);
-//			queryUpdate.intradayUpdates(symbol);
-//			getHello(symbol,startDate,endDate,thisTimeseries,chartType);
-//		}
-//	}
+	@Async
+	@Scheduled(fixedRate = 60000)
+	public void getIntradayUpdates() throws IOException, ClassNotFoundException{
+		log.info("Current symbol is {}", symbol);
+		log.info("CUrrent timeseries is {}", thisTimeseries);
+		if(symbol != null && thisTimeseries.equals("TIME_SERIES_INTRADAY")){
+			QueryUpdate queryUpdate = new QueryUpdate(propertyValues);
+			log.info("Intraday update symbol {}", symbol);
+			queryUpdate.intradayUpdates(symbol);
+			getHello(symbol,startDate,endDate,thisTimeseries,chartType);
+		}
+	}
 
 	public String getData(String sym, String start, String end) {
 		ArrayList stockdata = stockService.getFullStockData(thisTimeseries,sym,start,end);
@@ -86,7 +86,6 @@ public class WebServiceImpl implements WebService {
 
 		StringBuilder dataBuilder = new StringBuilder();
 		StringBuilder dataVolumeBuilder = new StringBuilder();
-
 
 		ModelAndView model = new ModelAndView("hello");
         StringBuilder symbolsData = new StringBuilder();
@@ -167,7 +166,6 @@ public class WebServiceImpl implements WebService {
 						dataVolumeBuilder.append(date).append(",").append(volume).append("?");
 
 					}
-
 				}
 			}
 

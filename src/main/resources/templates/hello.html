@@ -136,7 +136,7 @@
             newParsData += newDataArr[k] + "\n";
         }
 
-        oldData.push.apply(dps, getDataLineFromCSV(newParsData));
+        oldData.push.apply(oldData, getDataLineFromCSV(newParsData));
         newData = onlyUnique(oldData);
 
         console.log("new datastr = ");
@@ -144,6 +144,7 @@
 
         console.log(oldData);
         console.log(newData);
+
 
         if(timeSeries === "TIME_SERIES_INTRADAY")
         {
@@ -158,7 +159,7 @@
         }
     };
 
-    // setInterval(function(){updateChart()}, 6000);
+    setInterval(function(){updateChart()}, 6000);
 </script>
 </body>
 </html>
